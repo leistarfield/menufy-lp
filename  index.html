@@ -116,7 +116,7 @@ nav{
 
 .htitle{
   font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
-  font-size:clamp(48px,4.8vw,78px);
+  font-size:clamp(32px,4.8vw,78px);
   font-weight:400;line-height:1.15;
   color:white;margin-bottom:10px;
   letter-spacing:.04em;
@@ -443,6 +443,17 @@ footer{
   footer{padding:32px 24px;flex-direction:column;gap:18px;text-align:center}
   .flinks{flex-wrap:wrap;justify-content:center}
   #privacy,#terms{padding:60px 24px !important}
+}
+
+@media(max-width:480px){
+  .htitle{font-size:36px}
+  .hleft{padding:44px 20px 28px}
+  .hright{display:none}
+  .hstats{grid-template-columns:1fr}
+  .hstat{padding:12px 16px;text-align:left}
+  .section{padding:64px 20px}
+  .lgrid{grid-template-columns:1fr}
+  .stitle{font-size:28px}
 }
 </style>
 </head>
