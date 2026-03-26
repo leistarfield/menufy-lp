@@ -274,10 +274,8 @@ nav{
   display:grid;grid-template-columns:1fr 1fr;
   gap:1px;background:var(--glight);
   margin-top:56px;
-  /* section内の左右paddingを打ち消して画面幅いっぱいに広げる */
-  margin-left:-80px;margin-right:-80px;
 }
-.feat{background:white;padding:56px 80px;transition:background .25s}
+.feat{background:white;padding:56px 52px;transition:background .25s}
 .feat:hover{background:var(--cream)}
 /* .uicon は共通スタイル使用 — featの中では margin-bottom:24px を追加 */
 .feat .uicon{margin-bottom:24px}
@@ -436,7 +434,7 @@ footer{
   .hstat-val{font-size:13px}
   .section{padding:80px 24px}
   .steps{grid-template-columns:1fr;gap:36px}
-  .fgrid{grid-template-columns:1fr;margin-left:-24px;margin-right:-24px}
+  .fgrid{grid-template-columns:1fr;margin-left:0;margin-right:0}
   .feat{padding:40px 24px}
   .pgrid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}
   .lgrid{grid-template-columns:repeat(2,1fr)}
