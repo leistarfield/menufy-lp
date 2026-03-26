@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライバシーポリシー — Menufy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --o1:#f97c4a;--o2:#f05a28;--o3:#e8622a;
+  --white:#fafaf8;--cream:#fdf8f4;
+  --black:#17110b;--gray:#90847d;--glight:#ece5de;--text:#261e17;
+}
+body{
+  font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;
+  background:var(--white);color:var(--text);
+  -webkit-font-smoothing:antialiased;font-weight:300;
+}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:62px;
+  background:rgba(253,248,244,.97);
+  border-bottom:1px solid var(--glight);
+}
+.nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nicon{width:32px;height:32px;border-radius:10px;background:linear-gradient(148deg,var(--o1),var(--o2));display:flex;align-items:center;justify-content:center}
+.ntext{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.1em}
+.nback{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:.06em;font-weight:300;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nback:hover{color:var(--black)}
+
+/* CONTENT */
+.wrap{max-width:720px;margin:0 auto;padding:80px 40px 120px}
+.label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--o3);margin-bottom:20px;display:flex;align-items:center;gap:12px;font-weight:300}
+.label::after{content:'';display:block;width:22px;height:1px;background:var(--o3)}
+h1{
+  font-family:'Shippori Mincho',serif;
+  font-size:36px;font-weight:400;color:var(--black);
+  letter-spacing:.06em;line-height:1.3;margin-bottom:12px;
+}
+.updated{font-size:12px;color:var(--gray);letter-spacing:.06em;margin-bottom:56px;font-weight:300}
+.intro{font-size:15px;color:var(--gray);line-height:2;letter-spacing:.06em;font-weight:300;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--glight)}
+
+h2{
+  font-family:'Shippori Mincho',serif;
+  font-size:18px;font-weight:500;color:var(--black);
+  letter-spacing:.08em;margin-bottom:16px;margin-top:48px;
+}
+p{font-size:14px;color:var(--gray);line-height:2;letter-spacing:.06em;font-weight:300;margin-bottom:12px}
+ul{list-style:none;margin-bottom:12px}
+ul li{font-size:14px;color:var(--gray);line-height:2;letter-spacing:.06em;font-weight:300;padding-left:1em;position:relative}
+ul li::before{content:'・';position:absolute;left:0;color:var(--o3)}
+a{color:var(--o3);text-decoration:none}
+a:hover{text-decoration:underline}
+
+footer{
+  padding:32px 60px;background:var(--cream);
+  border-top:1px solid var(--glight);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.fcopy{font-size:11px;color:var(--gray);letter-spacing:.06em;font-weight:200}
+
+@media(max-width:760px){
+  nav{padding:0 20px}
+  .wrap{padding:48px 24px 80px}
+  footer{padding:24px 20px;flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nlogo">
+    <div class="nicon">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2.2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </div>
+    <span class="ntext">Menufy</span>
+  </a>
+  <a href="index.html" class="nback">← トップに戻る</a>
+</nav>
+
+<div class="wrap">
+  <div class="label">Legal</div>
+  <h1>プライバシーポリシー</h1>
+  <p class="updated">最終更新：2026年3月</p>
+  <p class="intro">本プライバシーポリシーは、Menufy（以下「本アプリ」）における個人情報の取り扱いについて定めるものです。本アプリをご利用いただくことで、本ポリシーに同意したものとみなします。</p>
+
+  <h2>1. 収集する情報</h2>
+  <p>本アプリは以下の情報を収集する場合があります。</p>
+  <ul>
+    <li>カメラで撮影した画像（翻訳処理のみに使用し、サーバーに保存しません）</li>
+    <li>位置情報（翻訳履歴への位置タグ付けに使用。任意）</li>
+    <li>アプリの利用状況（Facebook SDKによる匿名の統計情報）</li>
+    <li>購入履歴（Apple経由のIAP管理のみ）</li>
+  </ul>
+
+  <h2>2. 情報の利用目的</h2>
+  <ul>
+    <li>メニューの翻訳サービスの提供</li>
+    <li>アプリの改善および不具合の解析</li>
+    <li>利用状況の統計分析</li>
+  </ul>
+
+  <h2>3. 第三者への提供</h2>
+  <p>収集した個人情報は、法令に基づく場合を除き、第三者に提供しません。なお、翻訳処理にはAnthropic社のAPIを使用しています。撮影画像はAPIへの送信後、保存されません。</p>
+
+  <h2>4. データの保存</h2>
+  <p>翻訳履歴はお客様のデバイスおよびiCloud（Key-Value Store）に保存されます。アプリを削除した場合も、iCloud上のクレジット情報は保持されます。</p>
+
+  <h2>5. トラッキングと広告</h2>
+  <p>本アプリはFacebook SDK（v18.0.1）を使用しており、App Tracking Transparency（ATT）フレームワークに基づき、トラッキングの許可を確認します。許可しない場合も、本アプリの全機能をご利用いただけます。</p>
+
+  <h2>6. お問い合わせ</h2>
+  <p>プライバシーポリシーに関するお問い合わせは <a href="https://www.instagram.com/menufy_translator/" target="_blank">Instagram (@menufy_translator)</a> までご連絡ください。</p>
+</div>
+
+<footer>
+  <a href="index.html" style="font-family:'Shippori Mincho',serif;font-size:16px;font-weight:500;color:var(--black);text-decoration:none;letter-spacing:.1em">Menufy</a>
+  <span class="fcopy">© 2026 Menufy</span>
+</footer>
+
+</body>
+</html>
