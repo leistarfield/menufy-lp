@@ -343,7 +343,20 @@ nav{
   transition:border-color .2s,transform .2s;
 }
 .lcard:hover{border-color:rgba(232,98,42,.28);transform:translateY(-2px)}
-.lflag{font-size:24px}
+.lflag{
+  font-size:24px;
+  display:inline-block;
+  line-height:1;
+}
+.lflag.badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:24px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));
+  color:white;
+  font-size:10px;font-weight:500;
+  letter-spacing:.08em;
+  border-radius:5px;
+}
 .lname{font-family:'Shippori Mincho',serif;font-size:14px;font-weight:500;color:var(--black);letter-spacing:.08em}
 .lnat{font-size:12px;color:var(--gray);letter-spacing:.02em;font-weight:300}
 
@@ -648,20 +661,20 @@ footer{
   <h2 class="stitle">世界中のメニューを、<br><em>翻訳する。</em></h2>
   <p class="sdesc">アジアからヨーロッパ、中東まで。どこの旅先でも、Menufyがメニューをあなたの言葉に変えます。</p>
   <div class="lgrid">
-    <div class="lcard"><span class="lflag">🇯🇵</span><span class="lname">日本語</span><span class="lnat">Japanese</span></div>
-    <div class="lcard"><span class="lflag">🇺🇸</span><span class="lname">英語</span><span class="lnat">English</span></div>
-    <div class="lcard"><span class="lflag">🇨🇳</span><span class="lname">中国語（簡体）</span><span class="lnat">中文（简体）</span></div>
-    <div class="lcard"><span class="lflag">🇹🇼</span><span class="lname">中国語（繁体）</span><span class="lnat">中文（繁體）</span></div>
-    <div class="lcard"><span class="lflag">🇰🇷</span><span class="lname">韓国語</span><span class="lnat">한국어</span></div>
-    <div class="lcard"><span class="lflag">🇫🇷</span><span class="lname">フランス語</span><span class="lnat">Français</span></div>
-    <div class="lcard"><span class="lflag">🇪🇸</span><span class="lname">スペイン語</span><span class="lnat">Español</span></div>
-    <div class="lcard"><span class="lflag">🇮🇹</span><span class="lname">イタリア語</span><span class="lnat">Italiano</span></div>
-    <div class="lcard"><span class="lflag">🇩🇪</span><span class="lname">ドイツ語</span><span class="lnat">Deutsch</span></div>
-    <div class="lcard"><span class="lflag">🇲🇾</span><span class="lname">マレー語</span><span class="lnat">Bahasa Melayu</span></div>
-    <div class="lcard"><span class="lflag">🇮🇩</span><span class="lname">インドネシア語</span><span class="lnat">Bahasa Indonesia</span></div>
-    <div class="lcard"><span class="lflag">🇹🇭</span><span class="lname">タイ語</span><span class="lnat">ภาษาไทย</span></div>
-    <div class="lcard"><span class="lflag">🇻🇳</span><span class="lname">ベトナム語</span><span class="lnat">Tiếng Việt</span></div>
-    <div class="lcard"><span class="lflag">🇦🇪</span><span class="lname">アラビア語</span><span class="lnat">العربية</span></div>
+    <div class="lcard"><span class="lflag" data-code="JP">🇯🇵</span><span class="lname">日本語</span><span class="lnat">Japanese</span></div>
+    <div class="lcard"><span class="lflag" data-code="EN">🇺🇸</span><span class="lname">英語</span><span class="lnat">English</span></div>
+    <div class="lcard"><span class="lflag" data-code="CN">🇨🇳</span><span class="lname">中国語（簡体）</span><span class="lnat">中文（简体）</span></div>
+    <div class="lcard"><span class="lflag" data-code="TW">🇹🇼</span><span class="lname">中国語（繁体）</span><span class="lnat">中文（繁體）</span></div>
+    <div class="lcard"><span class="lflag" data-code="KR">🇰🇷</span><span class="lname">韓国語</span><span class="lnat">한국어</span></div>
+    <div class="lcard"><span class="lflag" data-code="FR">🇫🇷</span><span class="lname">フランス語</span><span class="lnat">Français</span></div>
+    <div class="lcard"><span class="lflag" data-code="ES">🇪🇸</span><span class="lname">スペイン語</span><span class="lnat">Español</span></div>
+    <div class="lcard"><span class="lflag" data-code="IT">🇮🇹</span><span class="lname">イタリア語</span><span class="lnat">Italiano</span></div>
+    <div class="lcard"><span class="lflag" data-code="DE">🇩🇪</span><span class="lname">ドイツ語</span><span class="lnat">Deutsch</span></div>
+    <div class="lcard"><span class="lflag" data-code="MY">🇲🇾</span><span class="lname">マレー語</span><span class="lnat">Bahasa Melayu</span></div>
+    <div class="lcard"><span class="lflag" data-code="ID">🇮🇩</span><span class="lname">インドネシア語</span><span class="lnat">Bahasa Indonesia</span></div>
+    <div class="lcard"><span class="lflag" data-code="TH">🇹🇭</span><span class="lname">タイ語</span><span class="lnat">ภาษาไทย</span></div>
+    <div class="lcard"><span class="lflag" data-code="VN">🇻🇳</span><span class="lname">ベトナム語</span><span class="lnat">Tiếng Việt</span></div>
+    <div class="lcard"><span class="lflag" data-code="AE">🇦🇪</span><span class="lname">アラビア語</span><span class="lnat">العربية</span></div>
   </div>
 </section>
 
@@ -719,6 +732,26 @@ footer{
   </div>
   <span class="fcopy">© 2026 Menufy</span>
 </footer>
+
+<!-- 国旗絵文字フォールバック（Windows対応） -->
+<script>
+(function(){
+  // Canvas で絵文字が正しくレンダリングされるか検証
+  function supportsFlagEmoji() {
+    var canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    var ctx = canvas.getContext('2d');
+    ctx.fillText('🇯🇵', -4, 4);
+    return ctx.getImageData(0, 0, 1, 1).data[3] > 0;
+  }
+  if (!supportsFlagEmoji()) {
+    document.querySelectorAll('.lflag').forEach(function(el) {
+      el.textContent = el.getAttribute('data-code');
+      el.classList.add('badge');
+    });
+  }
+})();
+</script>
 
 <!-- Pixel: 料金セクション表示検知 -->
 <script>
