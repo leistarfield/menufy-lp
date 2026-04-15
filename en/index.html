@@ -454,9 +454,11 @@ body.mmenu-open{overflow:hidden}
 
 /* SCREENSHOTS SCROLL HINT */
 .screens-wrap{position:relative}
-.screens-wrap::after{content:'';position:absolute;right:0;top:24px;bottom:40px;width:60px;background:linear-gradient(to left, var(--white), transparent);pointer-events:none;opacity:.8}
+.screens-wrap::after{content:'';position:absolute;right:0;top:24px;bottom:40px;width:60px;background:linear-gradient(to left, var(--white), transparent);pointer-events:none;opacity:.8;display:none}
 .section-alt .screens-wrap::after{background:linear-gradient(to left, var(--cream), transparent)}
-.screens-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--gray);letter-spacing:.12em;font-weight:300;margin-top:-8px;opacity:.7}
+@media(max-width:960px){.screens-wrap::after{display:block}}
+.screens-hint{display:none;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--gray);letter-spacing:.12em;font-weight:300;margin-top:-8px;opacity:.7}
+@media(max-width:960px){.screens-hint{display:flex}}
 .screens-hint-arrow{animation:swipeHint 2s ease-in-out infinite}
 @keyframes swipeHint{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(6px);opacity:1}}
 
