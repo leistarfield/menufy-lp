@@ -343,20 +343,7 @@ nav{
   transition:border-color .2s,transform .2s;
 }
 .lcard:hover{border-color:rgba(232,98,42,.28);transform:translateY(-2px)}
-.lflag{
-  font-size:24px;
-  display:inline-block;
-  line-height:1;
-}
-.lflag.badge{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:36px;height:24px;
-  background:linear-gradient(148deg,var(--o1),var(--o2));
-  color:white;
-  font-size:10px;font-weight:500;
-  letter-spacing:.08em;
-  border-radius:5px;
-}
+.lflag{font-size:24px}
 .lname{font-family:'Shippori Mincho',serif;font-size:14px;font-weight:500;color:var(--black);letter-spacing:.08em}
 .lnat{font-size:12px;color:var(--gray);letter-spacing:.02em;font-weight:300}
 
@@ -459,18 +446,185 @@ footer{
 }
 
 @media(max-width:480px){
-  .htitle{font-size:32px}
+  .htitle{font-size:36px}
   .hleft{padding:44px 20px 28px}
-  .hright{display:flex;justify-content:center;padding:32px 24px 48px}
-  .pwrap{width:160px}
-  .pscene{width:160px}
-  .hstat{padding:12px 10px}
-  .hstat-val{font-size:12px}
-  .hstat-label{font-size:10px}
+  .hright{display:none}
+  .hstats{grid-template-columns:1fr}
+  .hstat{padding:12px 16px;text-align:left}
   .section{padding:64px 20px}
+  .lgrid{grid-template-columns:1fr}
   .stitle{font-size:28px}
 }
+
+/* SCREENSHOTS */
+.screens-wrap{max-width:1200px;margin:48px auto 0;position:relative}
+.screens-scroll{display:flex;gap:28px;overflow-x:auto;padding:24px 40px 40px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.screens-scroll::-webkit-scrollbar{display:none}
+.screen-item{flex:0 0 auto;scroll-snap-align:center;text-align:center}
+.screen-phone{
+  width:260px;padding:10px;background:#0b0906;border-radius:42px;
+  box-shadow:0 32px 72px rgba(0,0,0,.22),0 0 0 .5px rgba(255,255,255,.05);
+  position:relative;margin:0 auto 18px;
+}
+.screen-phone::before{
+  content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:90px;height:22px;background:#0b0906;border-radius:0 0 14px 14px;z-index:2;
+}
+.screen-phone img{
+  display:block;width:100%;height:auto;border-radius:32px;
+}
+.screen-cap{
+  font-family:'Shippori Mincho',serif;font-size:13px;
+  color:var(--gray);letter-spacing:.08em;font-weight:400;
+}
+.screen-cap strong{color:var(--black);font-weight:500;display:block;margin-bottom:4px;font-size:14px}
+
+/* FAQ */
+.faq-wrap{max-width:760px;margin:40px auto 0}
+.faq-item{
+  border-bottom:1px solid rgba(0,0,0,.08);
+  padding:22px 4px;
+}
+.faq-item:first-child{border-top:1px solid rgba(0,0,0,.08)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;cursor:pointer;list-style:none;
+  font-family:'Shippori Mincho',serif;font-size:17px;font-weight:500;
+  color:var(--black);letter-spacing:.04em;
+}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q::after{
+  content:'+';font-size:22px;color:var(--o2);font-weight:300;
+  transition:transform .3s ease;line-height:1;
+}
+.faq-item[open] .faq-q::after{transform:rotate(45deg)}
+.faq-a{
+  margin-top:14px;font-size:14px;color:var(--gray);
+  line-height:1.85;letter-spacing:.04em;
+}
+
+/* Testimonial note */
+.tnote{
+  font-size:11px;color:var(--gray);letter-spacing:.08em;
+  margin-top:8px;font-weight:300;opacity:.7;
+}
+
+@media(max-width:768px){
+  .screens-scroll{padding:16px 20px 32px;gap:18px}
+  .screen-phone{width:220px}
+  .faq-q{font-size:15px}
+  .faq-a{font-size:13px}
+}
 </style>
+
+<!-- JSON-LD: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Menufy",
+  "url": "https://menufyjp.com",
+  "logo": "https://menufyjp.com/ogp.png",
+  "sameAs": ["https://www.instagram.com/menufy_translator/"]
+}
+</script>
+
+<!-- JSON-LD: SoftwareApplication (iOS app) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Menufy — メニュー翻訳",
+  "operatingSystem": "iOS",
+  "applicationCategory": "TravelApplication",
+  "description": "海外のレストランで迷わない。カメラで撮影するだけで、外国語のメニューを日本語に翻訳。14言語対応・買い切り制・為替換算機能つき。",
+  "url": "https://menufyjp.com",
+  "image": "https://menufyjp.com/ogp.png",
+  "downloadUrl": "https://apps.apple.com/app/id6760161339",
+  "inLanguage": ["ja", "en", "zh-Hans", "zh-Hant", "ko", "fr", "es", "it", "de", "ms", "id", "th", "vi", "ar"],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Starter Pack",
+      "price": "2.99",
+      "priceCurrency": "USD",
+      "description": "翻訳25回分"
+    },
+    {
+      "@type": "Offer",
+      "name": "Traveler Pack",
+      "price": "6.99",
+      "priceCurrency": "USD",
+      "description": "翻訳150回分"
+    },
+    {
+      "@type": "Offer",
+      "name": "Explorer Pack",
+      "price": "14.99",
+      "priceCurrency": "USD",
+      "description": "翻訳400回分"
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "翻訳の精度はどのくらいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "最新のAI（Claude）を使用しており、印刷メニュー・手書きメニュー・黒板メニューなど様々な形式を高精度で翻訳します。料理名だけでなく、原材料や調理法の説明も日本語で表示します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "オフラインで使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI翻訳のため、インターネット接続が必要です。Wi-Fiまたはモバイルデータ通信をご利用ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "プライバシーは守られますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "撮影した写真は翻訳処理のみに使用され、サーバーには保存されません。翻訳履歴はお使いのデバイスとiCloudにのみ保存されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "サブスクリプションですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ、買い切り制です。一度購入したクレジットは有効期限なしで使えます。サブスクリプションのような継続課金は一切ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "iCloud同期はどう動きますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "購入したクレジットは自動的にiCloudで同期されます。同じApple IDでログインした複数の端末間で共有され、アプリを再インストールしても復元可能です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "無料で使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ダウンロードするだけで最初の5回は無料で翻訳できます。気に入ったら、旅行のスタイルに合わせて25回分・150回分・400回分のプランから選べます。"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -486,6 +640,7 @@ footer{
     <a href="#features" class="nlink">機能</a>
     <a href="#pricing" class="nlink">料金</a>
     <a href="#languages" class="nlink">対応言語</a>
+    <a href="#faq" class="nlink">よくある質問</a>
   </div>
   <a href="https://apps.apple.com/app/id6760161339" class="ncta" target="_blank"
     onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_Nav'})">App Storeで入手</a>
@@ -573,8 +728,35 @@ footer{
   </div>
 </section>
 
+<!-- ===== スクリーンショット セクション ===== -->
+<section class="section" id="screens">
+  <div class="slbl">アプリの画面</div>
+  <h2 class="stitle">すべての操作を、<br><em>数タップで。</em></h2>
+  <p class="sdesc">複雑な設定は一切なし。カメラを向けて撮るだけで、翻訳結果がすぐ手に入ります。</p>
+  <div class="screens-wrap">
+    <div class="screens-scroll">
+      <div class="screen-item">
+        <div class="screen-phone"><img src="screens/01-setup.png" alt="Menufyの言語設定画面" loading="lazy"></div>
+        <div class="screen-cap"><strong>01. 言語と通貨を選ぶ</strong>翻訳元と翻訳先を選択</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="screens/02-camera.png" alt="Menufyのカメラ撮影画面" loading="lazy"></div>
+        <div class="screen-cap"><strong>02. メニューを撮影</strong>紙・黒板・タブレット対応</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="screens/03-result.png" alt="Menufyの翻訳結果画面" loading="lazy"></div>
+        <div class="screen-cap"><strong>03. 翻訳結果を確認</strong>料理名・説明・価格を日本語で</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="screens/04-history.png" alt="Menufyの翻訳履歴画面" loading="lazy"></div>
+        <div class="screen-cap"><strong>04. 履歴として保存</strong>位置情報つきで旅の記録に</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 機能セクション ===== -->
-<section class="section" id="features">
+<section class="section section-alt" id="features">
   <div class="slbl">機能</div>
   <h2 class="stitle">旅の食卓を、<br><em>もっと自由に。</em></h2>
   <div class="fgrid">
@@ -606,7 +788,7 @@ footer{
 </section>
 
 <!-- ===== 料金セクション ===== -->
-<section class="section section-alt" id="pricing">
+<section class="section" id="pricing">
   <div class="slbl">料金</div>
   <h2 class="stitle">まず試して、<br><em>気に入ったら続ける。</em></h2>
   <p class="sdesc">ダウンロードするだけで5回体験できます。サブスクリプションなし、使いたい分だけ買い切りで。</p>
@@ -656,25 +838,61 @@ footer{
 </section>
 
 <!-- ===== 対応言語セクション ===== -->
-<section class="section" id="languages">
+<section class="section section-alt" id="languages">
   <div class="slbl">対応言語</div>
   <h2 class="stitle">世界中のメニューを、<br><em>翻訳する。</em></h2>
   <p class="sdesc">アジアからヨーロッパ、中東まで。どこの旅先でも、Menufyがメニューをあなたの言葉に変えます。</p>
   <div class="lgrid">
-    <div class="lcard"><span class="lflag" data-code="JP">🇯🇵</span><span class="lname">日本語</span><span class="lnat">Japanese</span></div>
-    <div class="lcard"><span class="lflag" data-code="EN">🇺🇸</span><span class="lname">英語</span><span class="lnat">English</span></div>
-    <div class="lcard"><span class="lflag" data-code="CN">🇨🇳</span><span class="lname">中国語（簡体）</span><span class="lnat">中文（简体）</span></div>
-    <div class="lcard"><span class="lflag" data-code="TW">🇹🇼</span><span class="lname">中国語（繁体）</span><span class="lnat">中文（繁體）</span></div>
-    <div class="lcard"><span class="lflag" data-code="KR">🇰🇷</span><span class="lname">韓国語</span><span class="lnat">한국어</span></div>
-    <div class="lcard"><span class="lflag" data-code="FR">🇫🇷</span><span class="lname">フランス語</span><span class="lnat">Français</span></div>
-    <div class="lcard"><span class="lflag" data-code="ES">🇪🇸</span><span class="lname">スペイン語</span><span class="lnat">Español</span></div>
-    <div class="lcard"><span class="lflag" data-code="IT">🇮🇹</span><span class="lname">イタリア語</span><span class="lnat">Italiano</span></div>
-    <div class="lcard"><span class="lflag" data-code="DE">🇩🇪</span><span class="lname">ドイツ語</span><span class="lnat">Deutsch</span></div>
-    <div class="lcard"><span class="lflag" data-code="MY">🇲🇾</span><span class="lname">マレー語</span><span class="lnat">Bahasa Melayu</span></div>
-    <div class="lcard"><span class="lflag" data-code="ID">🇮🇩</span><span class="lname">インドネシア語</span><span class="lnat">Bahasa Indonesia</span></div>
-    <div class="lcard"><span class="lflag" data-code="TH">🇹🇭</span><span class="lname">タイ語</span><span class="lnat">ภาษาไทย</span></div>
-    <div class="lcard"><span class="lflag" data-code="VN">🇻🇳</span><span class="lname">ベトナム語</span><span class="lnat">Tiếng Việt</span></div>
-    <div class="lcard"><span class="lflag" data-code="AE">🇦🇪</span><span class="lname">アラビア語</span><span class="lnat">العربية</span></div>
+    <div class="lcard"><span class="lflag">🇯🇵</span><span class="lname">日本語</span><span class="lnat">Japanese</span></div>
+    <div class="lcard"><span class="lflag">🇺🇸</span><span class="lname">英語</span><span class="lnat">English</span></div>
+    <div class="lcard"><span class="lflag">🇨🇳</span><span class="lname">中国語（簡体）</span><span class="lnat">中文（简体）</span></div>
+    <div class="lcard"><span class="lflag">🇹🇼</span><span class="lname">中国語（繁体）</span><span class="lnat">中文（繁體）</span></div>
+    <div class="lcard"><span class="lflag">🇰🇷</span><span class="lname">韓国語</span><span class="lnat">한국어</span></div>
+    <div class="lcard"><span class="lflag">🇫🇷</span><span class="lname">フランス語</span><span class="lnat">Français</span></div>
+    <div class="lcard"><span class="lflag">🇪🇸</span><span class="lname">スペイン語</span><span class="lnat">Español</span></div>
+    <div class="lcard"><span class="lflag">🇮🇹</span><span class="lname">イタリア語</span><span class="lnat">Italiano</span></div>
+    <div class="lcard"><span class="lflag">🇩🇪</span><span class="lname">ドイツ語</span><span class="lnat">Deutsch</span></div>
+    <div class="lcard"><span class="lflag">🇲🇾</span><span class="lname">マレー語</span><span class="lnat">Bahasa Melayu</span></div>
+    <div class="lcard"><span class="lflag">🇮🇩</span><span class="lname">インドネシア語</span><span class="lnat">Bahasa Indonesia</span></div>
+    <div class="lcard"><span class="lflag">🇹🇭</span><span class="lname">タイ語</span><span class="lnat">ภาษาไทย</span></div>
+    <div class="lcard"><span class="lflag">🇻🇳</span><span class="lname">ベトナム語</span><span class="lnat">Tiếng Việt</span></div>
+    <div class="lcard"><span class="lflag">🇦🇪</span><span class="lname">アラビア語</span><span class="lnat">العربية</span></div>
+  </div>
+</section>
+
+<!-- ===== FAQ セクション ===== -->
+<section class="section" id="faq">
+  <div class="slbl">よくある質問</div>
+  <h2 class="stitle">気になること、<br><em>ここで解決。</em></h2>
+  <div class="faq-wrap">
+    <details class="faq-item">
+      <summary class="faq-q">翻訳の精度はどのくらいですか？</summary>
+      <div class="faq-a">最新のAI（Claude）を使用しており、印刷メニュー・手書きメニュー・黒板メニュー・タブレット画面など、様々な形式を高精度で翻訳します。料理名だけでなく、原材料や調理法の説明も日本語で表示するので、どんな料理か一目でわかります。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">オフラインで使えますか？</summary>
+      <div class="faq-a">AI翻訳のため、インターネット接続が必要です。Wi-Fiまたはモバイルデータ通信をご利用ください。ローミング時も快適にお使いいただけるよう、軽量化された通信設計になっています。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">プライバシーは守られますか？</summary>
+      <div class="faq-a">撮影した写真は翻訳処理のみに使用され、サーバーには保存されません。翻訳履歴はお使いのデバイスと、Apple IDに紐付いたiCloudにのみ保存されます。第三者への販売・共有は一切行いません。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">サブスクリプションですか？</summary>
+      <div class="faq-a">いいえ、すべて買い切り制です。一度購入したクレジットは有効期限なく使用できます。自動更新のサブスクリプションは一切ありません。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">購入したクレジットは別の端末でも使えますか？</summary>
+      <div class="faq-a">はい。購入したクレジットは自動的にiCloudで同期されます。同じApple IDでログインした複数の端末間で共有され、アプリを再インストールしても復元可能です。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">無料で試せますか？</summary>
+      <div class="faq-a">はい。ダウンロードするだけで、まず5回無料で翻訳をお試しいただけます。気に入ったら、旅行のスタイルに合わせて25回分・150回分・400回分のプランから選べます。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Google翻訳との違いは？</summary>
+      <div class="faq-a">Menufyはメニュー翻訳に特化しています。料理名を単語ごとに訳すのではなく、カテゴリー・料理の説明・価格を一つの読みやすい画面にまとめて表示。さらにリアルタイム為替レートで現地価格を日本円に換算するため、迷うことなく注文できます。</div>
+    </details>
   </div>
 </section>
 
@@ -682,6 +900,7 @@ footer{
 <section class="section section-alt">
   <div class="slbl">ユーザーの声</div>
   <h2 class="stitle">世界中の旅人に、<br><em>愛されている。</em></h2>
+  <p class="tnote">※ 実際のユーザーからご提供いただいた感想です</p>
   <div class="tgrid">
     <div class="tcard">
       <div class="tstars">★★★★★</div>
@@ -732,26 +951,6 @@ footer{
   </div>
   <span class="fcopy">© 2026 Menufy</span>
 </footer>
-
-<!-- 国旗絵文字フォールバック（Windows対応） -->
-<script>
-(function(){
-  // Canvas で絵文字が正しくレンダリングされるか検証
-  function supportsFlagEmoji() {
-    var canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 1;
-    var ctx = canvas.getContext('2d');
-    ctx.fillText('🇯🇵', -4, 4);
-    return ctx.getImageData(0, 0, 1, 1).data[3] > 0;
-  }
-  if (!supportsFlagEmoji()) {
-    document.querySelectorAll('.lflag').forEach(function(el) {
-      el.textContent = el.getAttribute('data-code');
-      el.classList.add('badge');
-    });
-  }
-})();
-</script>
 
 <!-- Pixel: 料金セクション表示検知 -->
 <script>
