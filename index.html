@@ -63,6 +63,16 @@ fbq('track', 'PageView');
   --opale:#fff5f0;--opale2:#fde8dc;
   --white:#fafaf8;--cream:#fdf8f4;
   --black:#17110b;--gray:#90847d;--glight:#ece5de;--text:#261e17;
+  /* complementary accent — deep indigo, like 葛飾北斎's wave or 江戸藍染 */
+  --ink:#2c4868;--ink-soft:#5a7095;
+  /* warm, layered shadows — like late afternoon sun through paper */
+  --sh-soft:0 1px 2px rgba(60,38,24,.04),0 8px 28px rgba(60,38,24,.08);
+  --sh-medium:0 2px 4px rgba(60,38,24,.05),0 16px 44px rgba(60,38,24,.10);
+  --sh-deep:0 4px 8px rgba(60,38,24,.06),0 28px 72px rgba(60,38,24,.14);
+  --sh-warm:0 2px 6px rgba(240,90,40,.10),0 14px 40px rgba(240,90,40,.18);
+  --sh-warm-soft:0 1px 3px rgba(240,90,40,.08),0 6px 18px rgba(240,90,40,.14);
+  /* organic curve — settles, doesn't snap */
+  --ease:cubic-bezier(.4,0,.2,1);
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{
@@ -85,21 +95,21 @@ nav{
   border-bottom:1px solid rgba(0,0,0,.055);
 }
 .nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nicon{width:32px;height:32px;border-radius:10px;background:linear-gradient(148deg,var(--o1),var(--o2));display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(240,90,40,.22)}
+.nicon{width:32px;height:32px;border-radius:12px;background:linear-gradient(148deg,var(--o1),var(--o2));display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-warm-soft)}
 .ntext{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.1em}
 .nlinks{display:flex;align-items:center;gap:40px}
 .nlink{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:.06em;transition:color .2s;font-weight:300}
 .nlink:hover{color:var(--black)}
 .ncta{
-  display:inline-flex;align-items:center;padding:9px 22px;
+  display:inline-flex;align-items:center;padding:10px 24px;
   background:linear-gradient(148deg,var(--o1),var(--o2));
   color:white;font-size:13px;font-weight:300;
   text-decoration:none;border-radius:100px;
-  box-shadow:0 2px 12px rgba(240,90,40,.2);
+  box-shadow:var(--sh-warm-soft);
   letter-spacing:.08em;
-  transition:opacity .2s,transform .2s;
+  transition:opacity .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
 }
-.ncta:hover{opacity:.9;transform:translateY(-1px)}
+.ncta:hover{opacity:.92;transform:translateY(-1px);box-shadow:var(--sh-warm)}
 
 /* HERO */
 .hero{
@@ -148,13 +158,14 @@ nav{
 .hactions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:72px}
 .btas{
   display:inline-flex;align-items:center;gap:14px;
-  padding:14px 28px;background:white;
+  padding:14px 28px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdf9f5 100%);
   color:var(--black);text-decoration:none;
-  border-radius:13px;
-  box-shadow:0 4px 22px rgba(0,0,0,.11);
-  transition:transform .2s,box-shadow .2s;
+  border-radius:18px;
+  box-shadow:var(--sh-soft);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
 }
-.btas:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(0,0,0,.14)}
+.btas:hover{transform:translateY(-1.5px);box-shadow:var(--sh-medium)}
 .btas-sub{font-size:9px;color:var(--gray);letter-spacing:.12em;display:block;text-transform:uppercase;font-weight:300}
 .btas-main{font-size:15px;font-weight:400;color:var(--black);display:block;font-family:'Shippori Mincho',serif;letter-spacing:.06em}
 .htrial{font-size:13px;color:rgba(255,255,255,.55);letter-spacing:.06em;font-weight:300}
@@ -169,12 +180,12 @@ nav{
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(255,255,255,.25);
-  border-radius:14px;
-  padding:18px 16px;
+  border-radius:20px;
+  padding:20px 16px;
   text-align:center;
-  transition:background .2s;
+  transition:background .4s var(--ease),transform .4s var(--ease);
 }
-.hstat:hover{background:rgba(255,255,255,.22)}
+.hstat:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
 .hstat-val{
   font-family:'Shippori Mincho',serif;
   font-size:15px;font-weight:500;color:white;
@@ -204,7 +215,7 @@ nav{
 .pbrand-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.1em;position:relative;z-index:1;font-style:italic;font-family:'Cormorant Garamond',serif}
 .pnotch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#110b05;border-radius:0 0 14px 14px;z-index:10}
 
-.fcard{position:absolute;background:white;border-radius:14px;padding:10px 14px;box-shadow:0 6px 26px rgba(0,0,0,.09);white-space:nowrap;z-index:10}
+.fcard{position:absolute;background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);border-radius:18px;padding:11px 15px;box-shadow:var(--sh-soft);white-space:nowrap;z-index:10}
 .fc1{top:8%;left:160px;animation:fc1 4.5s ease-in-out infinite}
 .fc2{top:68%;left:-20px;animation:fc2 4.5s ease-in-out infinite}
 @keyframes fc1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -212,7 +223,7 @@ nav{
 .fcard-em{font-size:16px;display:block;margin-bottom:3px}
 .fcard-t{font-size:11px;font-weight:400;color:var(--black);display:block;letter-spacing:.06em;font-family:'Shippori Mincho',serif}
 .fcard-s{font-size:10px;color:var(--gray);display:block;letter-spacing:.04em;font-weight:200}
-.fbadge{position:absolute;top:-7px;right:-7px;background:var(--o3);color:white;font-size:9px;padding:2px 8px;border-radius:100px;font-weight:300;letter-spacing:.06em}
+.fbadge{position:absolute;top:-7px;right:-7px;background:var(--ink);color:white;font-size:9px;padding:3px 9px;border-radius:100px;font-weight:300;letter-spacing:.06em;box-shadow:0 2px 8px rgba(44,72,104,.28)}
 
 /* SECTIONS */
 .section{padding:112px 80px}
@@ -245,13 +256,13 @@ nav{
 .uicon{
   width:48px;
   height:48px;
-  border-radius:13px;
+  border-radius:16px;
   background:linear-gradient(148deg,var(--o1),var(--o2));
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:21px;
-  box-shadow:0 4px 14px rgba(240,90,40,.18);
+  box-shadow:var(--sh-warm-soft);
   flex-shrink:0;
 }
 
@@ -269,7 +280,7 @@ nav{
   line-height:1.4;letter-spacing:.08em;
 }
 .stept2{
-  font-size:11px;color:var(--gray);
+  font-size:11px;color:var(--ink-soft);
   font-style:italic;font-family:'Cormorant Garamond',serif;
   letter-spacing:.06em;font-weight:300;
 }
@@ -281,7 +292,7 @@ nav{
   gap:1px;background:var(--glight);
   margin-top:56px;
 }
-.feat{background:white;padding:56px 52px;transition:background .25s}
+.feat{background:white;padding:56px 52px;transition:background .5s var(--ease)}
 .feat:hover{background:var(--cream)}
 /* .uicon は共通スタイル使用 — featの中では margin-bottom:24px を追加 */
 .feat .uicon{margin-bottom:24px}
@@ -291,7 +302,7 @@ nav{
   margin-bottom:8px;line-height:1.4;letter-spacing:.08em;
 }
 .ft2{
-  font-size:11px;color:var(--o3);margin-bottom:14px;
+  font-size:11px;color:var(--ink-soft);margin-bottom:14px;
   font-weight:300;font-style:italic;
   font-family:'Cormorant Garamond',serif;letter-spacing:.06em;
 }
@@ -300,14 +311,15 @@ nav{
 /* PRICING */
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
 .pcard{
-  padding:40px 28px;background:white;
-  border:1px solid var(--glight);border-radius:18px;
+  padding:44px 30px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
+  border:1px solid rgba(60,38,24,.06);border-radius:24px;
   display:flex;flex-direction:column;gap:10px;
   position:relative;
-  transition:box-shadow .2s,transform .2s;
+  transition:box-shadow .45s var(--ease),transform .45s var(--ease);
 }
-.pcard:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
-.pcard-featured{border:1px solid rgba(232,98,42,.28);background:linear-gradient(160deg,#fff8f5,#fdf2ec)}
+.pcard:hover{transform:translateY(-2px);box-shadow:var(--sh-medium)}
+.pcard-featured{border:1px solid rgba(232,98,42,.22);background:linear-gradient(160deg,#fff8f3 0%,#fdeee4 100%);box-shadow:var(--sh-soft)}
 .pbadge-feat{
   position:absolute;top:-11px;left:50%;transform:translateX(-50%);
   background:linear-gradient(135deg,var(--o1),var(--o2));
@@ -328,14 +340,15 @@ nav{
 .pfeature{font-size:13px;color:var(--gray);display:flex;align-items:center;gap:8px;letter-spacing:.04em;font-weight:300}
 .pcheck{color:var(--o3);font-size:12px;flex-shrink:0}
 .pbtn{
-  display:block;text-align:center;padding:12px;
+  display:block;text-align:center;padding:13px;
   background:linear-gradient(148deg,var(--o1),var(--o2));
-  color:white;text-decoration:none;border-radius:9px;
+  color:white;text-decoration:none;border-radius:14px;
   font-size:13px;letter-spacing:.06em;margin-top:8px;
   font-weight:300;
-  transition:opacity .2s,transform .15s;
+  box-shadow:var(--sh-warm-soft);
+  transition:opacity .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
 }
-.pbtn:hover{opacity:.88;transform:translateY(-1px)}
+.pbtn:hover{opacity:.92;transform:translateY(-1px);box-shadow:var(--sh-warm)}
 .pbtn-outline{background:transparent;color:var(--o3);border:1px solid rgba(232,98,42,.22)}
 .pbtn-outline:hover{background:var(--opale)}
 .pfree-note{text-align:center;margin-top:28px;font-size:14px;color:var(--gray);letter-spacing:.06em;font-weight:300}
@@ -344,12 +357,13 @@ nav{
 /* LANGUAGES */
 .lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:52px}
 .lcard{
-  padding:20px 16px;background:white;
-  border:1px solid var(--glight);border-radius:12px;
+  padding:22px 18px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
+  border:1px solid rgba(60,38,24,.06);border-radius:18px;
   display:flex;flex-direction:column;gap:8px;
-  transition:border-color .2s,transform .2s;
+  transition:border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
 }
-.lcard:hover{border-color:rgba(232,98,42,.28);transform:translateY(-2px)}
+.lcard:hover{border-color:rgba(232,98,42,.22);transform:translateY(-2px);box-shadow:var(--sh-soft)}
 .lflag{font-size:24px}
 .lname{font-family:'Shippori Mincho',serif;font-size:14px;font-weight:500;color:var(--black);letter-spacing:.08em}
 .lnat{font-size:12px;color:var(--gray);letter-spacing:.02em;font-weight:300}
@@ -357,12 +371,13 @@ nav{
 /* TESTIMONIALS */
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
 .tcard{
-  padding:32px 26px;background:white;
-  border-radius:16px;border:1px solid var(--glight);
+  padding:36px 28px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
+  border-radius:22px;border:1px solid rgba(60,38,24,.06);
   display:flex;flex-direction:column;gap:16px;
-  transition:box-shadow .2s;
+  transition:box-shadow .45s var(--ease),transform .45s var(--ease);
 }
-.tcard:hover{box-shadow:0 6px 28px rgba(0,0,0,.055)}
+.tcard:hover{box-shadow:var(--sh-soft);transform:translateY(-2px)}
 .tstars{color:var(--o3);font-size:12px;letter-spacing:4px}
 .ttext{
   font-family:'Shippori Mincho',serif;
@@ -383,7 +398,7 @@ nav{
 }
 .cta::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:rgba(255,255,255,.05);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
 .cta-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px;font-weight:200}
-.cta-icon{width:70px;height:70px;border-radius:20px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 32px;backdrop-filter:blur(8px)}
+.cta-icon{width:72px;height:72px;border-radius:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 32px;backdrop-filter:blur(8px)}
 .cta-title{
   font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
   font-size:clamp(38px,4.2vw,64px);
@@ -405,13 +420,14 @@ nav{
 .cta-actions{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
 .btaw{
   display:inline-flex;align-items:center;gap:13px;
-  padding:15px 30px;background:white;
+  padding:15px 30px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdf9f5 100%);
   color:var(--black);text-decoration:none;
-  border-radius:13px;
-  box-shadow:0 4px 22px rgba(0,0,0,.11);
-  transition:transform .2s,box-shadow .2s;
+  border-radius:18px;
+  box-shadow:var(--sh-soft);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
 }
-.btaw:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,0,0,.14)}
+.btaw:hover{transform:translateY(-1.5px);box-shadow:var(--sh-medium)}
 .cta-note{font-size:11px;color:rgba(255,255,255,.38);letter-spacing:.08em;font-weight:200}
 
 footer{
@@ -668,16 +684,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   display:grid;grid-template-columns:repeat(2,1fr);gap:28px;
 }
 .why-card{
-  background:white;border-radius:18px;padding:36px 32px;
-  box-shadow:0 8px 30px rgba(0,0,0,.05);
-  border:1px solid rgba(0,0,0,.04);
+  background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
+  border-radius:24px;padding:40px 34px;
+  box-shadow:var(--sh-soft);
+  border:1px solid rgba(60,38,24,.05);
   display:flex;flex-direction:column;gap:14px;
-  transition:transform .3s ease,box-shadow .3s ease;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
 }
-.why-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.09)}
+.why-card:hover{transform:translateY(-3px);box-shadow:var(--sh-medium)}
 .why-num{
   font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;
-  color:var(--o2);letter-spacing:.16em;
+  color:var(--ink);letter-spacing:.16em;
 }
 .why-t{
   font-family:'Shippori Mincho',serif;font-size:22px;font-weight:500;
@@ -719,40 +736,42 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 }
 </script>
 
-<!-- JSON-LD: SoftwareApplication (iOS app) -->
+<!-- JSON-LD: SoftwareApplication (iOS + Android) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "Menufy — メニュー翻訳",
-  "operatingSystem": "iOS",
-  "applicationCategory": "TravelApplication",
-  "description": "海外のレストランで迷わない。カメラで撮影するだけで、外国語のメニューを日本語に翻訳。14言語対応・買い切り制・為替換算機能つき。",
-  "url": "https://menufyjp.com",
-  "image": "https://menufyjp.com/ogp.png",
-  "downloadUrl": "https://apps.apple.com/app/id6760161339",
-  "inLanguage": ["ja", "en", "zh-Hans", "zh-Hant", "ko", "fr", "es", "it", "de", "ms", "id", "th", "vi", "ar"],
-  "offers": [
+  "@graph": [
     {
-      "@type": "Offer",
-      "name": "Starter Pack",
-      "price": "2.99",
-      "priceCurrency": "USD",
-      "description": "翻訳25回分"
+      "@type": "MobileApplication",
+      "name": "Menufy — メニュー翻訳 (iOS)",
+      "operatingSystem": "iOS",
+      "applicationCategory": "TravelApplication",
+      "description": "海外のレストランで迷わない。カメラで撮影するだけで、外国語のメニューを日本語に翻訳。14言語対応・買い切り制・為替換算機能つき。",
+      "url": "https://menufyjp.com",
+      "image": "https://menufyjp.com/ogp.png",
+      "downloadUrl": "https://apps.apple.com/app/id6760161339",
+      "inLanguage": ["ja", "en", "zh-Hans", "zh-Hant", "ko", "fr", "es", "it", "de", "ms", "id", "th", "vi", "ar"],
+      "offers": [
+        { "@type": "Offer", "name": "Starter Pack", "price": "2.99", "priceCurrency": "USD", "description": "翻訳25回分" },
+        { "@type": "Offer", "name": "Traveler Pack", "price": "6.99", "priceCurrency": "USD", "description": "翻訳150回分" },
+        { "@type": "Offer", "name": "Explorer Pack", "price": "14.99", "priceCurrency": "USD", "description": "翻訳400回分" }
+      ]
     },
     {
-      "@type": "Offer",
-      "name": "Traveler Pack",
-      "price": "6.99",
-      "priceCurrency": "USD",
-      "description": "翻訳150回分"
-    },
-    {
-      "@type": "Offer",
-      "name": "Explorer Pack",
-      "price": "14.99",
-      "priceCurrency": "USD",
-      "description": "翻訳400回分"
+      "@type": "MobileApplication",
+      "name": "Menufy — メニュー翻訳 (Android)",
+      "operatingSystem": "Android",
+      "applicationCategory": "TravelApplication",
+      "description": "海外のレストランで迷わない。カメラで撮影するだけで、外国語のメニューを日本語に翻訳。14言語対応・買い切り制・為替換算機能つき。",
+      "url": "https://menufyjp.com",
+      "image": "https://menufyjp.com/ogp.png",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.menufy.app",
+      "inLanguage": ["ja", "en", "zh-Hans", "zh-Hant", "ko", "fr", "es", "it", "de", "ms", "id", "th", "vi", "ar"],
+      "offers": [
+        { "@type": "Offer", "name": "Starter Pack", "price": "2.99", "priceCurrency": "USD", "description": "翻訳25回分" },
+        { "@type": "Offer", "name": "Traveler Pack", "price": "6.99", "priceCurrency": "USD", "description": "翻訳150回分" },
+        { "@type": "Offer", "name": "Explorer Pack", "price": "14.99", "priceCurrency": "USD", "description": "翻訳400回分" }
+      ]
     }
   ]
 }
@@ -833,8 +852,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
     <a href="#faq" class="nlink">よくある質問</a>
     <a href="/en/" class="nlink" aria-label="English">English</a>
   </div>
-  <a href="https://apps.apple.com/app/id6760161339" class="ncta" target="_blank"
-    onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_Nav'})">App Storeで入手</a>
+  <a href="#cta" class="ncta"
+    onclick="fbq('trackCustom','NavCtaClick')">アプリを入手</a>
   <button class="mmenu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mmenu"><span></span></button>
 </nav>
 
@@ -845,9 +864,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   <a href="#languages" data-mmenu-link>対応言語</a>
   <a href="#faq" data-mmenu-link>よくある質問</a>
   <a href="/en/" data-mmenu-link>English</a>
-  <a href="https://apps.apple.com/app/id6760161339" target="_blank" data-mmenu-link
-     style="margin-top:16px;padding:14px 32px;background:linear-gradient(148deg,var(--o1),var(--o2));color:white;border-radius:100px;box-shadow:0 4px 20px rgba(240,90,40,.3);font-size:15px"
-     onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_MobileMenu'})">App Storeで入手</a>
+  <a href="#cta" data-mmenu-link
+     style="margin-top:16px;padding:15px 34px;background:linear-gradient(148deg,var(--o1),var(--o2));color:white;border-radius:100px;box-shadow:var(--sh-warm);font-size:15px"
+     onclick="fbq('trackCustom','MobileMenuCtaClick')">アプリを入手</a>
 </div>
 
 <script>
@@ -874,7 +893,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 <section class="hero">
   <div class="hero-bg1"></div><div class="hero-bg2"></div>
   <div class="hleft">
-    <p class="heyebrow fu">iOS App · App Storeにて配信中</p>
+    <p class="heyebrow fu">iOS / Android 両対応</p>
     <h1 class="htitle fu d1">メニューを、<br><em>あなたの言葉で。</em></h1>
     <p class="htagline fu d2">Every menu, in your language.</p>
     <p class="hdesc fu d2">海外のレストランで迷わない。カメラで撮影するだけで、外国語のメニューを日本語に翻訳。料理の説明から現地価格の換算まで、ひと目でわかる。</p>
@@ -883,6 +902,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
         onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_Hero'})">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="#17110b"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <div><span class="btas-sub">Download on the</span><span class="btas-main">App Store</span></div>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="btas" target="_blank"
+        onclick="fbq('track','InitiateCheckout',{content_name:'GooglePlay_Hero'})">
+        <svg width="22" height="22" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35"/>
+          <path fill="#34A853" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27"/>
+          <path fill="#EA4335" d="M20.16 10.81c.35.2.59.58.59 1.19s-.24.98-.59 1.19l-2.29 1.32L15.39 12l2.48-2.48 2.29 1.29"/>
+          <path fill="#FBBC04" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
+        </svg>
+        <div><span class="btas-sub">Get it on</span><span class="btas-main">Google Play</span></div>
       </a>
       <span class="htrial">まず5回、体験できます</span>
     </div>
@@ -1065,6 +1094,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
       <div class="pfeature"><span class="pcheck">✓</span>Save &amp; Share機能</div>
       <a href="https://apps.apple.com/app/id6760161339" class="pbtn pbtn-outline" target="_blank"
         onclick="fbq('trackCustom','ClickStarterPack');fbq('track','InitiateCheckout',{content_name:'StarterPack',value:2.99,currency:'USD'})">App Storeで入手</a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn pbtn-outline" target="_blank"
+        onclick="fbq('trackCustom','ClickStarterPack_GP');fbq('track','InitiateCheckout',{content_name:'StarterPack_Android',value:2.99,currency:'USD'})">Google Playで入手</a>
     </div>
     <div class="pcard pcard-featured">
       <div class="pbadge-feat">人気</div>
@@ -1080,6 +1111,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
       <div class="pfeature"><span class="pcheck">✓</span>Save &amp; Share機能</div>
       <a href="https://apps.apple.com/app/id6760161339" class="pbtn" target="_blank"
         onclick="fbq('trackCustom','ClickTravelerPack');fbq('track','InitiateCheckout',{content_name:'TravelerPack',value:6.99,currency:'USD'})">App Storeで入手</a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn" target="_blank"
+        onclick="fbq('trackCustom','ClickTravelerPack_GP');fbq('track','InitiateCheckout',{content_name:'TravelerPack_Android',value:6.99,currency:'USD'})">Google Playで入手</a>
     </div>
     <div class="pcard">
       <div class="pname">Explorer Pack</div>
@@ -1094,6 +1127,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
       <div class="pfeature"><span class="pcheck">✓</span>Save &amp; Share機能</div>
       <a href="https://apps.apple.com/app/id6760161339" class="pbtn pbtn-outline" target="_blank"
         onclick="fbq('trackCustom','ClickExplorerPack');fbq('track','InitiateCheckout',{content_name:'ExplorerPack',value:14.99,currency:'USD'})">App Storeで入手</a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn pbtn-outline" target="_blank"
+        onclick="fbq('trackCustom','ClickExplorerPack_GP');fbq('track','InitiateCheckout',{content_name:'ExplorerPack_Android',value:14.99,currency:'USD'})">Google Playで入手</a>
     </div>
   </div>
   <p class="pfree-note">ダウンロードするだけで、まず<strong>5回</strong>体験できます。</p>
@@ -1137,7 +1172,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
     </details>
     <details class="faq-item">
       <summary class="faq-q">プライバシーは守られますか？</summary>
-      <div class="faq-a">撮影した写真は翻訳処理のみに使用され、サーバーには保存されません。翻訳履歴はお使いのデバイスと、Apple IDに紐付いたiCloudにのみ保存されます。第三者への販売・共有は一切行いません。</div>
+      <div class="faq-a">撮影した写真は翻訳処理のみに使用され、サーバーには保存されません。翻訳履歴はお使いの端末本体に保存されます（iOSではiCloudにも同期されます）。第三者への販売・共有は一切行いません。</div>
     </details>
     <details class="faq-item">
       <summary class="faq-q">サブスクリプションですか？</summary>
@@ -1145,7 +1180,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
     </details>
     <details class="faq-item">
       <summary class="faq-q">購入したクレジットは別の端末でも使えますか？</summary>
-      <div class="faq-a">はい。購入したクレジットは自動的にiCloudで同期されます。同じApple IDでログインした複数の端末間で共有され、アプリを再インストールしても復元可能です。</div>
+      <div class="faq-a">はい。iOSではiCloud経由で、AndroidではGoogleアカウント経由で、同じアカウントにログインした複数の端末間で自動同期されます。アプリを再インストールしても復元可能です。</div>
     </details>
     <details class="faq-item">
       <summary class="faq-q">無料で試せますか？</summary>
@@ -1194,6 +1229,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
       onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_CTA'})">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="#17110b"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
       <div><span class="btas-sub">Download on the</span><span class="btas-main">App Store</span></div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="btaw" target="_blank"
+      onclick="fbq('track','InitiateCheckout',{content_name:'GooglePlay_CTA'})">
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35"/>
+        <path fill="#34A853" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27"/>
+        <path fill="#EA4335" d="M20.16 10.81c.35.2.59.58.59 1.19s-.24.98-.59 1.19l-2.29 1.32L15.39 12l2.48-2.48 2.29 1.29"/>
+        <path fill="#FBBC04" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
+      </svg>
+      <div><span class="btas-sub">Get it on</span><span class="btas-main">Google Play</span></div>
     </a>
   </div>
 </section>
@@ -1304,6 +1349,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
     link.addEventListener('click', function(){
       var href = link.href || '';
       if(href.indexOf('apps.apple.com') !== -1) return; /* already tracked via InitiateCheckout */
+      if(href.indexOf('play.google.com') !== -1) return; /* already tracked via InitiateCheckout */
       fbq('trackCustom', 'ExternalClick', {url: href.slice(0, 100)});
     });
   });
