@@ -890,6 +890,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 })();
 </script>
 
+<!-- Smart download routing: nav/mobile CTA jumps to the visitor's store on
+     iOS / Android; falls back to scrolling to #cta on desktop where both
+     buttons are presented side-by-side. -->
+<script>
+(function(){
+  var APP_STORE = 'https://apps.apple.com/app/id6760161339';
+  var PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.menufy.app';
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (ua.indexOf('Mac') !== -1 && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/i.test(ua);
+  var target = isIOS ? APP_STORE : (isAndroid ? PLAY_STORE : null);
+  if (!target) return; // desktop — leave default #cta scroll behaviour
+  document.querySelectorAll('a[href="#cta"]').forEach(function(link){
+    // Only hijack CTAs that explicitly mark themselves smart (nav + mobile menu).
+    // Pricing/CTA-section store buttons must keep their direct store links.
+    if (!link.classList.contains('ncta') && !link.hasAttribute('data-mmenu-link')) return;
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      try { fbq('track','InitiateCheckout',{content_name: isIOS ? 'AppStore_SmartNav' : 'GooglePlay_SmartNav'}); } catch(_){}
+      window.location.href = target;
+    });
+  });
+})();
+</script>
+
 <section class="hero">
   <div class="hero-bg1"></div><div class="hero-bg2"></div>
   <div class="hleft">
@@ -1218,7 +1243,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 </section>
 
 <!-- ===== CTA ===== -->
-<section class="cta">
+<section class="cta" id="cta">
   <div class="cta-eyebrow">今すぐ始める</div>
   <div class="cta-icon">🍽</div>
   <h2 class="cta-title">次の食事を、<br><em>もっと楽しく。</em></h2>
