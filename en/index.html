@@ -11,8 +11,8 @@
 <meta name="theme-color" content="#f05a28">
 
 <!-- SEO -->
-<meta name="description" content="Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. 14 languages, live currency conversion, one-time purchase. Available on the App Store.">
-<meta name="keywords" content="menu translator, travel, restaurant, menu translation app, iOS">
+<meta name="description" content="Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. Allergy & dietary alerts, point-to-order in the local language, live currency conversion. 14 languages, one-time purchase.">
+<meta name="keywords" content="menu translator, travel, restaurant, menu translation app, iOS, Android, allergy alerts, halal, vegetarian, gluten-free, point to order">
 <meta name="author" content="Menufy">
 
 <!-- Canonical + hreflang -->
@@ -25,7 +25,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Menufy">
 <meta property="og:title" content="Menufy — Every menu, in your language.">
-<meta property="og:description" content="Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. 14 languages, live currency conversion, one-time purchase.">
+<meta property="og:description" content="Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. Allergy & dietary alerts, point-to-order in the local language, live currency conversion. 14 languages, one-time purchase.">
 <meta property="og:url" content="https://menufyjp.com/en/">
 <meta property="og:image" content="https://menufyjp.com/ogp.png">
 <meta property="og:image:width" content="1200">
@@ -37,7 +37,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Menufy — Every menu, in your language.">
-<meta name="twitter:description" content="Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. 14 languages.">
+<meta name="twitter:description" content="Scan any menu to translate it instantly. Allergy alerts, point-to-order, live currency conversion. 14 languages, one-time purchase.">
 <meta name="twitter:image" content="https://menufyjp.com/ogp.png">
 
 <!-- Facebook Pixel -->
@@ -648,6 +648,83 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   .faq-q{font-size:15px}
   .faq-a{font-size:13px}
 }
+
+/* HERO ANNOUNCE PILL (2026-06 update) */
+.hannounce{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11.5px;color:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  padding:7px 16px;border-radius:100px;text-decoration:none;
+  letter-spacing:.08em;margin-bottom:28px;font-weight:300;
+  backdrop-filter:blur(8px);
+  transition:background .35s var(--ease),transform .35s var(--ease);
+}
+.hannounce:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}
+.hannounce-new{
+  font-size:9px;letter-spacing:.16em;color:#fff;
+  background:rgba(255,255,255,.22);padding:2px 8px;border-radius:100px;
+}
+
+/* NEW FEATURES — dietary alerts & point-to-order (2026-06) */
+#order{background:linear-gradient(180deg,var(--cream) 0%,var(--opale) 100%)}
+.nf-grid{
+  max-width:1100px;margin:48px auto 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;
+}
+.nf-card{
+  background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
+  border-radius:28px;padding:44px 38px;
+  box-shadow:var(--sh-soft);border:1px solid rgba(60,38,24,.05);
+  display:flex;flex-direction:column;gap:18px;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.nf-card:hover{transform:translateY(-3px);box-shadow:var(--sh-medium)}
+.nf-head{display:flex;align-items:center;gap:16px}
+.nf-t{
+  font-family:'Shippori Mincho',serif;font-size:22px;font-weight:500;
+  color:var(--black);letter-spacing:.04em;line-height:1.4;
+}
+.nf-t2{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gray);margin-top:2px}
+.nf-d{font-size:14px;color:var(--gray);line-height:1.85;letter-spacing:.04em;font-weight:300}
+.nf-d strong{color:var(--black);font-weight:400}
+.nf-mock{margin-top:auto;border-radius:20px;padding:24px 22px}
+.nf-mock-light{background:#fdfcfa;border:1px solid var(--glight)}
+.nfm-dish{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.nfm-name{font-family:'Shippori Mincho',serif;font-size:15px;color:var(--black);font-weight:500;letter-spacing:.02em}
+.nfm-sub{font-size:12px;color:var(--gray);margin-top:2px;font-weight:300}
+.nfm-price{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--o3);white-space:nowrap}
+.nfm-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.nfm-tag{font-size:10px;padding:3px 10px;border-radius:100px;letter-spacing:.04em;font-weight:400}
+.nfm-tag-warn{color:#c0392b;background:rgba(192,57,43,.09);border:1px solid rgba(192,57,43,.2)}
+.nfm-tag-green{color:#3d7a4e;background:rgba(61,122,78,.08);border:1px solid rgba(61,122,78,.18)}
+.nfm-tag-gold{color:#a8854a;background:rgba(200,169,110,.13);border:1px solid rgba(200,169,110,.3)}
+.nfm-divider{height:1px;background:var(--glight);margin:14px 0}
+.nf-mock-dark{background:#1a1a1a;box-shadow:0 18px 44px rgba(20,12,6,.2)}
+.nfm-phrase{font-family:'Shippori Mincho',serif;font-size:17px;color:#fff;text-align:center;letter-spacing:.04em;line-height:1.5}
+.nfm-phrase-sub{font-size:11px;color:rgba(255,255,255,.45);text-align:center;margin-top:6px;font-weight:300}
+.nfm-gold-divider{width:36px;height:2px;background:rgba(200,169,110,.55);margin:14px auto}
+.nfm-row{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  background:rgba(255,255,255,.05);border-radius:12px;padding:12px 14px;margin-top:8px;
+}
+.nfm-row-name{font-family:'Shippori Mincho',serif;font-size:15px;color:#fff;letter-spacing:.02em}
+.nfm-row-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;font-weight:300}
+.nfm-qty{
+  font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.08);border-radius:100px;padding:4px 12px;white-space:nowrap;
+}
+.nfm-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid rgba(255,255,255,.12);margin-top:14px;padding-top:12px;
+  font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em;
+}
+.nfm-total-val{font-family:'Shippori Mincho',serif;font-size:16px;color:#fff}
+.nfm-total-val em{font-style:normal;font-size:11px;color:#c8a96e;margin-left:6px}
+@media(max-width:768px){
+  .nf-grid{grid-template-columns:1fr;gap:18px}
+  .nf-card{padding:30px 24px}
+  .nf-t{font-size:19px}
+}
 </style>
 
 <!-- JSON-LD: Organization -->
@@ -672,7 +749,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       "name": "Menufy — Menu Translator (iOS)",
       "operatingSystem": "iOS",
       "applicationCategory": "TravelApplication",
-      "description": "Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. 14 languages, live currency conversion, one-time purchase.",
+      "description": "Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. Allergy & dietary alerts, point-to-order in the local language, live currency conversion. 14 languages, one-time purchase.",
       "url": "https://menufyjp.com/en/",
       "image": "https://menufyjp.com/ogp.png",
       "downloadUrl": "https://apps.apple.com/app/id6760161339",
@@ -688,7 +765,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       "name": "Menufy — Menu Translator (Android)",
       "operatingSystem": "Android",
       "applicationCategory": "TravelApplication",
-      "description": "Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. 14 languages, live currency conversion, one-time purchase.",
+      "description": "Never worry about foreign menus again. Scan any restaurant menu with your camera to translate it instantly. Allergy & dietary alerts, point-to-order in the local language, live currency conversion. 14 languages, one-time purchase.",
       "url": "https://menufyjp.com/en/",
       "image": "https://menufyjp.com/ogp.png",
       "downloadUrl": "https://play.google.com/store/apps/details?id=com.menufy.app",
@@ -755,6 +832,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes — the first 5 translations are free when you download the app. If you like it, choose from 25 / 150 / 400 credit packs to match your travel style."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use it with food allergies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Register your dietary preferences (vegetarian, vegan, halal, and common allergies — 11 options in total) and Menufy automatically flags dishes that may conflict with them. Note that flags are AI-generated, so if you have a severe allergy, always confirm with the restaurant as well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I order without speaking the language?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Select the dishes you want and Menufy displays a full-screen order card in the menu's own language — a polite request phrase plus your selected dishes. Just show your phone to the staff. You can also tap the speaker button to hear how each dish is pronounced."
       }
     }
   ]
@@ -841,6 +934,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   <div class="hero-bg1"></div><div class="hero-bg2"></div>
   <div class="hleft">
     <p class="heyebrow fu">Available on iOS · Android</p>
+    <a href="#order" class="hannounce fu d1"><span class="hannounce-new">NEW</span>Dietary alerts &amp; point-to-order are here</a>
     <h1 class="htitle fu d1">Every menu,<br><em>in your language.</em></h1>
     <p class="htagline fu d2">AI-powered menu translation for travelers.</p>
     <p class="hdesc fu d2">Never worry about foreign menus again. Snap a photo to translate any restaurant menu — dish names, descriptions, and prices converted to your currency, all in one clean screen.</p>
@@ -891,9 +985,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
         <span class="fcard-s">$2.80 (RM 12)</span>
       </div>
       <div class="fcard fc2">
-        <span class="fcard-em">🌐</span>
-        <span class="fcard-t">14 languages</span>
-        <span class="fcard-s">Just point your camera</span>
+        <span class="fcard-em">🛡️</span>
+        <span class="fcard-t">Allergy alerts</span>
+        <span class="fcard-s">Flags dishes that conflict</span>
       </div>
     </div>
   </div>
@@ -972,13 +1066,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       <div class="uicon">💴</div>
       <h3 class="ft">Live Currency Conversion</h3>
       <p class="ft2">Prices in your currency</p>
-      <p class="fd">Local prices are converted in real time so you always know exactly how much you're spending. No more mental math at the table.</p>
+      <p class="fd">Local prices are converted in real time so you always know exactly how much you're spending. Recent rates are cached, so conversions keep working even offline.</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">🛡️</div>
+      <h3 class="ft">Dietary Alerts</h3>
+      <p class="ft2">Eat with confidence</p>
+      <p class="fd">Register vegetarian, halal, allergies and more — 11 dietary preferences in total. Dishes that may conflict are automatically flagged with a warning tag.</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">☝️</div>
+      <h3 class="ft">Point-to-Order</h3>
+      <p class="ft2">No words needed</p>
+      <p class="fd">Pick your dishes and show staff a full-screen order card in the menu's own language. A speaker button even pronounces each dish for you.</p>
     </div>
     <div class="feat">
       <div class="uicon">📋</div>
       <h3 class="ft">Translation History</h3>
       <p class="ft2">A record of every meal</p>
-      <p class="fd">Every translation is saved automatically, tagged with location. Your history becomes a scrapbook of the meals you've loved.</p>
+      <p class="fd">Every translation is saved automatically, tagged with location. Search by restaurant or country, and star your favorite dishes — your history becomes a scrapbook of the meals you've loved.</p>
     </div>
     <div class="feat">
       <div class="uicon">🔗</div>
@@ -999,7 +1105,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       <span class="why-num">REASON 01</span>
       <h3 class="why-t">Designed for menus</h3>
       <p class="why-t2">Not just word-by-word translation</p>
-      <p class="why-d">Generic translators give you word-level translations. Menufy <strong>organizes dish names, descriptions, and prices into one readable screen</strong>, grouped by category — so you can browse like a native.</p>
+      <p class="why-d">Generic translators give you word-level translations. Menufy <strong>organizes dish names, descriptions, and prices into one readable screen</strong> — with allergy alerts and a local-language order card, it's designed for what comes after reading.</p>
     </div>
     <div class="why-card">
       <span class="why-num">REASON 02</span>
@@ -1018,6 +1124,80 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       <h3 class="why-t">No subscription, ever</h3>
       <p class="why-t2">Pay once, use forever</p>
       <p class="why-d">Zero recurring fees. <strong>Buy credits only when you need them</strong>, in packs of 25, 150, or 400 — sized for your travel style. Credits never expire.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== New features (2026-06 update) ===== -->
+<section class="section" id="order">
+  <div class="slbl">June 2026 update</div>
+  <h2 class="stitle">Beyond reading.<br><em>Order with confidence.</em></h2>
+  <p class="sdesc">From allergy warnings to ordering in the local language — two new features that take the worry out of every meal abroad.</p>
+  <div class="nf-grid">
+    <div class="nf-card">
+      <div class="nf-head">
+        <div class="uicon">🛡️</div>
+        <div>
+          <h3 class="nf-t">Dietary Alerts</h3>
+          <p class="nf-t2">Eat with confidence</p>
+        </div>
+      </div>
+      <p class="nf-d">Register your dietary preferences — vegetarian, vegan, halal, and common allergies, <strong>11 options in total</strong> — and Menufy automatically flags dishes that may conflict. Unfamiliar dishes in unfamiliar places, chosen with confidence.</p>
+      <div class="nf-mock nf-mock-light" aria-hidden="true">
+        <div class="nfm-dish">
+          <div>
+            <div class="nfm-name">海老の天ぷら</div>
+            <div class="nfm-sub">Shrimp Tempura</div>
+          </div>
+          <div class="nfm-price">¥1,200</div>
+        </div>
+        <div class="nfm-tags">
+          <span class="nfm-tag nfm-tag-warn">⚠ Shellfish allergy</span>
+          <span class="nfm-tag nfm-tag-gold">Popular</span>
+        </div>
+        <div class="nfm-divider"></div>
+        <div class="nfm-dish">
+          <div>
+            <div class="nfm-name">山菜そば</div>
+            <div class="nfm-sub">Mountain Vegetable Soba</div>
+          </div>
+          <div class="nfm-price">¥980</div>
+        </div>
+        <div class="nfm-tags">
+          <span class="nfm-tag nfm-tag-warn">⚠ Gluten</span>
+          <span class="nfm-tag nfm-tag-green">Vegetarian</span>
+        </div>
+      </div>
+    </div>
+    <div class="nf-card">
+      <div class="nf-head">
+        <div class="uicon">☝️</div>
+        <div>
+          <h3 class="nf-t">Point-to-Order</h3>
+          <p class="nf-t2">No words needed</p>
+        </div>
+      </div>
+      <p class="nf-d">Pick the dishes you want, then show a <strong>full-screen order card in the menu's own language</strong> — a polite request phrase plus your selection. Just hand your phone to the staff. No language skills required.</p>
+      <div class="nf-mock nf-mock-dark" aria-hidden="true">
+        <div class="nfm-phrase">これをお願いします。</div>
+        <div class="nfm-phrase-sub">"I'd like to order these, please." (Japanese)</div>
+        <div class="nfm-gold-divider"></div>
+        <div class="nfm-row">
+          <div>
+            <div class="nfm-row-name">焼き鳥の盛り合わせ</div>
+            <div class="nfm-row-sub">Assorted Yakitori Skewers</div>
+          </div>
+          <div class="nfm-qty">×1</div>
+        </div>
+        <div class="nfm-row">
+          <div>
+            <div class="nfm-row-name">揚げ出し豆腐</div>
+            <div class="nfm-row-sub">Agedashi Tofu</div>
+          </div>
+          <div class="nfm-qty">×2</div>
+        </div>
+        <div class="nfm-total"><span>Total</span><span class="nfm-total-val">¥2,340 <em>≈ $15.60</em></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1131,6 +1311,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       <div class="faq-a">Yes — download the app and your first 5 translations are free. If you like it, choose from 25, 150, or 400 credit packs to match your travel style.</div>
     </details>
     <details class="faq-item">
+      <summary class="faq-q">Can I use it with food allergies?</summary>
+      <div class="faq-a">Yes. Register your dietary preferences (vegetarian, vegan, halal, and common allergies — 11 options in total) and Menufy automatically flags dishes that may conflict with them. Note: flags are AI-generated, so if you have a severe allergy, always confirm with the restaurant as well.</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Can I order without speaking the language?</summary>
+      <div class="faq-a">Yes. Select the dishes you want and Menufy shows a full-screen order card in the menu's own language — a polite request phrase plus your selected dishes. Just show your phone to the staff. A speaker button also pronounces each dish name for you.</div>
+    </details>
+    <details class="faq-item">
       <summary class="faq-q">How is this different from Google Translate?</summary>
       <div class="faq-a">Menufy is built specifically for menus. Instead of translating word-by-word, it organizes dish names, descriptions, and prices into one readable screen, grouped by category. It also converts local prices into your currency in real time — so you can order confidently, without mental math.</div>
     </details>
@@ -1207,7 +1395,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
 <script>
 (function(){
   if(typeof fbq !== 'function') return;
-  var sectionMap = {'how':'ViewHow','screens':'ViewScreens','features':'ViewFeatures','why':'ViewWhyMenufy','pricing':'ViewPricing','languages':'ViewLanguages','faq':'ViewFAQ'};
+  var sectionMap = {'how':'ViewHow','screens':'ViewScreens','features':'ViewFeatures','why':'ViewWhyMenufy','order':'ViewOrderMode','pricing':'ViewPricing','languages':'ViewLanguages','faq':'ViewFAQ'};
   var firedSections = {};
   var sectionObserver = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
