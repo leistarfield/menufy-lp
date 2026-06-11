@@ -463,7 +463,31 @@ body.mmenu-open .mmenu-overlay a:nth-child(3){transition-delay:.15s}
 body.mmenu-open .mmenu-overlay a:nth-child(4){transition-delay:.2s}
 body.mmenu-open .mmenu-overlay a:nth-child(5){transition-delay:.25s}
 body.mmenu-open .mmenu-overlay a:nth-child(6){transition-delay:.3s}
+body.mmenu-open .mmenu-overlay a:nth-child(7){transition-delay:.35s}
+body.mmenu-open .mmenu-overlay a:nth-child(8){transition-delay:.4s}
 body.mmenu-open{overflow:hidden}
+
+/* STICKY MOBILE CTA (shown via JS on iOS/Android UAs after the hero) */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:90;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(253,248,244,.94);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-top:1px solid var(--glight);
+  transform:translateY(110%);transition:transform .45s var(--ease);
+}
+.sticky-cta[hidden]{display:none}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta-note{font-size:12px;color:var(--gray);letter-spacing:.04em;font-weight:300}
+.sticky-cta-btn{
+  flex-shrink:0;padding:13px 26px;border-radius:100px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));
+  color:#fff;font-size:14px;letter-spacing:.04em;
+  text-decoration:none;box-shadow:var(--sh-warm);
+}
+.sticky-cta-btn:active{transform:scale(.98)}
+@media(min-width:961px){.sticky-cta{display:none}}
 
 /* SCREENSHOTS SCROLL HINT */
 .screens-wrap{position:relative}
@@ -866,6 +890,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   <div class="nlinks">
     <a href="#how" class="nlink">How it works</a>
     <a href="#features" class="nlink">Features</a>
+    <a href="#order" class="nlink">What's new</a>
     <a href="#pricing" class="nlink">Pricing</a>
     <a href="#languages" class="nlink">Languages</a>
     <a href="#faq" class="nlink">FAQ</a>
@@ -879,6 +904,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
 <div class="mmenu-overlay" id="mmenu" role="dialog" aria-modal="true">
   <a href="#how" data-mmenu-link>How it works</a>
   <a href="#features" data-mmenu-link>Features</a>
+  <a href="#order" data-mmenu-link>What's new</a>
   <a href="#pricing" data-mmenu-link>Pricing</a>
   <a href="#languages" data-mmenu-link>Languages</a>
   <a href="#faq" data-mmenu-link>FAQ</a>
@@ -886,6 +912,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   <a href="#cta" data-mmenu-link
      style="margin-top:16px;padding:15px 34px;background:linear-gradient(148deg,var(--o1),var(--o2));color:white;border-radius:100px;box-shadow:var(--sh-warm);font-size:15px"
      onclick="fbq('trackCustom','MobileMenuCtaClick')">Get the app</a>
+</div>
+
+<div class="sticky-cta" id="sticky-cta" hidden>
+  <span class="sticky-cta-note">5 free translations</span>
+  <a href="#" class="sticky-cta-btn" id="sticky-cta-btn">Get the app</a>
 </div>
 
 <script>
@@ -919,6 +950,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   var isAndroid = /Android/i.test(ua);
   var target = isIOS ? APP_STORE : (isAndroid ? PLAY_STORE : null);
   if (!target) return;
+  var bar = document.getElementById('sticky-cta');
+  if (bar) {
+    bar.hidden = false;
+    var barBtn = document.getElementById('sticky-cta-btn');
+    barBtn.href = target;
+    barBtn.textContent = isIOS ? 'Get on the App Store' : 'Get it on Google Play';
+    barBtn.addEventListener('click', function(){
+      try { fbq('track','InitiateCheckout',{content_name: isIOS ? 'AppStore_StickyBar' : 'GooglePlay_StickyBar'}); } catch(_){}
+    });
+    document.addEventListener('DOMContentLoaded', function(){
+      var heroPassed = false, visible = {};
+      var update = function(){ bar.classList.toggle('show', heroPassed && !visible.pricing && !visible.cta); };
+      var hero = document.querySelector('.hero');
+      // -72px top margin: count the hero as passed once it slides behind the fixed nav
+      if (hero) new IntersectionObserver(function(es){ heroPassed = !es[0].isIntersecting; update(); }, { rootMargin: '-72px 0px 0px 0px' }).observe(hero);
+      ['pricing','cta'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (el) new IntersectionObserver(function(es){ visible[id] = es[0].isIntersecting; update(); }).observe(el);
+      });
+    });
+  }
   document.querySelectorAll('a[href="#cta"]').forEach(function(link){
     if (!link.classList.contains('ncta') && !link.hasAttribute('data-mmenu-link')) return;
     link.addEventListener('click', function(e){
