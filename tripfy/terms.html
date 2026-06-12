@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利用規約 — Tripfy</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ff6b47'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --o1:#ff9a5c;--o2:#ff6b47;--o3:#f04428;
+  --white:#fafaf8;--cream:#fdf8f4;
+  --black:#17110b;--gray:#90847d;--glight:#ece5de;--text:#261e17;
+}
+body{
+  font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;
+  background:var(--white);color:var(--text);
+  -webkit-font-smoothing:antialiased;font-weight:300;
+}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:62px;
+  background:rgba(253,248,244,.97);
+  border-bottom:1px solid var(--glight);
+}
+.nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nicon{width:32px;height:32px;border-radius:10px;background:linear-gradient(148deg,var(--o1),var(--o2));display:flex;align-items:center;justify-content:center}
+.ntext{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.1em}
+.nback{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:.06em;font-weight:300;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nback:hover{color:var(--black)}
+
+/* CONTENT */
+.wrap{max-width:720px;margin:0 auto;padding:80px 40px 120px}
+.label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--o3);margin-bottom:20px;display:flex;align-items:center;gap:12px;font-weight:300}
+.label::after{content:'';display:block;width:22px;height:1px;background:var(--o3)}
+h1{
+  font-family:'Shippori Mincho',serif;
+  font-size:36px;font-weight:400;color:var(--black);
+  letter-spacing:.06em;line-height:1.3;margin-bottom:12px;
+}
+.updated{font-size:12px;color:var(--gray);letter-spacing:.06em;margin-bottom:56px;font-weight:300}
+.intro{font-size:15px;color:var(--gray);line-height:2;letter-spacing:.06em;font-weight:300;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--glight)}
+
+h2{
+  font-family:'Shippori Mincho',serif;
+  font-size:18px;font-weight:500;color:var(--black);
+  letter-spacing:.08em;margin-bottom:16px;margin-top:48px;
+}
+p{font-size:14px;color:var(--gray);line-height:2;letter-spacing:.06em;font-weight:300;margin-bottom:12px}
+ul{list-style:none;margin-bottom:12px}
+ul li{font-size:14px;color:var(--gray);line-height:2;letter-spacing:.06em;font-weight:300;padding-left:1em;position:relative}
+ul li::before{content:'・';position:absolute;left:0;color:var(--o3)}
+a{color:var(--o3);text-decoration:none}
+a:hover{text-decoration:underline}
+
+footer{
+  padding:32px 60px;background:var(--cream);
+  border-top:1px solid var(--glight);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.fcopy{font-size:11px;color:var(--gray);letter-spacing:.06em;font-weight:200}
+
+@media(max-width:760px){
+  nav{padding:0 20px}
+  .wrap{padding:48px 24px 80px}
+  footer{padding:24px 20px;flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nlogo">
+    <div class="nicon">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/></svg>
+    </div>
+    <span class="ntext">Tripfy</span>
+  </a>
+  <a href="index.html" class="nback">← トップに戻る</a>
+</nav>
+
+<div class="wrap">
+  <div class="label">Legal</div>
+  <h1>利用規約</h1>
+  <p class="updated">最終更新：2026年6月</p>
+  <p class="intro">本利用規約は、Tripfy（以下「本アプリ」）をご利用いただく際の条件を定めるものです。本アプリをご利用いただくことで、本規約に同意したものとみなします。</p>
+
+  <h2>1. サービスの内容</h2>
+  <p>本アプリは、AIを利用した予約情報の抽出と旅程管理の機能を提供します。AIによる抽出結果の正確性を保証するものではありません。フライトの時刻や予約番号などの重要な情報は、必ず予約元の公式な確認書をご確認ください。</p>
+
+  <h2>2. AI機能の利用制限</h2>
+  <ul>
+    <li>予約の取り込み・デイプラン生成などのAI機能には、サービス品質維持のため1日あたりの利用回数制限があります。</li>
+    <li>制限を超えた場合、翌日以降に再度ご利用いただけます。</li>
+  </ul>
+
+  <h2>3. メール転送による取り込み</h2>
+  <ul>
+    <li>専用の転送アドレスは、ご自身が受け取った予約確認の取り込みのみに使用できます。</li>
+    <li>大量送信、スパム、第三者のメールの無断転送はお控えください。不正な利用が確認された場合、機能の提供を停止することがあります。</li>
+  </ul>
+
+  <h2>4. 禁止事項</h2>
+  <ul>
+    <li>本アプリのリバースエンジニアリング</li>
+    <li>不正な手段によるサーバーへのアクセス、APIの不正利用</li>
+    <li>本アプリを利用した違法行為</li>
+  </ul>
+
+  <h2>5. 免責事項</h2>
+  <p>AIによる抽出結果・デイプラン・持ち物リストの誤りに起因するいかなる損害（搭乗便の乗り遅れ、予約の不一致などを含む）についても、開発者は責任を負いません。旅程の最終確認はご自身で行ってください。</p>
+
+  <h2>6. サービスの変更・停止</h2>
+  <p>開発者は、事前の通知なくサービスの内容を変更、または提供を停止する場合があります。これによって生じた損害について、開発者は責任を負いません。</p>
+
+  <h2>7. 規約の変更</h2>
+  <p>本規約は予告なく変更する場合があります。変更後も本アプリをご利用いただいた場合、変更後の規約に同意したものとみなします。</p>
+
+  <h2>8. お問い合わせ</h2>
+  <p>本規約に関するお問い合わせは <a href="https://www.instagram.com/menufy_translator/" target="_blank">Instagram (@menufy_translator)</a> までご連絡ください。</p>
+</div>
+
+<footer>
+  <a href="index.html" style="font-family:'Shippori Mincho',serif;font-size:16px;font-weight:500;color:var(--black);text-decoration:none;letter-spacing:.1em">Tripfy</a>
+  <span class="fcopy">© 2026 Tripfy</span>
+</footer>
+
+</body>
+</html>

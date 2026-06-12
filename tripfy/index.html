@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tripfy — 旅のすべてを、ひとつに。</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ff6b47'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ff6b47'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/></svg>">
+<meta name="theme-color" content="#ff6b47">
+
+<!-- SEO -->
+<meta name="description" content="フライト・ホテル・レストランの予約を、共有シートから1タップで旅程に。AIが予約メールを読み取り、タイムラインに自動整列。原本まるごと保存でオフラインでも安心。Menufy の兄弟アプリ。">
+<meta name="keywords" content="旅程管理, 旅行アプリ, 旅のしおり, フライト管理, ホテル予約 整理, 旅行 計画, iOS, AI, 持ち物リスト">
+<meta name="author" content="Tripfy">
+
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://menufyjp.com/tripfy/">
+<link rel="alternate" hreflang="ja" href="https://menufyjp.com/tripfy/">
+<link rel="alternate" hreflang="en" href="https://menufyjp.com/tripfy/en/">
+<link rel="alternate" hreflang="x-default" href="https://menufyjp.com/tripfy/">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tripfy">
+<meta property="og:title" content="Tripfy — 旅のすべてを、ひとつに。">
+<meta property="og:description" content="フライト・ホテル・レストランの予約を、共有シートから1タップで旅程に。AIが予約メールを読み取り、タイムラインに自動整列。Menufy の兄弟アプリ。">
+<meta property="og:url" content="https://menufyjp.com/tripfy/">
+<meta property="og:image" content="https://menufyjp.com/tripfy/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tripfy — 旅のすべてを、ひとつに。">
+<meta name="twitter:description" content="予約を共有シートから1タップで旅程に。AIがタイムラインに自動整列。Menufy の兄弟アプリ。">
+<meta name="twitter:image" content="https://menufyjp.com/tripfy/ogp.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --o1:#ff9a5c;--o2:#ff6b47;--o3:#f04428;
+  --opale:#fff4ef;--opale2:#ffe3d8;
+  --white:#fafaf8;--cream:#fdf8f4;
+  --black:#17110b;--gray:#90847d;--glight:#ece5de;--text:#261e17;
+  --ink:#2c4868;--ink-soft:#5a7095;
+  --sh-soft:0 1px 2px rgba(60,38,24,.04),0 8px 28px rgba(60,38,24,.08);
+  --sh-medium:0 2px 4px rgba(60,38,24,.05),0 16px 44px rgba(60,38,24,.10);
+  --sh-warm:0 2px 6px rgba(255,107,71,.10),0 14px 40px rgba(255,107,71,.18);
+  --sh-warm-soft:0 1px 3px rgba(255,107,71,.08),0 6px 18px rgba(255,107,71,.14);
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;
+  background:var(--white);color:var(--text);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  font-weight:300;
+}
+
+.serif{font-family:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:62px;
+  background:rgba(253,248,244,.94);
+  backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid rgba(0,0,0,.055);
+}
+.nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nicon{width:32px;height:32px;border-radius:12px;background:linear-gradient(148deg,var(--o1),var(--o2));display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-warm-soft)}
+.ntext{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.1em}
+.nlinks{display:flex;align-items:center;gap:40px}
+.nlink{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:.06em;transition:color .2s;font-weight:300}
+.nlink:hover{color:var(--black)}
+.ncta{
+  display:inline-flex;align-items:center;padding:10px 24px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));
+  color:white;font-size:13px;font-weight:300;
+  text-decoration:none;border-radius:100px;
+  box-shadow:var(--sh-warm-soft);
+  letter-spacing:.08em;
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+}
+.ncta:hover{opacity:.92;transform:translateY(-1px)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(158deg,#ff9a5c 0%,#ff6b47 44%,#f04428 100%);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding-top:62px;
+  position:relative;
+}
+.hero-bg1{position:absolute;width:680px;height:680px;border-radius:50%;background:rgba(255,255,255,.05);top:-170px;right:-130px;pointer-events:none}
+.hero-bg2{position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.03);bottom:-50px;left:50px;pointer-events:none}
+
+.hleft{padding:80px 56px 80px 80px;position:relative;z-index:1}
+.heyebrow{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:36px;
+  font-weight:300;display:flex;align-items:center;gap:12px;
+}
+.heyebrow::before{content:'';width:18px;height:1px;background:rgba(255,255,255,.38);display:block}
+
+.htitle{
+  font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
+  font-size:clamp(32px,4.8vw,78px);
+  font-weight:400;line-height:1.15;
+  color:white;margin-bottom:10px;
+  letter-spacing:.04em;
+}
+.htitle em{
+  font-style:normal;
+  color:rgba(255,255,255,.65);
+  font-weight:400;
+  display:block;
+}
+.htagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;font-weight:300;
+  color:rgba(255,255,255,.45);
+  margin-bottom:44px;letter-spacing:.08em;
+}
+.hdesc{
+  font-size:14px;line-height:2.1;
+  color:rgba(255,255,255,.75);
+  max-width:380px;margin-bottom:56px;
+  font-weight:200;letter-spacing:.06em;
+}
+.hactions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.btas{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:14px 28px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdf9f5 100%);
+  color:var(--black);
+  border-radius:18px;
+  box-shadow:var(--sh-soft);
+}
+.btas-sub{font-size:9px;color:var(--gray);letter-spacing:.12em;display:block;text-transform:uppercase;font-weight:300}
+.btas-main{font-size:15px;font-weight:400;color:var(--black);display:block;font-family:'Shippori Mincho',serif;letter-spacing:.06em}
+.htrial{font-size:13px;color:rgba(255,255,255,.55);letter-spacing:.06em;font-weight:300}
+
+.hstats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:56px;
+}
+.hstat{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:20px;
+  padding:20px 16px;
+  text-align:center;
+}
+.hstat-val{
+  font-family:'Shippori Mincho',serif;
+  font-size:15px;font-weight:500;color:white;
+  line-height:1.5;margin-bottom:4px;letter-spacing:.06em;
+  white-space:nowrap;
+}
+.hstat-label{font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.06em;font-weight:300;white-space:nowrap}
+
+/* PHONE */
+.hright{display:flex;align-items:center;justify-content:center;padding:72px 80px 72px 36px;position:relative;z-index:1}
+.pscene{position:relative;width:220px}
+.pwrap{width:220px;animation:float 6s ease-in-out infinite;position:relative;z-index:2}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-14px) rotate(.5deg)}}
+.pouter{background:#110b05;border-radius:48px;padding:9px;box-shadow:0 56px 120px rgba(0,0,0,.36),0 0 0 .5px rgba(255,255,255,.07)}
+.pinner{
+  background:linear-gradient(158deg,#ff9a5c 0%,#ff6b47 44%,#f04428 100%);
+  border-radius:41px;overflow:hidden;
+  aspect-ratio:9/19.5;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;padding:18px;
+}
+.pcircle{position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07);top:50%;left:50%;transform:translate(-50%,-64%);pointer-events:none}
+.piconwrap{position:relative;z-index:1;margin-bottom:4px}
+.pplate{width:64px;height:64px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.15);position:relative;z-index:1}
+.pbrand{font-family:'Shippori Mincho',serif;font-size:26px;font-weight:500;color:white;letter-spacing:.12em;position:relative;z-index:1}
+.pbrand-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.1em;position:relative;z-index:1;font-style:italic;font-family:'Cormorant Garamond',serif}
+.pnotch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#110b05;border-radius:0 0 14px 14px;z-index:10}
+
+.fcard{position:absolute;background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);border-radius:18px;padding:11px 15px;box-shadow:var(--sh-soft);white-space:nowrap;z-index:10}
+.fc1{top:8%;left:160px;animation:fc1 4.5s ease-in-out infinite}
+.fc2{top:68%;left:-20px;animation:fc2 4.5s ease-in-out infinite}
+@keyframes fc1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fc2{0%,100%{transform:translateY(-4px)}50%{transform:translateY(5px)}}
+.fcard-em{font-size:16px;display:block;margin-bottom:3px}
+.fcard-t{font-size:11px;font-weight:400;color:var(--black);display:block;letter-spacing:.06em;font-family:'Shippori Mincho',serif}
+.fcard-s{font-size:10px;color:var(--gray);display:block;letter-spacing:.04em;font-weight:200}
+.fbadge{position:absolute;top:-7px;right:-7px;background:var(--ink);color:white;font-size:9px;padding:3px 9px;border-radius:100px;font-weight:300;letter-spacing:.06em;box-shadow:0 2px 8px rgba(44,72,104,.28)}
+
+/* SECTIONS */
+.section{padding:112px 80px}
+.section-alt{background:var(--cream)}
+.slbl{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--o3);margin-bottom:22px;
+  display:flex;align-items:center;gap:12px;font-weight:300;
+}
+.slbl::after{content:'';display:block;width:22px;height:1px;background:var(--o3)}
+
+.stitle{
+  font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
+  font-size:clamp(34px,3.4vw,52px);
+  font-weight:400;line-height:1.25;
+  color:var(--black);margin-bottom:22px;
+  letter-spacing:.06em;
+}
+.stitle em{font-style:normal;color:var(--o3)}
+.sdesc{
+  font-size:15px;color:var(--gray);line-height:1.9;
+  max-width:480px;margin-bottom:68px;
+  letter-spacing:.06em;font-weight:300;
+}
+
+.uicon{
+  width:48px;height:48px;border-radius:16px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:21px;box-shadow:var(--sh-warm-soft);flex-shrink:0;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:56px}
+.step{display:flex;flex-direction:column;gap:16px}
+.step:hover .uicon{transform:scale(1.12) rotate(-4deg)}
+.stepn{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;font-weight:300;color:var(--opale2);
+  line-height:1;letter-spacing:-.02em;
+}
+.stept{
+  font-family:'Shippori Mincho',serif;
+  font-size:19px;font-weight:500;color:var(--black);
+  line-height:1.4;letter-spacing:.08em;
+}
+.stept2{
+  font-size:11px;color:var(--ink-soft);
+  font-style:italic;font-family:'Cormorant Garamond',serif;
+  letter-spacing:.06em;font-weight:300;
+}
+.stepd{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.06em;font-weight:300}
+
+/* FEATURES */
+.fgrid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--glight);
+  margin-top:56px;
+}
+.feat{background:white;padding:56px 52px;transition:background .5s var(--ease),transform .3s ease}
+.feat:hover{background:var(--cream);transform:translateY(-3px)}
+.feat:hover .uicon{transform:scale(1.12) rotate(-4deg)}
+.feat .uicon{margin-bottom:24px}
+.ft{
+  font-family:'Shippori Mincho',serif;
+  font-size:19px;font-weight:500;color:var(--black);
+  margin-bottom:8px;line-height:1.4;letter-spacing:.08em;
+}
+.ft2{
+  font-size:11px;color:var(--ink-soft);margin-bottom:14px;
+  font-weight:300;font-style:italic;
+  font-family:'Cormorant Garamond',serif;letter-spacing:.06em;
+}
+.fd{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.06em;font-weight:300}
+
+/* FAQ */
+.faq-wrap{max-width:760px;margin:40px auto 0}
+.faq-item{
+  border-bottom:1px solid rgba(0,0,0,.08);
+  padding:22px 4px;
+  transition:background-color .2s ease;
+}
+.faq-item:hover{background:rgba(255,107,71,.02)}
+.faq-item:first-child{border-top:1px solid rgba(0,0,0,.08)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;cursor:pointer;list-style:none;
+  font-family:'Shippori Mincho',serif;font-size:17px;font-weight:500;
+  color:var(--black);letter-spacing:.04em;padding:6px 0;
+}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q::after{
+  content:'+';font-size:22px;color:var(--o2);font-weight:300;
+  transition:transform .3s ease;line-height:1;
+}
+.faq-item[open] .faq-q::after{transform:rotate(45deg)}
+.faq-a{
+  margin-top:14px;font-size:14px;color:var(--gray);
+  line-height:1.85;letter-spacing:.04em;
+  animation:faqSlide .3s ease-out;
+}
+@keyframes faqSlide{
+  from{opacity:0;transform:translateY(-4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SIBLING APP (Menufy) */
+.sib-card{
+  max-width:760px;margin:48px auto 0;
+  display:flex;align-items:center;gap:28px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
+  border:1px solid rgba(60,38,24,.06);border-radius:28px;
+  padding:40px 44px;text-decoration:none;
+  box-shadow:var(--sh-soft);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.sib-card:hover{transform:translateY(-3px);box-shadow:var(--sh-medium)}
+.sib-icon{
+  width:64px;height:64px;border-radius:20px;flex-shrink:0;
+  background:linear-gradient(148deg,#f97c4a,#f05a28);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(240,90,40,.25);
+}
+.sib-t{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.08em;margin-bottom:6px}
+.sib-d{font-size:13px;color:var(--gray);line-height:1.8;letter-spacing:.04em;font-weight:300}
+.sib-arrow{margin-left:auto;color:var(--o3);font-size:20px;flex-shrink:0}
+
+/* CTA */
+.cta{
+  padding:130px 80px;
+  background:linear-gradient(158deg,#ff9a5c 0%,#ff6b47 44%,#f04428 100%);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:rgba(255,255,255,.05);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
+.cta-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px;font-weight:200;position:relative}
+.cta-icon{width:72px;height:72px;border-radius:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 32px;backdrop-filter:blur(8px);position:relative}
+.cta-title{
+  font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
+  font-size:clamp(38px,4.2vw,64px);
+  font-weight:400;line-height:1.25;
+  color:white;margin-bottom:12px;letter-spacing:.06em;position:relative;
+}
+.cta-title em{font-style:normal;color:rgba(255,255,255,.6)}
+.cta-tag{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-style:italic;font-weight:300;
+  color:rgba(255,255,255,.45);
+  margin-bottom:18px;letter-spacing:.08em;position:relative;
+}
+.cta-desc{
+  font-size:15px;color:rgba(255,255,255,.68);
+  margin-bottom:48px;line-height:2;
+  font-weight:200;letter-spacing:.06em;position:relative;
+}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;position:relative}
+.btaw{
+  display:inline-flex;align-items:center;gap:13px;
+  padding:15px 30px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdf9f5 100%);
+  color:var(--black);
+  border-radius:18px;
+  box-shadow:var(--sh-soft);
+}
+.cta-note{font-size:11px;color:rgba(255,255,255,.38);letter-spacing:.08em;font-weight:200;display:block;margin-top:24px;position:relative}
+
+footer{
+  padding:36px 80px;background:var(--cream);
+  border-top:1px solid var(--glight);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.flogo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.flogo-text{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:500;color:var(--black);letter-spacing:.1em}
+.flinks{display:flex;gap:28px}
+.flink{font-size:12px;color:var(--gray);text-decoration:none;transition:color .2s;letter-spacing:.06em;font-weight:200}
+.flink:hover{color:var(--black)}
+.fcopy{font-size:11px;color:var(--gray);letter-spacing:.06em;font-weight:200}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;animation:fadeUp .85s cubic-bezier(.22,1,.36,1) forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.24s}.d3{animation-delay:.38s}.d4{animation-delay:.52s}
+
+/* MOBILE MENU */
+.mmenu-btn{
+  display:none;background:none;border:none;cursor:pointer;padding:8px;
+  width:36px;height:36px;align-items:center;justify-content:center;
+}
+.mmenu-btn span{
+  display:block;width:18px;height:1.5px;background:var(--black);
+  position:relative;transition:transform .3s ease, opacity .3s ease;
+}
+.mmenu-btn span::before,.mmenu-btn span::after{
+  content:'';position:absolute;left:0;width:18px;height:1.5px;background:var(--black);
+  transition:transform .3s ease, top .3s ease;
+}
+.mmenu-btn span::before{top:-6px}
+.mmenu-btn span::after{top:6px}
+body.mmenu-open .mmenu-btn span{background:transparent}
+body.mmenu-open .mmenu-btn span::before{top:0;transform:rotate(45deg)}
+body.mmenu-open .mmenu-btn span::after{top:0;transform:rotate(-45deg)}
+
+.mmenu-overlay{
+  position:fixed;inset:0;z-index:99;
+  background:rgba(253,248,244,.98);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:28px;padding:32px;
+  opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s ease;
+}
+body.mmenu-open .mmenu-overlay{opacity:1;visibility:visible}
+.mmenu-overlay a{
+  font-family:'Shippori Mincho',serif;font-size:22px;color:var(--black);
+  text-decoration:none;letter-spacing:.08em;font-weight:400;
+  opacity:0;transform:translateY(8px);transition:opacity .4s ease, transform .4s ease;
+}
+body.mmenu-open .mmenu-overlay a{opacity:1;transform:translateY(0)}
+body.mmenu-open .mmenu-overlay a:nth-child(1){transition-delay:.05s}
+body.mmenu-open .mmenu-overlay a:nth-child(2){transition-delay:.1s}
+body.mmenu-open .mmenu-overlay a:nth-child(3){transition-delay:.15s}
+body.mmenu-open .mmenu-overlay a:nth-child(4){transition-delay:.2s}
+body.mmenu-open .mmenu-overlay a:nth-child(5){transition-delay:.25s}
+body.mmenu-open{overflow:hidden}
+
+a:focus-visible, button:focus-visible, summary:focus-visible{
+  outline:2px solid var(--o2);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .nlinks{display:none}
+  .ncta{display:none}
+  .mmenu-btn{display:flex}
+  .hero{grid-template-columns:1fr}
+  .hleft{padding:52px 24px 36px}
+  .hright{padding:32px 24px 60px}
+  .pwrap{width:186px}.fcard{display:none}
+  .hstats{gap:8px}
+  .hstat{padding:14px 10px}
+  .hstat-val{font-size:13px}
+  .section{padding:80px 24px}
+  .steps{grid-template-columns:1fr;gap:36px}
+  .fgrid{grid-template-columns:1fr}
+  .feat{padding:40px 24px}
+  .cta{padding:88px 24px}
+  .sib-card{flex-direction:column;text-align:center;padding:32px 24px}
+  .sib-arrow{margin-left:0}
+  footer{padding:32px 24px;flex-direction:column;gap:18px;text-align:center}
+  .flinks{flex-wrap:wrap;justify-content:center}
+}
+
+@media(max-width:480px){
+  .htitle{font-size:36px}
+  .hleft{padding:44px 20px 28px}
+  .hright{display:none}
+  .hstats{grid-template-columns:1fr}
+  .hstat{padding:12px 16px;text-align:left}
+  .section{padding:64px 20px}
+  .stitle{font-size:28px}
+  .faq-q{font-size:15px}
+  .faq-a{font-size:13px}
+}
+</style>
+
+<!-- JSON-LD: MobileApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Tripfy — 旅程管理",
+  "operatingSystem": "iOS",
+  "applicationCategory": "TravelApplication",
+  "description": "フライト・ホテル・レストランの予約を、共有シートから1タップで旅程に。AIが予約メールを読み取り、タイムラインに自動整列。",
+  "url": "https://menufyjp.com/tripfy/",
+  "image": "https://menufyjp.com/tripfy/ogp.png",
+  "inLanguage": ["ja", "en"]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nlogo">
+    <div class="nicon">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/></svg>
+    </div>
+    <span class="ntext">Tripfy</span>
+  </a>
+  <div class="nlinks">
+    <a href="#how" class="nlink">使い方</a>
+    <a href="#features" class="nlink">機能</a>
+    <a href="#faq" class="nlink">よくある質問</a>
+    <a href="/" class="nlink">Menufy</a>
+    <a href="/tripfy/en/" class="nlink" aria-label="English">English</a>
+  </div>
+  <a href="#cta" class="ncta">近日公開</a>
+  <button class="mmenu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+</nav>
+
+<div class="mmenu-overlay" id="mmenu" role="dialog" aria-modal="true">
+  <a href="#how" data-mmenu-link>使い方</a>
+  <a href="#features" data-mmenu-link>機能</a>
+  <a href="#faq" data-mmenu-link>よくある質問</a>
+  <a href="/" data-mmenu-link>Menufy</a>
+  <a href="/tripfy/en/" data-mmenu-link>English</a>
+</div>
+
+<script>
+(function(){
+  var btn = document.querySelector('.mmenu-btn');
+  var overlay = document.getElementById('mmenu');
+  if(!btn || !overlay) return;
+  function toggle(open){
+    document.body.classList.toggle('mmenu-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(){
+    toggle(!document.body.classList.contains('mmenu-open'));
+  });
+  overlay.querySelectorAll('[data-mmenu-link]').forEach(function(link){
+    link.addEventListener('click', function(){ toggle(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && document.body.classList.contains('mmenu-open')) toggle(false);
+  });
+})();
+</script>
+
+<section class="hero">
+  <div class="hero-bg1"></div><div class="hero-bg2"></div>
+  <div class="hleft">
+    <p class="heyebrow fu">iOS — Coming Soon</p>
+    <h1 class="htitle fu d1">旅のすべてを、<br><em>ひとつに。</em></h1>
+    <p class="htagline fu d2">Every trip, in one place.</p>
+    <p class="hdesc fu d2">フライト、ホテル、レストラン。バラバラに届く予約確認を、共有シートから1タップで旅程に。AIが内容を読み取り、タイムラインに自動で並べます。</p>
+    <div class="hactions fu d3">
+      <div class="btas">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#17110b"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div><span class="btas-sub">Coming soon on the</span><span class="btas-main">App Store</span></div>
+      </div>
+      <span class="htrial">現在開発中・近日公開</span>
+    </div>
+    <div class="hstats fu d4">
+      <div class="hstat"><div class="hstat-val">1タップ取込</div><div class="hstat-label">共有シートから</div></div>
+      <div class="hstat"><div class="hstat-val">オフライン対応</div><div class="hstat-label">原本まるごと保存</div></div>
+      <div class="hstat"><div class="hstat-val">AI自動整列</div><div class="hstat-label">旅程はおまかせ</div></div>
+    </div>
+  </div>
+  <div class="hright">
+    <div class="pscene">
+      <div class="pwrap">
+        <div class="pouter">
+          <div class="pinner">
+            <div class="pnotch"></div>
+            <div class="pcircle"></div>
+            <div class="piconwrap">
+              <div class="pplate"><span style="font-size:30px">🧳</span></div>
+            </div>
+            <div class="pbrand">Tripfy</div>
+            <div class="pbrand-sub">Every trip, in one place.</div>
+          </div>
+        </div>
+      </div>
+      <div class="fcard fc1">
+        <span class="fbadge">取込完了</span>
+        <span class="fcard-em">✈️</span>
+        <span class="fcard-t">NH849 羽田 → バンコク</span>
+        <span class="fcard-s">12月20日（土）10:45 発</span>
+      </div>
+      <div class="fcard fc2">
+        <span class="fcard-em">🏨</span>
+        <span class="fcard-t">ホテル 3泊</span>
+        <span class="fcard-s">タイムラインに自動追加</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 使い方セクション ===== -->
+<section class="section section-alt" id="how">
+  <div class="slbl">使い方</div>
+  <h2 class="stitle">予約メールを、<br><em>共有するだけ。</em></h2>
+  <p class="sdesc">コピペも手入力もいりません。届いた予約確認を Tripfy に渡すだけ。</p>
+  <div class="steps">
+    <div class="step">
+      <div class="stepn">01</div>
+      <div class="uicon">📤</div>
+      <h3 class="stept">予約確認を共有</h3>
+      <p class="stept2">Share your booking</p>
+      <p class="stepd">予約確認のメールや PDF を、共有シートから Tripfy へ。メール転送での取り込みにも対応。</p>
+    </div>
+    <div class="step">
+      <div class="stepn">02</div>
+      <div class="uicon">✨</div>
+      <h3 class="stept">AIが情報を抽出</h3>
+      <p class="stept2">AI reads the details</p>
+      <p class="stepd">便名・日時・予約番号・住所。AIが本文を読み取り、旅程に必要な情報だけを取り出します。</p>
+    </div>
+    <div class="step">
+      <div class="stepn">03</div>
+      <div class="uicon">🗓️</div>
+      <h3 class="stept">旅程に自動整列</h3>
+      <p class="stept2">Your timeline, sorted</p>
+      <p class="stepd">フライトもホテルもレストランも、時系列のタイムラインに自動で整列。旅の全体像がひと目でわかる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 機能セクション ===== -->
+<section class="section" id="features">
+  <div class="slbl">機能</div>
+  <h2 class="stitle">旅の準備から当日まで、<br><em>これひとつで。</em></h2>
+  <div class="fgrid">
+    <div class="feat">
+      <div class="uicon">🧾</div>
+      <h3 class="ft">原本まるごと保存</h3>
+      <p class="ft2">Keep the original</p>
+      <p class="fd">取り込んだメールや PDF は原本ごと保存。機内や圏外でも、予約番号や QR コードをそのまま開けます。</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">✉️</div>
+      <h3 class="ft">メール転送で取り込み</h3>
+      <p class="ft2">Forward to import</p>
+      <p class="fd">専用アドレスに予約メールを転送するだけでも OK。PC で受け取った予約も、そのまま旅程に届きます。</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">✨</div>
+      <h3 class="ft">AI デイプラン</h3>
+      <p class="ft2">AI day plans</p>
+      <p class="fd">予約の合間の空き時間に、AIが行き先の候補を提案。1日の流れを無理のないプランに組み立てます。</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">✅</div>
+      <h3 class="ft">持ち物リスト</h3>
+      <p class="ft2">Packing lists</p>
+      <p class="fd">行き先と季節に合わせた持ち物リストを自動生成。家族の人数分も、チェックしながら準備できます。</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">⏳</div>
+      <h3 class="ft">カウントダウンウィジェット</h3>
+      <p class="ft2">Countdown widget</p>
+      <p class="fd">ホーム画面に「次の旅行まであと◯日」。出発までのわくわくも、旅の一部に。</p>
+    </div>
+    <div class="feat">
+      <div class="uicon">👨‍👩‍👧</div>
+      <h3 class="ft">家族と共有</h3>
+      <p class="ft2">Travel together</p>
+      <p class="fd">旅程は iCloud で家族と共有。「あのホテルどこだっけ？」のやりとりが、もういらなくなる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ セクション ===== -->
+<section class="section section-alt" id="faq">
+  <div class="slbl">よくある質問</div>
+  <h2 class="stitle">気になること、<br><em>ここで解決。</em></h2>
+  <div class="faq-wrap">
+    <details class="faq-item">
+      <summary class="faq-q">いつリリースされますか？</summary>
+      <div class="faq-a">現在開発の最終段階です。App Store での公開時期が決まり次第、このページでお知らせします。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">どんな予約を取り込めますか？</summary>
+      <div class="faq-a">フライト・ホテル・レストラン・列車・アクティビティなど、予約確認のメールや PDF に対応しています。日本語・英語どちらの予約確認でも取り込めます。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">オフラインでも使えますか？</summary>
+      <div class="faq-a">はい。取り込んだ旅程と原本（メール・PDF・画像）は端末に保存されるため、機内モードや海外の圏外でもそのまま閲覧できます。AIによる取り込みとデイプラン生成にはインターネット接続が必要です。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">データはどこに保存されますか？</summary>
+      <div class="faq-a">旅程データはお使いの端末と、ご自身の iCloud にのみ保存されます。AIの抽出処理は送信された本文の解析のみを行い、サーバーに旅程を保存することはありません。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">家族と旅程を共有できますか？</summary>
+      <div class="faq-a">はい。iCloud の共有機能を使って、家族やパートナーと同じ旅程を見られます。誰かが予約を追加すれば、全員のタイムラインに反映されます。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Menufy とはどんな関係ですか？</summary>
+      <div class="faq-a">Tripfy は、メニュー翻訳アプリ <a href="/" style="color:var(--o3)">Menufy</a> と同じ開発者による兄弟アプリです。Menufy が「旅先の食事」を、Tripfy が「旅程の管理」を担当します。</div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== Menufy 相互リンク ===== -->
+<section class="section">
+  <div class="slbl">兄弟アプリ</div>
+  <h2 class="stitle">旅先の食事は、<br><em>Menufy で。</em></h2>
+  <a href="/" class="sib-card">
+    <div class="sib-icon">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2.2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </div>
+    <div>
+      <div class="sib-t">Menufy — メニューを、あなたの言葉で。</div>
+      <div class="sib-d">カメラで撮るだけで外国語のメニューを翻訳。アレルギー警告・指差し注文・為替換算に対応。14言語・買い切り制。</div>
+    </div>
+    <span class="sib-arrow">→</span>
+  </a>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="cta">
+  <div class="cta-eyebrow">Coming Soon</div>
+  <div class="cta-icon">🧳</div>
+  <h2 class="cta-title">次の旅は、<br><em>もっと身軽に。</em></h2>
+  <p class="cta-tag">Every trip, in one place.</p>
+  <p class="cta-desc">予約を集める手間は、もうおしまい。<br>旅のすべてが、ひとつの場所に揃います。</p>
+  <div class="cta-actions">
+    <div class="btaw">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#17110b"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div><span class="btas-sub">Coming soon on the</span><span class="btas-main">App Store</span></div>
+    </div>
+  </div>
+  <span class="cta-note">公開時期はこのページでお知らせします</span>
+</section>
+
+<footer>
+  <a href="#" class="flogo">
+    <div class="nicon" style="width:28px;height:28px;border-radius:9px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/></svg>
+    </div>
+    <span class="flogo-text">Tripfy</span>
+  </a>
+  <div class="flinks">
+    <a href="privacy.html" class="flink">プライバシーポリシー</a>
+    <a href="terms.html" class="flink">利用規約</a>
+    <a href="/" class="flink">Menufy</a>
+  </div>
+  <span class="fcopy">© 2026 Tripfy</span>
+</footer>
+
+</body>
+</html>
