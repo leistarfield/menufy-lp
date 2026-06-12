@@ -6,9 +6,9 @@
 <title>Tripfy — Every trip, in one place.</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ff6b47'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ff6b47'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%23ff6b47' opacity='.3'/></svg>">
-<meta name="theme-color" content="#ff6b47">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232c6fb0'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232c6fb0'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/></svg>">
+<meta name="theme-color" content="#2c6fb0">
 
 <!-- SEO -->
 <meta name="description" content="Turn flight, hotel, and restaurant confirmations into a single itinerary with one tap from the share sheet. AI reads your booking emails and sorts everything onto a timeline. Originals saved for offline. A sibling app of Menufy.">
@@ -43,15 +43,15 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --o1:#ff9a5c;--o2:#ff6b47;--o3:#f04428;
-  --opale:#fff4ef;--opale2:#ffe3d8;
+  --o1:#4e97d1;--o2:#2c6fb0;--o3:#1d4e79;
+  --opale:#eff6fc;--opale2:#dcebf7;
   --white:#fafaf8;--cream:#fdf8f4;
   --black:#17110b;--gray:#90847d;--glight:#ece5de;--text:#261e17;
   --ink:#2c4868;--ink-soft:#5a7095;
   --sh-soft:0 1px 2px rgba(60,38,24,.04),0 8px 28px rgba(60,38,24,.08);
   --sh-medium:0 2px 4px rgba(60,38,24,.05),0 16px 44px rgba(60,38,24,.10);
-  --sh-warm:0 2px 6px rgba(255,107,71,.10),0 14px 40px rgba(255,107,71,.18);
-  --sh-warm-soft:0 1px 3px rgba(255,107,71,.08),0 6px 18px rgba(255,107,71,.14);
+  --sh-warm:0 2px 6px rgba(44,111,176,.10),0 14px 40px rgba(44,111,176,.18);
+  --sh-warm-soft:0 1px 3px rgba(44,111,176,.08),0 6px 18px rgba(44,111,176,.14);
   --ease:cubic-bezier(.4,0,.2,1);
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
@@ -91,7 +91,7 @@ nav{
 /* HERO */
 .hero{
   min-height:100vh;
-  background:linear-gradient(158deg,#ff9a5c 0%,#ff6b47 44%,#f04428 100%);
+  background:linear-gradient(158deg,#4e97d1 0%,#2c6fb0 44%,#1d4e79 100%);
   display:grid;grid-template-columns:1fr 1fr;
   align-items:center;padding-top:62px;
   position:relative;
@@ -174,7 +174,7 @@ nav{
 @keyframes float{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-14px) rotate(.5deg)}}
 .pouter{background:#110b05;border-radius:48px;padding:9px;box-shadow:0 56px 120px rgba(0,0,0,.36),0 0 0 .5px rgba(255,255,255,.07)}
 .pinner{
-  background:linear-gradient(158deg,#ff9a5c 0%,#ff6b47 44%,#f04428 100%);
+  background:linear-gradient(158deg,#4e97d1 0%,#2c6fb0 44%,#1d4e79 100%);
   border-radius:41px;overflow:hidden;
   aspect-ratio:9/19.5;position:relative;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -269,7 +269,7 @@ nav{
   padding:22px 4px;
   transition:background-color .2s ease;
 }
-.faq-item:hover{background:rgba(255,107,71,.02)}
+.faq-item:hover{background:rgba(44,111,176,.02)}
 .faq-item:first-child{border-top:1px solid rgba(0,0,0,.08)}
 .faq-q{
   display:flex;align-items:center;justify-content:space-between;
@@ -317,7 +317,7 @@ nav{
 /* CTA */
 .cta{
   padding:130px 80px;
-  background:linear-gradient(158deg,#ff9a5c 0%,#ff6b47 44%,#f04428 100%);
+  background:linear-gradient(158deg,#4e97d1 0%,#2c6fb0 44%,#1d4e79 100%);
   text-align:center;position:relative;overflow:hidden;
 }
 .cta::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:rgba(255,255,255,.05);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
@@ -474,7 +474,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 <nav>
   <a href="#" class="nlogo">
     <div class="nicon">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#3f86c2" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#3f86c2" stroke-width="1.4" opacity=".55"/></svg>
     </div>
     <span class="ntext">Tripfy</span>
   </a>
@@ -700,7 +700,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 <footer>
   <a href="#" class="flogo">
     <div class="nicon" style="width:28px;height:28px;border-radius:9px;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#ff7b52" stroke-width="1.4" opacity=".55"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#3f86c2" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#3f86c2" stroke-width="1.4" opacity=".55"/></svg>
     </div>
     <span class="flogo-text">Tripfy</span>
   </a>
