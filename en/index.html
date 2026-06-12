@@ -1517,6 +1517,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   var screensEl = document.querySelector('.screens-scroll');
   if(screensEl){
     screensEl.addEventListener('scroll', function(){ fbq('trackCustom', 'ScreensInteracted'); }, {passive:true, once:true});
+
+    /* Mouse wheel → horizontal scroll. The scrollbar is hidden, so Windows
+       mice otherwise have no way to scroll this strip (no touch, no swipe). */
+    var snapTimer;
+    screensEl.addEventListener('wheel', function(e){
+      if (e.deltaX !== 0) return; /* trackpad horizontal swipe works natively */
+      var max = screensEl.scrollWidth - screensEl.clientWidth;
+      if (max <= 0) return;
+      var d = e.deltaY * (e.deltaMode === 1 ? 33 : 1);
+      /* at either end, let the page keep scrolling vertically */
+      if ((d < 0 && screensEl.scrollLeft <= 0) || (d > 0 && screensEl.scrollLeft >= max - 1)) return;
+      e.preventDefault();
+      /* suspend snap while wheeling so small ticks aren't bounced back */
+      screensEl.style.scrollSnapType = 'none';
+      screensEl.scrollLeft = Math.max(0, Math.min(max, screensEl.scrollLeft + d));
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(function(){ screensEl.style.scrollSnapType = ''; }, 500);
+    }, {passive:false});
   }
 
   fbq('track', 'ViewContent', {content_name:'LandingPage', content_category:'landing'});
