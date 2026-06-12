@@ -14,6 +14,10 @@ const sharp = (() => { try { return require('sharp'); } catch { return null; } }
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(300);
 
+  // ASC 受付サイズ（6.5 インチ）。テンプレートは 6.9 比率 (1320x2868) のまま
+  // レンダリングし、最終出力のみ fill リサイズする（比率差 0.4% は目視不可）。
+  const ASC_W = 1284, ASC_H = 2778;
+
   for (const el of await page.$$('.shot')) {
     const name = await el.getAttribute('data-out');
     const lang = name.slice(0, 2);
@@ -21,19 +25,22 @@ const sharp = (() => { try { return require('sharp'); } catch { return null; } }
     fs.mkdirSync(dir, { recursive: true });
     const out = path.join(dir, name + '.png');
     await el.scrollIntoViewIfNeeded();
-    await el.screenshot({ path: out });
-    console.log('rendered', name);
-
-    // パノラマ (2640x2868) は ASC 用に左右 1320x2868 へ分割
+    const buf = await el.screenshot();
     const isPano = (await el.getAttribute('class')).includes('pano');
-    if (isPano && sharp) {
-      const meta = await sharp(out).metadata();
-      const half = Math.floor(meta.width / 2);
-      await sharp(out).extract({ left: 0, top: 0, width: half, height: meta.height })
+
+    if (!sharp) throw new Error('sharp is required for ASC resizing');
+    if (isPano) {
+      // パノラマは 2 枚分の幅にリサイズしてから左右 ASC_W ずつに分割
+      const resized = await sharp(buf).resize(ASC_W * 2, ASC_H, { fit: 'fill' }).png().toBuffer();
+      await sharp(resized).toFile(out);
+      await sharp(resized).extract({ left: 0, top: 0, width: ASC_W, height: ASC_H })
         .toFile(path.join(dir, name + '-L.png'));
-      await sharp(out).extract({ left: half, top: 0, width: half, height: meta.height })
+      await sharp(resized).extract({ left: ASC_W, top: 0, width: ASC_W, height: ASC_H })
         .toFile(path.join(dir, name + '-R.png'));
-      console.log('split', name, '→ -L / -R');
+      console.log('rendered + split', name, '→ -L / -R');
+    } else {
+      await sharp(buf).resize(ASC_W, ASC_H, { fit: 'fill' }).toFile(out);
+      console.log('rendered', name);
     }
   }
   await browser.close();
