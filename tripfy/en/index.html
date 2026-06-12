@@ -262,6 +262,25 @@ nav{
 }
 .fd{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.04em;font-weight:300}
 
+/* PRICING */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:920px;margin:64px auto 0}
+.plan{background:white;padding:56px 52px;position:relative}
+.plan-pro{outline:2px solid var(--o2);outline-offset:-2px}
+.plan-badge{
+  position:absolute;top:-14px;left:52px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));color:#fff;
+  font-size:11px;letter-spacing:.12em;font-weight:400;
+  padding:7px 16px;border-radius:100px;
+}
+.plan-name{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.08em;margin-bottom:18px}
+.plan-price{font-family:'Shippori Mincho',serif;font-size:40px;font-weight:600;color:var(--black);letter-spacing:.04em}
+.plan-price span{font-size:15px;color:var(--gray);font-weight:300;margin-left:4px}
+.plan-alt{font-size:13px;color:var(--o3);margin-top:8px;letter-spacing:.06em;font-weight:400}
+.plan-list{list-style:none;margin-top:28px;padding-top:28px;border-top:1px solid var(--glight)}
+.plan-list li{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.04em;font-weight:300;padding-left:1.3em;position:relative;margin-bottom:10px}
+.plan-list li::before{content:'✓';position:absolute;left:0;color:var(--o2)}
+.plan-note{font-size:12px;color:var(--gray);text-align:center;margin-top:32px;letter-spacing:.06em;font-weight:300}
+
 /* FAQ */
 .faq-wrap{max-width:760px;margin:40px auto 0}
 .faq-item{
@@ -433,6 +452,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .section{padding:80px 24px}
   .steps{grid-template-columns:1fr;gap:36px}
   .fgrid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr;gap:24px}
+  .plan{padding:44px 32px}
+  .plan-badge{left:32px}
   .feat{padding:40px 24px}
   .cta{padding:88px 24px}
   .sib-card{flex-direction:column;text-align:center;padding:32px 24px}
@@ -481,6 +503,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   <div class="nlinks">
     <a href="#how" class="nlink">How it works</a>
     <a href="#features" class="nlink">Features</a>
+    <a href="#pricing" class="nlink">Pricing</a>
     <a href="#faq" class="nlink">FAQ</a>
     <a href="/en/" class="nlink">Menufy</a>
     <a href="/tripfy/" class="nlink" aria-label="日本語">日本語</a>
@@ -492,6 +515,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 <div class="mmenu-overlay" id="mmenu" role="dialog" aria-modal="true">
   <a href="#how" data-mmenu-link>How it works</a>
   <a href="#features" data-mmenu-link>Features</a>
+  <a href="#pricing" data-mmenu-link>Pricing</a>
   <a href="#faq" data-mmenu-link>FAQ</a>
   <a href="/en/" data-mmenu-link>Menufy</a>
   <a href="/tripfy/" data-mmenu-link>日本語</a>
@@ -633,14 +657,49 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   </div>
 </section>
 
+<!-- ===== Pricing ===== -->
+<section class="section section-alt" id="pricing">
+  <div class="slbl">Pricing</div>
+  <h2 class="stitle">Free at its core.<br><em>Go Pro for more AI.</em></h2>
+  <p class="sdesc">Creating and managing trips is free, with a monthly AI allowance included. Heavy AI users can upgrade to Tripfy Pro.</p>
+  <div class="pgrid">
+    <div class="plan">
+      <h3 class="plan-name">Free</h3>
+      <div class="plan-price">$0</div>
+      <ul class="plan-list">
+        <li>Create and edit trips, timeline & map</li>
+        <li>Original documents, checklists, widget & iCloud sync</li>
+        <li>5 AI imports per month</li>
+        <li>1 AI day plan & 1 AI packing list per month</li>
+      </ul>
+    </div>
+    <div class="plan plan-pro">
+      <div class="plan-badge">7-day free trial</div>
+      <h3 class="plan-name">Tripfy Pro</h3>
+      <div class="plan-price">$3.99<span>/mo</span></div>
+      <div class="plan-alt">or $19.99/year — save 2 months</div>
+      <ul class="plan-list">
+        <li>Everything in the free plan</li>
+        <li>Unlimited AI imports, day plans & packing lists</li>
+        <li>Fully automatic import via email forwarding</li>
+      </ul>
+    </div>
+  </div>
+  <p class="plan-note">Prices may vary by region and are shown in your local currency on the App Store. Cancel anytime in your App Store account settings.</p>
+</section>
+
 <!-- ===== FAQ ===== -->
-<section class="section section-alt" id="faq">
+<section class="section" id="faq">
   <div class="slbl">FAQ</div>
   <h2 class="stitle">Questions,<br><em>answered.</em></h2>
   <div class="faq-wrap">
     <details class="faq-item">
       <summary class="faq-q">When will it launch?</summary>
       <div class="faq-a">We're in the final stretch of development. Launch details will be announced on this page as soon as they're set.</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">How much can I do for free?</summary>
+      <div class="faq-a">All core features — creating and editing trips, the timeline, map and checklists — are free. AI features come with a monthly allowance (5 imports, 1 day plan and 1 packing list per month). For unlimited AI, upgrade to Tripfy Pro ($3.99/month or $19.99/year with a 7-day free trial).</div>
     </details>
     <details class="faq-item">
       <summary class="faq-q">What kinds of bookings can it import?</summary>
@@ -666,7 +725,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 </section>
 
 <!-- ===== Menufy cross-link ===== -->
-<section class="section">
+<section class="section section-alt">
   <div class="slbl">Sibling app</div>
   <h2 class="stitle">Eating abroad?<br><em>Meet Menufy.</em></h2>
   <a href="/en/" class="sib-card">
@@ -705,8 +764,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
     <span class="flogo-text">Tripfy</span>
   </a>
   <div class="flinks">
-    <a href="../privacy.html" class="flink">Privacy Policy</a>
-    <a href="../terms.html" class="flink">Terms of Service</a>
+    <a href="privacy.html" class="flink">Privacy Policy</a>
+    <a href="terms.html" class="flink">Terms of Use</a>
     <a href="/en/" class="flink">Menufy</a>
   </div>
   <span class="fcopy">© 2026 Tripfy</span>

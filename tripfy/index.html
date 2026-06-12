@@ -274,6 +274,25 @@ nav{
 }
 .fd{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.06em;font-weight:300}
 
+/* PRICING */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:920px;margin:64px auto 0}
+.plan{background:white;padding:56px 52px;position:relative}
+.plan-pro{outline:2px solid var(--o2);outline-offset:-2px}
+.plan-badge{
+  position:absolute;top:-14px;left:52px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));color:#fff;
+  font-size:11px;letter-spacing:.12em;font-weight:400;
+  padding:7px 16px;border-radius:100px;
+}
+.plan-name{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.08em;margin-bottom:18px}
+.plan-price{font-family:'Shippori Mincho',serif;font-size:40px;font-weight:600;color:var(--black);letter-spacing:.04em}
+.plan-price span{font-size:15px;color:var(--gray);font-weight:300;margin-left:4px}
+.plan-alt{font-size:13px;color:var(--o3);margin-top:8px;letter-spacing:.06em;font-weight:400}
+.plan-list{list-style:none;margin-top:28px;padding-top:28px;border-top:1px solid var(--glight)}
+.plan-list li{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.04em;font-weight:300;padding-left:1.3em;position:relative;margin-bottom:10px}
+.plan-list li::before{content:'✓';position:absolute;left:0;color:var(--o2)}
+.plan-note{font-size:12px;color:var(--gray);text-align:center;margin-top:32px;letter-spacing:.06em;font-weight:300}
+
 /* FAQ */
 .faq-wrap{max-width:760px;margin:40px auto 0}
 .faq-item{
@@ -445,6 +464,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .section{padding:80px 24px}
   .steps{grid-template-columns:1fr;gap:36px}
   .fgrid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr;gap:24px}
+  .plan{padding:44px 32px}
+  .plan-badge{left:32px}
   .feat{padding:40px 24px}
   .cta{padding:88px 24px}
   .sib-card{flex-direction:column;text-align:center;padding:32px 24px}
@@ -493,6 +515,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   <div class="nlinks">
     <a href="#how" class="nlink">使い方</a>
     <a href="#features" class="nlink">機能</a>
+    <a href="#pricing" class="nlink">料金</a>
     <a href="#faq" class="nlink">よくある質問</a>
     <a href="/" class="nlink">Menufy</a>
     <a href="/tripfy/en/" class="nlink" aria-label="English">English</a>
@@ -504,6 +527,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 <div class="mmenu-overlay" id="mmenu" role="dialog" aria-modal="true">
   <a href="#how" data-mmenu-link>使い方</a>
   <a href="#features" data-mmenu-link>機能</a>
+  <a href="#pricing" data-mmenu-link>料金</a>
   <a href="#faq" data-mmenu-link>よくある質問</a>
   <a href="/" data-mmenu-link>Menufy</a>
   <a href="/tripfy/en/" data-mmenu-link>English</a>
@@ -654,14 +678,49 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   </div>
 </section>
 
+<!-- ===== 料金セクション ===== -->
+<section class="section section-alt" id="pricing">
+  <div class="slbl">料金</div>
+  <h2 class="stitle">基本は、ずっと無料。<br><em>AI をもっと使うなら Pro。</em></h2>
+  <p class="sdesc">旅程の作成・管理はすべて無料。毎月の AI 無料枠付き。たっぷり使いたい人には Tripfy Pro。</p>
+  <div class="pgrid">
+    <div class="plan">
+      <h3 class="plan-name">無料</h3>
+      <div class="plan-price">¥0</div>
+      <ul class="plan-list">
+        <li>旅程の作成・編集・タイムライン・地図</li>
+        <li>原本保存・チェックリスト・ウィジェット・iCloud 同期</li>
+        <li>AI 取り込み 月 5 回</li>
+        <li>AI デイプラン・AI 持ち物リスト 各月 1 回</li>
+      </ul>
+    </div>
+    <div class="plan plan-pro">
+      <div class="plan-badge">7日間無料トライアル</div>
+      <h3 class="plan-name">Tripfy Pro</h3>
+      <div class="plan-price">¥480<span>/月</span></div>
+      <div class="plan-alt">年額 ¥2,900 — 2ヶ月分お得</div>
+      <ul class="plan-list">
+        <li>無料プランのすべての機能</li>
+        <li>AI 取り込み・デイプラン・持ち物リストが使い放題</li>
+        <li>メール転送で全自動取り込み</li>
+      </ul>
+    </div>
+  </div>
+  <p class="plan-note">価格は税込。サブスクリプションは App Store のアカウント設定からいつでも解約できます。</p>
+</section>
+
 <!-- ===== FAQ セクション ===== -->
-<section class="section section-alt" id="faq">
+<section class="section" id="faq">
   <div class="slbl">よくある質問</div>
   <h2 class="stitle">気になること、<br><em>ここで解決。</em></h2>
   <div class="faq-wrap">
     <details class="faq-item">
       <summary class="faq-q">いつリリースされますか？</summary>
       <div class="faq-a">現在開発の最終段階です。App Store での公開時期が決まり次第、このページでお知らせします。</div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">無料でどこまで使えますか？</summary>
+      <div class="faq-a">旅程の作成・編集・タイムライン・地図・チェックリストなどの基本機能はすべて無料です。AI 機能には毎月の無料枠（取り込み月 5 回、デイプラン・持ち物リスト各月 1 回）があり、使い放題にしたい方には Tripfy Pro（月額 480 円 / 年額 2,900 円・7 日間無料トライアル付き）をご用意しています。</div>
     </details>
     <details class="faq-item">
       <summary class="faq-q">どんな予約を取り込めますか？</summary>
@@ -687,7 +746,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 </section>
 
 <!-- ===== Menufy 相互リンク ===== -->
-<section class="section">
+<section class="section section-alt">
   <div class="slbl">兄弟アプリ</div>
   <h2 class="stitle">旅先の食事は、<br><em>Menufy で。</em></h2>
   <a href="/" class="sib-card">
