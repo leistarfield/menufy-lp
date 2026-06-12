@@ -154,8 +154,8 @@ The free plan includes every core feature plus a monthly AI allowance. Upgrade t
 - Fully automatic import — just forward booking emails to your personal address
 
 Pricing:
-- Monthly: $3.99/month
-- Yearly: $19.99/year (with a 7-day free trial)
+- Monthly: $2.99/month
+- Yearly: $17.99/year (with a 7-day free trial)
 
 After the free trial ends, the yearly subscription begins automatically. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period, and your account is charged within 24 hours of renewal. Manage or cancel anytime in your App Store account settings.
 
@@ -165,7 +165,7 @@ Privacy Policy: https://menufyjp.com/tripfy/en/privacy.html
 Let Tripfy handle your next trip.
 ```
 
-※ EN の価格表記は ASC の price point 確定後に実額へ差し替えること（¥480/¥2,900 の USD 相当。Apple の自動換算でおそらく $3.99/$19.99 帯）。
+※ EN の価格表記は ASC の price point 確定後に実額へ差し替えること（¥480/¥2,900 の USD 相当。StoreKit テスト環境の自動換算では $2.99/$17.99）。
 
 ## このバージョンの新機能（What's New / v1.0）
 
@@ -215,8 +215,8 @@ NOTES:
 - EN: 表示名 `Tripfy Pro (Monthly)` / 説明 `Unlimited AI imports, day plans & packing lists`
 
 ### Tripfy Pro Yearly（com.hikyaku.Travel.pro.yearly）
-- JA: 表示名 `Tripfy Pro（年額）` / 説明 `使い放題が 2 ヶ月分お得。7 日間無料トライアル付き`
-- EN: 表示名 `Tripfy Pro (Yearly)` / 説明 `Save 2 months. Includes a 7-day free trial`
+- JA: 表示名 `Tripfy Pro（年額）` / 説明 `使い放題が 50% お得。7 日間無料トライアル付き`
+- EN: 表示名 `Tripfy Pro (Yearly)` / 説明 `Save 50%. Includes a 7-day free trial`
 
 ## ASC 設定値メモ
 
