@@ -474,6 +474,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .faq-q{font-size:15px}
   .faq-a{font-size:13px}
 }
+
+/* SCREENSHOTS */
+.screens-wrap{max-width:1200px;margin:48px auto 0;position:relative}
+.screens-scroll{display:flex;gap:28px;overflow-x:auto;padding:24px 40px 40px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.screens-scroll::-webkit-scrollbar{display:none}
+.screen-item{flex:0 0 auto;scroll-snap-align:center;text-align:center}
+.screen-phone{
+  width:260px;padding:10px;background:var(--black);border-radius:42px;
+  box-shadow:0 32px 72px rgba(44,111,176,.28),0 0 0 .5px rgba(255,255,255,.05);
+  position:relative;margin:0 auto 18px;
+}
+.screen-phone::before{
+  content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:90px;height:22px;background:var(--black);border-radius:0 0 14px 14px;z-index:2;
+}
+.screen-phone img{display:block;width:100%;height:auto;border-radius:32px}
+.screen-cap{
+  font-family:'Shippori Mincho',serif;font-size:13px;
+  color:var(--gray);letter-spacing:.08em;font-weight:400;
+}
+.screen-cap strong{color:var(--black);font-weight:500;display:block;margin-bottom:4px;font-size:14px}
+@media(max-width:768px){
+  .screens-scroll{padding:16px 20px 32px;gap:18px}
+}
 </style>
 
 <!-- JSON-LD: MobileApplication -->
@@ -539,6 +563,32 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && document.body.classList.contains('mmenu-open')) toggle(false);
   });
+})();
+(function(){
+  /* Mouse wheel → horizontal scroll. The scrollbar is hidden, so Windows
+     mice otherwise have no way to scroll this strip (no touch, no swipe).
+     This script runs in <head>, so wait for the DOM before querying. */
+  function init(){
+  var el = document.querySelector('.screens-scroll');
+  if(!el) return;
+  var snapTimer;
+  el.addEventListener('wheel', function(e){
+    if (e.deltaX !== 0) return; /* trackpad horizontal swipe works natively */
+    var max = el.scrollWidth - el.clientWidth;
+    if (max <= 0) return;
+    var d = e.deltaY * (e.deltaMode === 1 ? 33 : 1);
+    /* at either end, let the page keep scrolling vertically */
+    if ((d < 0 && el.scrollLeft <= 0) || (d > 0 && el.scrollLeft >= max - 1)) return;
+    e.preventDefault();
+    /* suspend snap while wheeling so small ticks aren't bounced back */
+    el.style.scrollSnapType = 'none';
+    el.scrollLeft = Math.max(0, Math.min(max, el.scrollLeft + d));
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(function(){ el.style.scrollSnapType = ''; }, 500);
+  }, {passive:false});
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 
@@ -653,6 +703,41 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
       <div class="uicon">👨‍👩‍👧</div>
       <h3 class="ft">Travel together</h3>
       <p class="fd">Share itineraries with family via iCloud. No more "which hotel was it again?" messages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Screenshots ===== -->
+<section class="section" id="screens">
+  <div class="slbl">Screens</div>
+  <h2 class="stitle">Your whole trip,<br><em>on one screen.</em></h2>
+  <p class="sdesc">See what Tripfy feels like, on real screens.</p>
+  <div class="screens-wrap">
+    <div class="screens-scroll">
+      <div class="screen-item">
+        <div class="screen-phone"><img src="../screens/en/01-timeline.png" alt="Tripfy timeline screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>01. Auto-sorted timeline</strong>Flights &amp; hotels in order</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="../screens/en/02-map.png" alt="Tripfy trip map screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>02. Every stop on the map</strong>Color-coded by category</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="../screens/en/03-import-confirm.png" alt="Tripfy AI import review screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>03. Review AI imports</strong>One tap to add to your trip</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="../screens/en/04-ai-plan.png" alt="Tripfy AI day plan screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>04. AI plans your free time</strong>Sights &amp; meals that fit your day</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="../screens/en/05-packing.png" alt="Tripfy AI packing list screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>05. AI packing list</strong>Built for your destination &amp; season</div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="../screens/en/06-documents.png" alt="Tripfy travel documents screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>06. Documents in one place</strong>Originals work offline</div>
+      </div>
     </div>
   </div>
 </section>
