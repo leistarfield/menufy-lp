@@ -102,6 +102,19 @@ h2 em{font-style:normal;color:var(--o2)}
   color:#fff;font-size:12.5px;font-weight:600;letter-spacing:.08em;
 }
 .note{margin-top:40px;font-size:16.5px;color:var(--gray);letter-spacing:.08em;font-weight:300}
+.trust{margin-top:64px;display:flex;flex-direction:column;gap:22px;text-align:left}
+.trust li{
+  list-style:none;display:flex;align-items:center;gap:18px;
+  font-family:'Shippori Mincho',serif;font-weight:500;
+  font-size:24px;color:var(--black);letter-spacing:.04em;
+}
+.trust .ck{
+  flex:0 0 auto;width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(148deg,var(--o1),var(--o2));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 24px -8px rgba(44,111,176,.45);
+}
+.trust .ck svg{width:22px;height:22px}
 </style>
 </head>
 <body>
@@ -120,8 +133,8 @@ h2 em{font-style:normal;color:var(--o2)}
     便名・予約番号・時刻を<br>AI が抽出します。
   </div>
   <div class="side r">
-    <strong>無料で始められる。</strong>
-    旅程・地図・チェックリストは<br>すべて無料。
+    <strong>アカウント登録、不要。</strong>
+    貼るだけで旅のしおりが<br>すぐに完成。
   </div>
   <div class="phone"><img src="src/ja/01-timeline.png" alt=""></div>
 </section>
@@ -182,12 +195,13 @@ h2 em{font-style:normal;color:var(--o2)}
     </div>
     <div class="wordmark">Tripfy</div>
     <div class="tagline">YOUR TRIP, AUTO-BUILT.</div>
-    <h2>基本機能は、<br><em>ずっと無料。</em></h2>
-    <div class="packs">
-      <div class="pack"><div class="n">無料</div><div class="p">¥0</div><div class="d">旅程・地図・リスト<br>AI 月次無料枠つき</div></div>
-      <div class="pack mid"><div class="badge">7日間無料トライアル</div><div class="n">Tripfy Pro</div><div class="p">¥480<span style="font-size:15px;color:var(--gray)">/月</span></div><div class="d">AI 使い放題<br>メール転送で自動取り込み</div></div>
-    </div>
-    <p class="note">年額 ¥2,900（50% お得）も選べます。</p>
+    <h2>旅の準備を、<br><em>もっと軽く。</em></h2>
+    <ul class="trust">
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>アカウント登録、不要。</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>広告なし・トラッキングなし。</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iCloud 同期で機種変更も安心。</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>ウィジェット・通知に対応。</li>
+    </ul>
   </div>
 </section>
 
@@ -205,8 +219,8 @@ h2 em{font-style:normal;color:var(--o2)}
     Flight numbers, confirmations,<br>times — extracted by AI.
   </div>
   <div class="side r">
-    <strong>Free to start.</strong>
-    Itinerary, map and checklists<br>are free for everyone.
+    <strong>No sign-up needed.</strong>
+    Just paste — your itinerary<br>builds itself.
   </div>
   <div class="phone"><img src="src/en/01-timeline.png" alt=""></div>
 </section>
@@ -234,7 +248,7 @@ h2 em{font-style:normal;color:var(--o2)}
   <div class="blob b1"></div><div class="blob b2"></div>
   <div class="cap">
     <span class="pill">AI DAY PLANS</span>
-    <h2>Free time?<br>AI <em>fills it in.</em></h2>
+    <h2>Got downtime?<br>AI <em>fills it in.</em></h2>
     <p class="sub">Smart ordering and spot suggestions that fit around your bookings.</p>
   </div>
   <div class="phone"><img src="src/en/04-ai-plan.png" alt=""></div>
@@ -267,12 +281,13 @@ h2 em{font-style:normal;color:var(--o2)}
     </div>
     <div class="wordmark">Tripfy</div>
     <div class="tagline">YOUR TRIP, AUTO-BUILT.</div>
-    <h2>Core features,<br><em>free forever.</em></h2>
-    <div class="packs">
-      <div class="pack"><div class="n">Free</div><div class="p">$0</div><div class="d">Trips, map, checklists<br>+ monthly AI allowance</div></div>
-      <div class="pack mid"><div class="badge">7-day free trial</div><div class="n">Tripfy Pro</div><div class="p">$2.99<span style="font-size:15px;color:var(--gray)">/mo</span></div><div class="d">Unlimited AI<br>Email forwarding import</div></div>
-    </div>
-    <p class="note">Or $17.99/year — save 50%. Prices may vary by region.</p>
+    <h2>Trip prep,<br><em>made lighter.</em></h2>
+    <ul class="trust">
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No account needed.</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No ads, no tracking.</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iCloud sync across devices.</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Widget &amp; notifications.</li>
+    </ul>
   </div>
 </section>
 

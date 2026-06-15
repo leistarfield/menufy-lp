@@ -106,8 +106,14 @@ footer{
     <li>Delivering push notifications, such as import completion alerts</li>
   </ul>
 
-  <h2>3. Sharing with Third Parties</h2>
-  <p>We do not share personal information with third parties except as required by law. To extract booking information and generate plans, the App uses APIs provided by Anthropic. Submitted content is used only for extraction processing and is never stored on our servers as itinerary data.</p>
+  <h2>3. Sharing with Third Parties (AI Processing)</h2>
+  <p>We do not share personal information with third parties except as required by law. However, to extract booking information and generate plans and packing lists, the App sends the following data to <a href="https://www.anthropic.com/legal/privacy" target="_blank">Anthropic (Claude API)</a>, an AI processing service:</p>
+  <ul>
+    <li>The body, screenshots, and PDFs of the booking confirmations you import</li>
+    <li>Itinerary details needed to generate plans and packing lists (destinations, dates/times, addresses, etc.)</li>
+  </ul>
+  <p>This data is used solely for AI processing. It is <strong>not used to train AI models and is not retained after processing</strong>. Anthropic provides a level of data protection equivalent to ours. For details, please see Anthropic's <a href="https://www.anthropic.com/legal/privacy" target="_blank">Privacy Policy</a>.</p>
+  <p>The first time you use these AI features, the App <strong>clearly discloses what is sent and to whom, and obtains your consent</strong> before sending. If you do not consent, no data is sent.</p>
 
   <h2>4. Data Storage</h2>
   <p>Your itineraries, original documents (emails, PDFs, images) and packing lists are stored only on your device and in your own iCloud. The developer cannot access your itinerary data. Only data imported via email forwarding is stored temporarily on our server for handoff, and is deleted after import into the App or within 60 days at most.</p>

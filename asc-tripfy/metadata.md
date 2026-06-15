@@ -202,10 +202,29 @@ HOW TO TEST THE MAIN AI FEATURE:
 HOW TO VIEW THE SUBSCRIPTION (Tripfy Pro):
 Settings (gear icon, top left) → "Upgrade to Tripfy Pro" → the paywall shows both plans (monthly / yearly with 7-day free trial), restore button, Terms of Use and Privacy Policy links.
 
+THIRD-PARTY AI DATA USE & CONSENT (Guidelines 5.1.1(i)/5.1.2(i)):
+- The app sends imported content (booking confirmation text/screenshots/PDFs) and itinerary details (destinations, dates/times, addresses) to Anthropic (Claude API) for AI processing only.
+- This data is NOT used to train AI models and is NOT retained after processing. Anthropic provides equivalent data protection.
+- The FIRST time the user invokes any AI feature (import, day plan, or packing list), an in-app consent sheet is shown that discloses (a) what data is sent, (b) that it goes to Anthropic, and (c) requires explicit "Agree" before anything is sent. Declining sends nothing. So the very first "Paste text" test above will present this consent sheet before extraction.
+- This is also documented in our Privacy Policy (Section 3): https://menufyjp.com/tripfy/privacy.html
+
+SCREENSHOTS (Guideline 2.3.7):
+- All price, "free", trial and discount references have been removed from the App Store screenshots. Pricing is described only in the app description, as required.
+
 NOTES:
 - The free tier includes 5 AI imports, 1 AI day plan and 1 AI packing list per month; Pro removes these limits. The free allowance is sufficient to review all features without purchasing.
-- All trip data is stored on-device / in the user's private iCloud. Imported content is sent to our server only for AI processing and is not retained.
+- All trip data is stored on-device / in the user's private iCloud. Imported content is sent for AI processing only and is not retained.
 - An internet connection is required for AI features.
+```
+
+## 審査返信メモ（Resolution Center 返信文の下書き）
+
+```
+Thank you for the review. We have addressed both issues:
+
+Guideline 2.3.7 (Screenshots): We removed all price, "free", trial and discount references from the App Store screenshots. Pricing information now appears only in the app description.
+
+Guidelines 5.1.1(i)/5.1.2(i) (Third-party AI): This new build (1.0 build 3) adds an in-app consent sheet shown before any data is sent to our AI processor (Anthropic / Claude API). It discloses what data is sent (imported booking text/screenshots/PDFs and itinerary details) and the recipient, and requires the user's explicit agreement before sending; declining sends nothing. The same disclosure was added to our Privacy Policy (Section 3), confirming the data is not used for model training, is not retained, and that Anthropic provides equivalent data protection. To test: tap "Paste text" on the home screen — the consent sheet appears before extraction.
 ```
 
 ## サブスクリプション商品のローカリゼーション
