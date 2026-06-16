@@ -500,6 +500,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 @media(max-width:768px){
   .screens-scroll{padding:16px 20px 32px;gap:18px}
 }
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;align-items:center;
+  justify-content:space-between;gap:14px;padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(253,248,244,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-top:1px solid var(--glight);transform:translateY(110%);transition:transform .45s var(--ease);}
+.sticky-cta[hidden]{display:none}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta-note{font-size:12px;color:var(--gray);letter-spacing:.04em;font-weight:300}
+.sticky-cta-btn{flex-shrink:0;padding:13px 26px;border-radius:100px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));color:#fff;font-size:14px;
+  letter-spacing:.04em;text-decoration:none;box-shadow:var(--sh-warm);}
+.sticky-cta-btn:active{transform:scale(.98)}
+@media(min-width:961px){.sticky-cta{display:none}}
 </style>
 
 <!-- JSON-LD: MobileApplication -->
@@ -857,6 +869,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   </div>
   <span class="fcopy">© 2026 Tripfy</span>
 </footer>
+
+<div class="sticky-cta" id="sticky-cta" hidden>
+  <span class="sticky-cta-note">Free to start — no account needed</span>
+  <a href="https://apps.apple.com/app/id6779667530" class="sticky-cta-btn" target="_blank" rel="noopener">Get it on the App Store</a>
+</div>
+<script>(function(){
+  var bar=document.getElementById('sticky-cta'); if(!bar) return;
+  bar.hidden=false;
+  var heroPassed=false, vis={};
+  var update=function(){ bar.classList.toggle('show', heroPassed && !vis.pricing && !vis.cta); };
+  var hero=document.querySelector('.hero');
+  if(hero) new IntersectionObserver(function(e){heroPassed=!e[0].isIntersecting;update();},{rootMargin:'-72px 0px 0px 0px'}).observe(hero);
+  ['pricing','cta'].forEach(function(id){var el=document.getElementById(id);
+    if(el) new IntersectionObserver(function(e){vis[id]=e[0].isIntersecting;update();}).observe(el);});
+})();</script>
 
 </body>
 </html>

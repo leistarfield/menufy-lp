@@ -749,6 +749,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   .nf-card{padding:30px 24px}
   .nf-t{font-size:19px}
 }
+.xpromo{max-width:980px;margin:0 auto;padding:48px 24px 0}
+.xpromo-card{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;
+  text-align:center;background:var(--cream);border:1px solid var(--glight);border-radius:24px;
+  padding:28px 34px;box-shadow:var(--sh-soft)}
+.xpromo-emoji{font-size:34px;line-height:1}
+.xpromo-txt{display:flex;flex-direction:column;gap:3px;text-align:left}
+.xpromo-h{font-family:'Shippori Mincho',serif;font-size:19px;color:var(--black);letter-spacing:.04em}
+.xpromo-sub{font-size:13px;color:var(--gray);font-weight:300;letter-spacing:.04em}
+.xpromo-btn{flex-shrink:0;padding:13px 28px;border-radius:100px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));color:#fff;font-size:14px;
+  text-decoration:none;box-shadow:var(--sh-warm);letter-spacing:.04em}
+@media(max-width:560px){.xpromo-txt{text-align:center}}
 </style>
 
 <!-- JSON-LD: Organization -->
@@ -894,6 +906,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
     <a href="#pricing" class="nlink">Pricing</a>
     <a href="#languages" class="nlink">Languages</a>
     <a href="#faq" class="nlink">FAQ</a>
+    <a href="/tripfy/en/" class="nlink">Tripfy</a>
     <a href="/" class="nlink" aria-label="日本語">日本語</a>
   </div>
   <a href="#cta" class="ncta"
@@ -908,6 +921,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
   <a href="#pricing" data-mmenu-link>Pricing</a>
   <a href="#languages" data-mmenu-link>Languages</a>
   <a href="#faq" data-mmenu-link>FAQ</a>
+  <a href="/tripfy/en/" data-mmenu-link>Tripfy</a>
   <a href="/" data-mmenu-link>日本語</a>
   <a href="#cta" data-mmenu-link
      style="margin-top:16px;padding:15px 34px;background:linear-gradient(148deg,var(--o1),var(--o2));color:white;border-radius:100px;box-shadow:var(--sh-warm);font-size:15px"
@@ -1440,6 +1454,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid v
       </svg>
       <div><span class="btas-sub">Get it on</span><span class="btas-main">Google Play</span></div>
     </a>
+  </div>
+</section>
+
+<section class="xpromo">
+  <div class="xpromo-card">
+    <span class="xpromo-emoji">✈️</span>
+    <div class="xpromo-txt">
+      <span class="xpromo-h">Heading somewhere? Try Tripfy.</span>
+      <span class="xpromo-sub">Paste a booking confirmation and AI builds your itinerary. An iOS app from the same team.</span>
+    </div>
+    <a href="/tripfy/en/" class="xpromo-btn">Explore Tripfy →</a>
   </div>
 </section>
 

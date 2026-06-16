@@ -823,6 +823,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .nf-card{padding:30px 24px}
   .nf-t{font-size:19px}
 }
+.xpromo{max-width:980px;margin:0 auto;padding:48px 24px 0}
+.xpromo-card{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;
+  text-align:center;background:var(--cream);border:1px solid var(--glight);border-radius:24px;
+  padding:28px 34px;box-shadow:var(--sh-soft)}
+.xpromo-emoji{font-size:34px;line-height:1}
+.xpromo-txt{display:flex;flex-direction:column;gap:3px;text-align:left}
+.xpromo-h{font-family:'Shippori Mincho',serif;font-size:19px;color:var(--black);letter-spacing:.04em}
+.xpromo-sub{font-size:13px;color:var(--gray);font-weight:300;letter-spacing:.04em}
+.xpromo-btn{flex-shrink:0;padding:13px 28px;border-radius:100px;
+  background:linear-gradient(148deg,var(--o1),var(--o2));color:#fff;font-size:14px;
+  text-decoration:none;box-shadow:var(--sh-warm);letter-spacing:.04em}
+@media(max-width:560px){.xpromo-txt{text-align:center}}
 </style>
 
 <!-- JSON-LD: Organization -->
@@ -968,6 +980,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
     <a href="#pricing" class="nlink">料金</a>
     <a href="#languages" class="nlink">対応言語</a>
     <a href="#faq" class="nlink">よくある質問</a>
+    <a href="/tripfy/" class="nlink">Tripfy</a>
     <a href="/en/" class="nlink" aria-label="English">English</a>
   </div>
   <a href="#cta" class="ncta"
@@ -982,6 +995,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   <a href="#pricing" data-mmenu-link>料金</a>
   <a href="#languages" data-mmenu-link>対応言語</a>
   <a href="#faq" data-mmenu-link>よくある質問</a>
+  <a href="/tripfy/" data-mmenu-link>Tripfy</a>
   <a href="/en/" data-mmenu-link>English</a>
   <a href="#cta" data-mmenu-link
      style="margin-top:16px;padding:15px 34px;background:linear-gradient(148deg,var(--o1),var(--o2));color:white;border-radius:100px;box-shadow:var(--sh-warm);font-size:15px"
@@ -1521,6 +1535,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
       </svg>
       <div><span class="btas-sub">Get it on</span><span class="btas-main">Google Play</span></div>
     </a>
+  </div>
+</section>
+
+<section class="xpromo">
+  <div class="xpromo-card">
+    <span class="xpromo-emoji">✈️</span>
+    <div class="xpromo-txt">
+      <span class="xpromo-h">旅行に行くなら、Tripfy も。</span>
+      <span class="xpromo-sub">予約確認を貼るだけで、AI が旅程を自動作成。同じ開発チームの iOS アプリです。</span>
+    </div>
+    <a href="/tripfy/" class="xpromo-btn">Tripfy を見る →</a>
   </div>
 </section>
 
