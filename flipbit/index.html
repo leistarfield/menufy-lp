@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FLIP-BIT — タップで、重力反転。80sドット絵ランナー</title>
+<meta name="description" content="タップひとつで重力反転。1プレイ20秒、無限の「あと1回」。16体のドット生物を集めて、毎日かわる全国チャレンジへ。80sアーケードの魂を持つ無料iOSゲーム。">
+<meta property="og:title" content="FLIP-BIT — タップで、重力反転。">
+<meta property="og:description" content="このページで今すぐ遊べます。1プレイ20秒、無限の「あと1回」。">
+<meta property="og:image" content="https://menufyjp.com/flipbit/img/ogp.png">
+<meta property="og:url" content="https://menufyjp.com/flipbit/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1D2B53">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"FLIP-BIT",
+ "description":"タップひとつで重力反転する80sレトロ・ピクセルアートのエンドレスランナー",
+ "operatingSystem":"iOS","applicationCategory":"Game",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},
+ "author":{"@type":"Person","name":"Ryosuke Hoshino"}}
+</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231D2B53'/><rect x='16' y='20' width='32' height='28' fill='%23FFA300'/><rect x='22' y='28' width='6' height='6' fill='%23000'/><rect x='36' y='28' width='6' height='6' fill='%23000'/><rect x='30' y='12' width='6' height='8' fill='%23FFA300'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+/* ============ FLIP-BIT LP — "The LP is the arcade cabinet" ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000; --dblue:#1D2B53; --dpurple:#7E2553; --lav:#83769C;
+  --white:#FFF1E8; --gray:#C2C3C7; --orange:#FFA300; --yellow:#FFEC27;
+  --red:#FF004D; --blue:#29ADFF; --green:#00E436; --pink:#FF77A8;
+  --ja:'DotGothic16',monospace; --en:'Press Start 2P',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--dblue); color:var(--gray);
+  font-family:var(--ja); line-height:1.9; overflow-x:hidden;
+  -webkit-font-smoothing:none;
+}
+/* CRT scanlines over everything */
+body::after{
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9000;
+  background:repeating-linear-gradient(0deg, rgba(0,0,0,.16) 0 2px, transparent 2px 5px);
+}
+/* subtle vignette */
+body::before{
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:8999;
+  background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.5) 100%);
+}
+a{color:var(--blue); text-decoration:none}
+.en{font-family:var(--en)}
+
+/* ---------- boot overlay ---------- */
+#boot{
+  position:fixed; inset:0; background:#000; z-index:9500;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--en); color:var(--green); font-size:clamp(10px,2.6vw,15px);
+  white-space:pre-line; line-height:2.4; padding:24px; text-align:left;
+}
+#boot.off{animation:crtOff .45s forwards}
+@keyframes crtOff{
+  0%{opacity:1; transform:scaleY(1)}
+  60%{opacity:1; transform:scaleY(.006)}
+  100%{opacity:0; transform:scaleY(.006)}
+}
+
+/* ---------- hero cabinet ---------- */
+#hero{
+  min-height:100svh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; position:relative;
+  padding:14px 0 40px;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 115%, rgba(126,37,83,.55), transparent 60%),
+    var(--dblue);
+}
+.logo{
+  font-family:var(--en); color:var(--orange);
+  font-size:clamp(30px,8.5vw,64px); letter-spacing:.04em;
+  text-shadow:4px 4px 0 var(--dpurple); margin-bottom:10px;
+  image-rendering:pixelated;
+}
+.logo .flick{animation:flick 4s infinite}
+@keyframes flick{0%,93%,97%,100%{opacity:1} 94%,96%{opacity:.25}}
+.tagline{color:var(--white); font-size:clamp(18px,4.6vw,28px); margin-bottom:4px}
+.sub{color:var(--gray); font-size:clamp(12px,3vw,15px); margin-bottom:16px}
+
+/* game shell = CRT bezel */
+#shell{
+  width:min(96vw,860px); position:relative;
+  border:6px solid #10163a; border-radius:14px;
+  box-shadow:0 0 0 3px var(--lav), 0 24px 70px rgba(0,0,0,.6), inset 0 0 40px rgba(0,0,0,.6);
+  background:#000; overflow:hidden;
+}
+#game{display:block; width:100%; height:min(52svh,430px); touch-action:manipulation; cursor:pointer}
+#hud{
+  position:absolute; top:10px; left:14px; right:14px; display:flex; justify-content:space-between;
+  font-family:var(--en); font-size:clamp(9px,2.4vw,13px); color:var(--gray); pointer-events:none;
+  text-shadow:2px 2px 0 #000;
+}
+#hud .m{color:var(--white)} #hud .best{color:var(--yellow)}
+
+/* overlays inside shell */
+.olay{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px; text-align:center;
+  background:rgba(0,0,0,.62); z-index:5; padding:12px 16px 40px;
+}
+.olay.hidden{display:none}
+#continue{background:rgba(0,0,0,.82); padding-top:48px}
+.btn .mini{display:block; font-size:12px; margin-top:4px; color:#00331a; letter-spacing:.06em}
+.btn.share{background:#000; color:var(--blue); border-color:var(--blue); box-shadow:0 4px 0 #0a2a44; font-size:clamp(13px,3.4vw,15px); padding:10px 18px}
+button.btn{font-family:var(--ja); appearance:none; -webkit-appearance:none}
+.blink{animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:.45}}
+#tapstart .big{font-size:clamp(20px,5.4vw,30px); color:var(--white)}
+#tapstart .coin{font-family:var(--en); color:var(--yellow); font-size:clamp(11px,2.8vw,14px)}
+
+/* CONTINUE? = the conversion moment */
+#continue .go{font-family:var(--en); color:var(--red); font-size:clamp(18px,5.4vw,30px); text-shadow:3px 3px 0 var(--dpurple)}
+#continue .score{font-size:clamp(14px,4vw,20px); color:var(--white)}
+#continue .count{font-family:var(--en); font-size:clamp(20px,6vw,32px); color:var(--yellow)}
+.btn{
+  display:inline-block; font-family:var(--ja); font-size:clamp(16px,4.2vw,20px);
+  padding:14px 26px; color:#000; background:var(--orange);
+  border:3px solid var(--white); box-shadow:0 6px 0 var(--dpurple);
+  cursor:pointer; user-select:none; transition:transform .06s;
+}
+.btn:active{transform:translateY(4px); box-shadow:0 2px 0 var(--dpurple)}
+.btn.green{background:var(--green)}
+.btn.ghostbtn{background:transparent; color:var(--gray); border-color:var(--lav); box-shadow:0 6px 0 #10163a; font-size:clamp(13px,3.4vw,15px); padding:10px 18px}
+#soundtgl{
+  position:absolute; bottom:8px; right:10px; z-index:6; font-family:var(--en);
+  font-size:10px; color:var(--lav); background:none; border:1px solid var(--lav);
+  padding:4px 8px; cursor:pointer;
+}
+.hint{color:var(--gray); font-size:clamp(11px,2.8vw,13px); margin-top:12px}
+
+/* ---------- sections ---------- */
+section{padding:90px 20px; max-width:980px; margin:0 auto; text-align:center}
+h2{
+  color:var(--white); font-size:clamp(24px,6vw,40px); line-height:1.6; margin-bottom:8px;
+  text-shadow:3px 3px 0 var(--dpurple);
+}
+h2 .y{color:var(--yellow); white-space:nowrap}
+.lead{color:var(--gray); margin-bottom:48px; font-size:clamp(13px,3.2vw,16px)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+.card{
+  background:#000; border:3px solid var(--lav); padding:30px 20px 26px;
+  position:relative; text-align:center;
+}
+.card:hover{border-color:var(--orange)}
+.card canvas{width:84px; height:84px; image-rendering:pixelated; margin-bottom:14px}
+.card h3{color:var(--yellow); font-size:19px; margin-bottom:10px}
+.card p{font-size:14px; color:var(--gray)}
+.card .tag{
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  font-family:var(--en); font-size:9px; background:var(--dpurple); color:var(--white); padding:4px 10px;
+}
+
+/* mascots */
+#dex .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:14px; margin-bottom:26px}
+.mas{
+  background:#000; border:2px solid #2a2f57; padding:12px 6px 8px; cursor:pointer;
+  transition:transform .08s;
+}
+.mas:hover{transform:translateY(-4px); border-color:var(--pink)}
+.mas.sel{border-color:var(--yellow)}
+.mas canvas{width:64px; height:64px; image-rendering:pixelated}
+.mas .nm{font-size:12px; color:var(--gray); display:block; margin-top:4px}
+#bubble{
+  min-height:76px; border:3px solid var(--green); background:#000;
+  padding:14px 18px; font-size:15px; color:var(--white); max-width:560px; margin:0 auto;
+}
+#bubble .who{color:var(--green)}
+
+/* screenshots */
+#shots .row{display:flex; gap:26px; justify-content:center; flex-wrap:wrap}
+#shots img{
+  width:min(240px,64vw); border:4px solid var(--orange); border-radius:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.55);
+}
+#shots img:nth-child(1){transform:rotate(-3deg)}
+#shots img:nth-child(3){transform:rotate(3deg)}
+
+/* final cta */
+#cta{padding-bottom:130px}
+#cta .insert{font-family:var(--en); color:var(--yellow); font-size:clamp(13px,3.4vw,18px); margin-bottom:26px}
+.applink{display:inline-block; margin-top:6px}
+.freebadge{color:var(--gray); font-size:13px; margin-top:16px}
+
+footer{
+  border-top:2px dashed rgba(131,118,156,.4); padding:34px 20px 60px;
+  text-align:center; font-size:12px; color:var(--lav);
+}
+footer a{color:var(--lav); text-decoration:underline}
+
+/* toast */
+#toast{
+  position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(140%);
+  background:#000; border:2px solid var(--yellow); color:var(--white);
+  padding:12px 20px; font-size:14px; z-index:9600; transition:transform .25s; max-width:88vw;
+}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* fixed header cta (appears after scroll) */
+#topbar{
+  position:fixed; top:0; left:0; right:0; z-index:8000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 16px; background:rgba(0,0,0,.85); border-bottom:2px solid var(--dpurple);
+  transform:translateY(-110%); transition:transform .3s;
+}
+#topbar.show{transform:translateY(0)}
+#topbar .tl{font-family:var(--en); color:var(--orange); font-size:13px}
+#topbar .btn{font-size:14px; padding:8px 14px; box-shadow:0 3px 0 var(--dpurple)}
+
+/* スクロール出現(セクションがブラウン管に「点灯」する) */
+.reveal{opacity:0; transform:translateY(26px); transition:opacity .5s steps(5), transform .5s steps(5)}
+.reveal.on{opacity:1; transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .blink,.logo .flick{animation:none}
+  .reveal{opacity:1; transform:none; transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="boot"></div>
+
+<div id="topbar">
+  <span class="tl">FLIP-BIT</span>
+  <button class="btn" onclick="goStore('topbar')">ダウンロード</button>
+</div>
+
+<!-- ================= HERO: playable cabinet ================= -->
+<div id="hero">
+  <div class="logo"><span>FLIP</span><span class="flick">-</span><span>BIT</span></div>
+  <div class="tagline">タップで、重力反転。</div>
+  <div class="sub">1プレイ20秒。無限の「あと1回」。</div>
+
+  <div id="shell">
+    <canvas id="game" aria-label="FLIP-BIT ミニゲーム: タップで重力反転"></canvas>
+    <div id="hud">
+      <span><span class="en">SCORE </span><span class="m" id="score">0</span><span class="en">m</span></span>
+      <span class="en best" id="best"></span>
+    </div>
+
+    <div class="olay" id="tapstart">
+      <div class="big blink">タップでプレイ</div>
+      <div class="coin en">INSERT COIN — FREE</div>
+    </div>
+
+    <div class="olay hidden" id="continue">
+      <div class="go">CONTINUE?</div>
+      <div class="score" id="cscore"></div>
+      <div class="count en" id="ccount">9</div>
+      <button class="btn green" onclick="goStore('continue')">この続きは、ポケットの中で。<span class="mini">▸ App Store で無料</span></button>
+      <button class="btn share" onclick="shareScore()">X でスコアを自慢する</button>
+      <button class="btn ghostbtn" onclick="retryDemo()">ここでもう1回</button>
+    </div>
+
+    <button id="soundtgl" onclick="toggleSound(event)">SOUND: OFF</button>
+  </div>
+  <div class="hint">💡 体験版はここまで。ガチャも図鑑も全国ランキングも、本編で。</div>
+</div>
+
+<!-- ================= FEATURES ================= -->
+<section id="feat">
+  <h2>そうさは、<span class="y">これだけ。</span></h2>
+  <p class="lead">チュートリアルはもう終わりました。上のデモ、あれが全部です。</p>
+  <div class="cards">
+    <div class="card"><span class="tag">GAME</span><canvas data-icon="flip"></canvas>
+      <h3>ワンタップ × 20秒</h3><p>床から天井へ、天井から床へ。信号待ちの間に1プレイ。気づけば終電。</p></div>
+    <div class="card"><span class="tag">COLLECT</span><canvas data-icon="gacha"></canvas>
+      <h3>推しが、きっと見つかる</h3><p>コインを集めてレトロガチャ。16体のドット生物、シークレットは2体。</p></div>
+    <div class="card"><span class="tag">BATTLE</span><canvas data-icon="crown"></canvas>
+      <h3>その名を、全国に刻め</h3><p>毎日かわる世界同一コースで勝負。ハイスコアにはイニシャル3文字を。</p></div>
+  </div>
+</section>
+
+<!-- ================= MASCOTS ================= -->
+<section id="dex">
+  <h2>16体の、<span class="y">ドット生物。</span></h2>
+  <p class="lead">タップすると自己紹介します。推しは誰?</p>
+  <div class="grid" id="masgrid"></div>
+  <div id="bubble"><span class="who">ビット</span>「重力なんてただの飾り。」</div>
+</section>
+
+<!-- ================= SCREENSHOTS ================= -->
+<section id="shots">
+  <h2>ポケットの中の、<span class="y">ゲームセンター。</span></h2>
+  <p class="lead">CRTスキャンライン、チップチューン、イニシャル入力。全部入り。</p>
+  <div class="row">
+    <img src="img/shot1.png" alt="タップで重力反転するゲーム画面" loading="lazy">
+    <img src="img/shot4.png" alt="16体のドット生物コレクション" loading="lazy">
+    <img src="img/shot5.png" alt="イニシャル入力とランキング" loading="lazy">
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section id="cta">
+  <div class="insert blink">▶ INSERT COIN</div>
+  <h2>コインは、<span class="y">いりません。</span></h2>
+  <p class="lead">無料で遊べます。広告が気になったら買い切りで除去もできます。</p>
+  <button class="btn applink" onclick="goStore('footer')">App Store でダウンロード</button>
+  <div class="freebadge">iOS 18以上 / 無料 / オフラインでも遊べます</div>
+</section>
+
+<footer>
+  © 2026 Ryosuke Hoshino — FLIP-BIT<br><br>
+  <a href="privacy.html">プライバシーポリシー</a>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+"use strict";
+/* ============================================================
+   FLIP-BIT LP — 遊べるデモ(アプリと同じ物理定数を移植)
+   APP_STORE_URL: 公開後にURLを入れるとCTAが本番リンクになる
+   ============================================================ */
+const APP_STORE_URL = null; // 例: "https://apps.apple.com/jp/app/id0000000000"
+
+const PAL = {0:'#000000',1:'#1D2B53',2:'#7E2553',3:'#008751',4:'#AB5236',5:'#5F574F',
+  6:'#C2C3C7',7:'#FFF1E8',8:'#FF004D',9:'#FFA300',a:'#FFEC27',b:'#00E436',
+  c:'#29ADFF',d:'#83769C',e:'#FF77A8',f:'#FFCCAA'};
+
+/* ---- マスコット(アプリと同一のパラメータ生成) ---- */
+function body(b, eyes, acc, cheek){
+  const r=[];
+  if(acc==='antenna') r.push(`.....${b}${b}.....`,`.....${b}......`);
+  else if(acc==='ears') r.push(`..${b}${b}....${b}${b}..`,`..${b}${b}....${b}${b}..`);
+  else if(acc==='horn') r.push('.....aa.....',`.....${b}${b}.....`);
+  else r.push('............','............');
+  r.push(`.${b.repeat(10)}.`,`.${b.repeat(10)}.`);
+  if(eyes==='round') r.push(`.${b}077${b}${b}077${b}.`,`.${b}077${b}${b}077${b}.`);
+  else if(eyes==='sleepy') r.push(`.${b.repeat(10)}.`,`.${b}000${b}${b}000${b}.`);
+  else if(eyes==='star') r.push(`.${b}7${b}7${b}${b}7${b}7${b}.`,`.${b}${b}7${b}${b}${b}${b}7${b}${b}.`);
+  else r.push(`.${b}00${b}${b}${b}00${b}${b}.`,`.${b}00${b}${b}${b}00${b}${b}.`);
+  r.push(`.${b.repeat(10)}.`,`.${b.repeat(10)}.`);
+  r.push(cheek?`.${b}${cheek}${b.repeat(6)}${cheek}${b}.`:`.${b.repeat(10)}.`);
+  r.push(`.${b.repeat(10)}.`,`.${b}${b}..${b}${b}..${b}${b}.`,'............');
+  return r;
+}
+const MASCOTS=[
+ ['bit','ビット','重力なんてただの飾り。','9','round','antenna','e'],
+ ['rusty','ラスティ','ちょっと錆びてるけど元気。','4','round','antenna',null],
+ ['melon','メロン','甘い匂いで敵を油断させる。','b','round','ears','a'],
+ ['sky','スカイ','空色ボディは空の夢を見る。','c','round','none','7'],
+ ['berry','ベリー','いつも眠そう。走ると速い。','e','sleepy','ears','8'],
+ ['lemon','レモン','すっぱい顔は生まれつき。','a','round','horn',null],
+ ['momo','モモ','もちもちボディの癒やし系。','f','sleepy','none','e'],
+ ['gray','グレイ','元は試作機だったらしい。','6','sleepy','antenna',null],
+ ['crimson','クリムゾン','燃える闘志のかけら。','8','star','horn','a'],
+ ['forest','フォレスト','森の奥から歩いてきた。','3','round','ears','b'],
+ ['violet','バイオレット','星を集めるのが趣味。','d','star','antenna','7'],
+ ['navy','ネイビー','暗闇にとける隠密ドット。','1','round','none','c'],
+ ['wine','ワイン','大人の色気、賞味期限なし。','2','sleepy','horn','e'],
+ ['sunny','サニー','太陽より少しまぶしい。','a','star','ears','9'],
+ ['ghost','???','ひみつ。ホンモノは本編で。','5','hollow','none',null,true],
+ ['shadow','???','ひみつ。ホンモノは本編で。','5','star','horn',null,true],
+];
+
+function drawGrid(ctx, rows, x, y, s, flipV=false){
+  const h=rows.length;
+  for(let gy=0; gy<h; gy++){
+    const row=rows[flipV? h-1-gy : gy];
+    for(let gx=0; gx<row.length; gx++){
+      const ch=row[gx]; if(ch==='.') continue;
+      ctx.fillStyle=PAL[ch];
+      ctx.fillRect(x+gx*s, y+gy*s, s+0.5, s+0.5);
+    }
+  }
+}
+function spriteCanvas(rows, px){
+  const c=document.createElement('canvas');
+  c.width=rows[0].length*px; c.height=rows.length*px;
+  const ctx=c.getContext('2d'); ctx.imageSmoothingEnabled=false;
+  drawGrid(ctx, rows, 0, 0, px);
+  return c;
+}
+
+/* ---- WebAudio チップ音(初回タップで有効化) ---- */
+let AC=null, soundOn=false;
+function toggleSound(e){ e.stopPropagation(); soundOn=!soundOn;
+  document.getElementById('soundtgl').textContent='SOUND: '+(soundOn?'ON':'OFF');
+  if(soundOn && !AC) AC=new (window.AudioContext||window.webkitAudioContext)();
+  if(AC && AC.state==='suspended') AC.resume();
+}
+function blip(f0,f1,dur,vol=0.12,type='square'){
+  if(!soundOn||!AC) return;
+  const o=AC.createOscillator(), g=AC.createGain();
+  o.type=type; o.frequency.setValueAtTime(f0,AC.currentTime);
+  o.frequency.linearRampToValueAtTime(f1,AC.currentTime+dur);
+  g.gain.setValueAtTime(vol,AC.currentTime);
+  g.gain.linearRampToValueAtTime(0,AC.currentTime+dur);
+  o.connect(g).connect(AC.destination); o.start(); o.stop(AC.currentTime+dur);
+}
+
+/* ---- ゲーム本体(アプリの Tuning を移植) ---- */
+const T={g:2600, vMax:620, base:115, max:190, ramp:2200, odGain:10, odMax:230, hit:0.8, buffer:0.08};
+const CORR=264, STRIP=24, PXU=1; // 論理単位
+const cv=document.getElementById('game'), cx2=cv.getContext('2d');
+let W=0,H=0,S=1,offY=0; // scale: 論理→画面
+function resize(){
+  const r=cv.getBoundingClientRect();
+  cv.width=r.width*devicePixelRatio; cv.height=r.height*devicePixelRatio;
+  cx2.imageSmoothingEnabled=false;
+  W=cv.width; H=cv.height;
+  S=H/(CORR+STRIP*2+24);
+  offY=(H-(CORR+STRIP*2)*S)/2;
+}
+addEventListener('resize',resize); resize();
+
+const bitRows=body('9','round','antenna','e');
+const bitSpr=spriteCanvas(bitRows,8);
+const state={mode:'idle', y:STRIP+12, vy:0, dir:1, grounded:true, buf:-9,
+  scroll:0, t:0, obs:[], coins:[], nextX:400, score:0, dead:0, count:9, cTimer:null};
+let best=+(localStorage.getItem('fb_best')||0);
+document.getElementById('best').textContent = best? 'BEST '+best+'m' : '';
+
+/* 簡易パターン(本編のT1-T3相当) */
+function spawnChunk(x, dist){
+  const r=Math.random();
+  const O=(ox,side,w,h)=>state.obs.push({x:x+ox,w,h,side,seen:false});
+  const C=(ox,y)=>state.coins.push({x:x+ox,y,got:false});
+  if(dist<500){ // singles
+    const side=r<.5?'f':'c'; O(60,side,36,r<.5?72:108); C(42,side==='f'?216:264-16); return x+150;
+  } else if(r<0.34){ // updown
+    const a=Math.random()<.5;
+    O(48,a?'f':'c',30,132); O(156,a?'c':'f',30,132); C(112,240-8); return x+240;
+  } else if(r<0.62){ // zigzag
+    const a=Math.random()<.5;
+    O(48,a?'f':'c',24,132); O(156,a?'c':'f',24,132); O(264,a?'f':'c',24,132);
+    C(114,240-8); C(222,240-8); return x+360;
+  } else if(r<0.82){ // needle
+    const a=Math.random()<.5;
+    O(132,a?'c':'f',36,204); C(150,a?120:376-24); return x+312;
+  } else { // pair
+    const a=Math.random()<.5;
+    O(60,a?'f':'c',36,132); O(168,a?'f':'c',36,72); C(78,a?264-8:216-8); return x+240;
+  }
+}
+function resetRun(){
+  state.y=STRIP+12; state.vy=0; state.dir=1; state.grounded=true; state.buf=-9;
+  state.scroll=0; state.obs=[]; state.coins=[]; state.nextX=320; state.score=0;
+}
+function speedAt(d){
+  let s=T.base+(T.max-T.base)*Math.min(1,d/T.ramp);
+  if(d>T.ramp) s+=Math.min((d-T.ramp)/600*T.odGain, T.odMax-T.max);
+  return s;
+}
+function flip(){
+  if(state.mode!=='play') return;
+  if(state.grounded){ state.dir*=-1; state.grounded=false; blip(350,720,.07); }
+  else state.buf=state.t;
+}
+function aiControl(){
+  // アトラクトデモ: 進行方向の同じ面のブロックが近づいたら反転
+  if(!state.grounded) return;
+  const px=state.scroll+120;
+  const mySide = state.dir>0 ? 'f' : 'c';
+  for(const o of state.obs){
+    if(o.x+o.w < px) continue;
+    if(o.x-px > 150) break;
+    if(o.side===mySide){ state.dir*=-1; state.grounded=false; break; }
+  }
+}
+function step(dt){
+  if(state.mode==='idle') aiControl();
+  const sp=speedAt(state.scroll);
+  state.scroll+=sp*dt; state.t+=dt;
+  const sc=Math.max(1,sp/T.max);
+  if(!state.grounded){
+    state.vy-=T.g*sc*sc*state.dir*dt;
+    state.vy=Math.max(-T.vMax*sc,Math.min(T.vMax*sc,state.vy));
+    state.y+=state.vy*dt;
+    const fl=STRIP+12, ce=STRIP+CORR-12;
+    if(state.dir>0 && state.y<=fl){ state.y=fl; state.vy=0; state.grounded=true;
+      if(state.t-state.buf<=T.buffer){state.buf=-9; state.dir*=-1; state.grounded=false; blip(350,720,.07);} }
+    if(state.dir<0 && state.y>=ce){ state.y=ce; state.vy=0; state.grounded=true;
+      if(state.t-state.buf<=T.buffer){state.buf=-9; state.dir*=-1; state.grounded=false; blip(350,720,.07);} }
+  }
+  while(state.nextX < state.scroll+W/S+120) state.nextX=spawnChunk(state.nextX, state.scroll);
+  state.obs=state.obs.filter(o=>o.x+o.w>state.scroll-60);
+  state.coins=state.coins.filter(c=>c.x>state.scroll-40 && !c.got);
+  // collision
+  const px=state.scroll+120, hb=24*T.hit/2;
+  const p={l:px-hb, r:px+hb, b:state.y-hb, t:state.y+hb};
+  for(const o of state.obs){
+    const oy = o.side==='f' ? STRIP : STRIP+CORR-o.h;
+    if(p.r>o.x && p.l<o.x+o.w && p.t>oy && p.b<oy+o.h){
+      if(state.mode==='idle'){ resetRun(); return; }
+      return die();
+    }
+  }
+  for(const c of state.coins){
+    if(!c.got && Math.abs(c.x-px)<hb+8 && Math.abs(c.y-state.y)<hb+8){ c.got=true; blip(988,1319,.09,.1); }
+  }
+  state.score=Math.floor(state.scroll/24);
+  document.getElementById('score').textContent=state.score;
+}
+function render(){
+  cx2.fillStyle='#0a0f26'; cx2.fillRect(0,0,W,H);
+  // stars
+  cx2.fillStyle='rgba(255,241,232,.5)';
+  for(let i=0;i<40;i++){
+    const sx=((i*167 - state.scroll*0.3)%(W/S)+(W/S))%(W/S);
+    cx2.fillRect(sx*S, ((i*97)%(CORR+STRIP*2))*S+offY, 2.5,2.5);
+  }
+  const Y=v=>offY+(CORR+STRIP*2-v)*S; // 論理y(下=0)→画面y
+  // strips(床と天井の帯 + 走行面のライン + 装飾ドット)
+  cx2.fillStyle=PAL[1];
+  cx2.fillRect(0,Y(STRIP),W,STRIP*S); cx2.fillRect(0,Y(STRIP*2+CORR),W,STRIP*S);
+  cx2.fillStyle=PAL.d;
+  for(let x=-(state.scroll%56); x<W/S; x+=56){
+    cx2.fillRect(x*S, Y(STRIP)+10*S, 5, 5);
+    cx2.fillRect(x*S, Y(STRIP*2+CORR)+10*S, 5, 5);
+  }
+  cx2.fillStyle=PAL.c;
+  cx2.fillRect(0,Y(STRIP),W,3);                       // 床の走行面
+  cx2.fillRect(0,Y(STRIP*2+CORR)+STRIP*S-3,W,3);      // 天井の走行面
+  // obstacles
+  for(const o of state.obs){
+    const sx=(o.x-state.scroll)*S;
+    const oy=o.side==='f'?STRIP:STRIP+CORR-o.h;
+    const ry=Y(oy+o.h), rh=o.h*S, rw=o.w*S;
+    cx2.fillStyle=PAL[1]; cx2.fillRect(sx,ry,rw,rh);
+    cx2.strokeStyle=PAL[8]; cx2.lineWidth=Math.max(3,4*S);
+    cx2.strokeRect(sx+2,ry+2,rw-4,rh-4);
+  }
+  // coins
+  cx2.fillStyle=PAL.a;
+  for(const c of state.coins){
+    const sx=(c.x-state.scroll)*S;
+    cx2.beginPath(); cx2.arc(sx,Y(c.y)-8*S/2+8*S/2,7*S,0,7); cx2.fill();
+  }
+  // player
+  const px=120*S, sz=28*S;
+  cx2.save();
+  cx2.translate(px, Y(state.y));
+  if(state.dir<0) cx2.scale(1,-1);
+  cx2.drawImage(bitSpr,-sz/2,-sz/2,sz,sz);
+  cx2.restore();
+}
+let last=0, acc=0, heroVis=true;
+new IntersectionObserver(es=>{ heroVis=es[0].isIntersecting; },{threshold:0})
+  .observe(document.getElementById('shell'));
+function loop(ts){
+  requestAnimationFrame(loop);
+  if(!heroVis){ last=ts; return; }  // 画面外では休止(バッテリー配慮)
+  if(state.mode!=='play' && state.mode!=='idle') { render(); return; }
+  if(!last) last=ts;
+  let dt=Math.min((ts-last)/1000, 1/20); last=ts;
+  const mode=state.mode;
+  acc+=dt; const h=1/120;
+  while(acc>=h){ step(h); if(state.mode!==mode) break; acc-=h; }
+  render();
+}
+requestAnimationFrame(loop);
+
+function startDemo(){
+  document.getElementById('tapstart').classList.add('hidden');
+  document.getElementById('continue').classList.add('hidden');
+  resetRun(); state.mode='play'; last=0; acc=0;
+  if(!AC && 'AudioContext' in window){ /* 音はトグルで */ }
+}
+function die(){
+  state.mode='dead'; blip(400,70,.25,.18);
+  if(state.score>best){ best=state.score; localStorage.setItem('fb_best',best);
+    document.getElementById('best').textContent='BEST '+best+'m'; }
+  document.getElementById('cscore').textContent=state.score+'m でした';
+  const cd=document.getElementById('continue'); cd.classList.remove('hidden');
+  let n=9; const cc=document.getElementById('ccount'); cc.textContent=n;
+  clearInterval(state.cTimer);
+  state.cTimer=setInterval(()=>{ n--;
+    if(n<0){ clearInterval(state.cTimer);
+      document.getElementById('continue').classList.add('hidden');
+      document.getElementById('tapstart').classList.remove('hidden');
+      resetRun(); state.mode='idle'; return; }
+    cc.textContent=n; },1000);
+}
+function retryDemo(){ clearInterval(state.cTimer); startDemo(); }
+cv.addEventListener('pointerdown',()=>{
+  if(AC && AC.state==='suspended') AC.resume();
+  if(state.mode==='play') flip(); else if(state.mode==='idle') startDemo(); });
+document.getElementById('tapstart').addEventListener('pointerdown',()=>{ startDemo(); });
+addEventListener('keydown',e=>{
+  if(e.code!=='Space') return;
+  const r=document.getElementById('shell').getBoundingClientRect();
+  if(r.bottom<0 || r.top>innerHeight) return;  // ヒーロー画面外ではスクロールを奪わない
+  e.preventDefault();
+  if(state.mode==='play') flip(); else startDemo(); });
+
+function shareScore(){
+  const text='FLIP-BITの体験版で '+state.score+'m 走った。タップで重力反転、むずい。 #FLIPBIT';
+  const url='https://menufyjp.com/flipbit/';
+  if(navigator.share){ navigator.share({text, url}).catch(()=>{}); return; }
+  open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url),'_blank');
+}
+
+/* ---- CTA ---- */
+function goStore(from){
+  if(APP_STORE_URL){ location.href=APP_STORE_URL; return; }
+  const t=document.getElementById('toast');
+  t.textContent='🕹️ まもなくApp Storeで配信! それまでここで腕を磨いてて。';
+  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ---- boot sequence ---- */
+(function(){
+  const b=document.getElementById('boot');
+  const lines=['FLIP-BIT SYSTEM BOOT...','MEM CHECK ......... OK','GRAVITY ENGINE .... OK','PIXEL BUDDIES ..... 16/16','','READY.'];
+  if(new URLSearchParams(location.search).get('boot')==='0' ||
+     sessionStorage.getItem('fb_boot') ||
+     matchMedia('(prefers-reduced-motion: reduce)').matches){ b.remove(); return; }
+  sessionStorage.setItem('fb_boot','1');
+  b.addEventListener('pointerdown',()=>{ b.remove(); },{once:true});
+  let i=0; b.textContent='';
+  const tm=setInterval(()=>{ b.textContent+=lines[i]+'\n'; i++;
+    if(i>=lines.length){ clearInterval(tm);
+      setTimeout(()=>{ b.classList.add('off'); setTimeout(()=>b.remove(),500); },380); }
+  },170);
+  setTimeout(()=>{ if(b.parentNode){b.remove()} },3500); // 保険
+})();
+
+/* ---- feature icons ---- */
+(function(){
+  const icons={
+    flip:['cccccccccccc','.....aa.....','....aaaa....','...aaaaaa...','.....aa.....','.....aa.....','.....99.....','.....99.....','...999999...','....9999....','.....99.....','cccccccccccc'],
+    gacha:['............','..dddddddd..','.d00000000d.','.d08800cc0d.','.d08800cc0d.','.d00000000d.','.d0bb00ee0d.','.d0bb00ee0d.','.d00000000d.','.222222222.','..22a22a22..','............'],
+    crown:['............','..a...a...a.','..a...a...a.','..aaaaaaaaa.','..aaaaaaaaa.','...aaaaaaa..','............','..77777777..','..7aaaaaa7..','..77777777..','............','............'],
+  };
+  document.querySelectorAll('.card canvas').forEach(c=>{
+    const rows=icons[c.dataset.icon]; const px=8;
+    c.width=rows[0].length*px; c.height=rows.length*px;
+    const ctx=c.getContext('2d'); ctx.imageSmoothingEnabled=false;
+    drawGrid(ctx,rows,0,0,px);
+  });
+})();
+
+/* ---- mascot dex ---- */
+(function(){
+  const grid=document.getElementById('masgrid'), bub=document.getElementById('bubble');
+  MASCOTS.forEach(([id,name,prof,b,eyes,acc,cheek,secret],i)=>{
+    let rows=body(b,eyes,acc,cheek);
+    if(secret) rows=rows.map(r=>r.replace(/[^.]/g,'1'));  // 影絵にする
+    const d=document.createElement('div'); d.className='mas'+(i===0?' sel':'');
+    const c=spriteCanvas(rows,6); d.appendChild(c);
+    const n=document.createElement('span'); n.className='nm'; n.textContent=name; d.appendChild(n);
+    d.addEventListener('click',()=>{
+      document.querySelectorAll('.mas').forEach(m=>m.classList.remove('sel'));
+      d.classList.add('sel');
+      bub.innerHTML='<span class="who">'+name+'</span>「'+prof+'」';
+      blip(600+i*40,900+i*40,.06,.08);
+    });
+    grid.appendChild(d);
+  });
+})();
+
+/* ---- topbar on scroll ---- */
+addEventListener('scroll',()=>{
+  document.getElementById('topbar').classList.toggle('show', scrollY>innerHeight*0.9);
+},{passive:true});
+
+/* ---- セクションのブラウン管点灯 ---- */
+(function(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+  }),{threshold:.12});
+  document.querySelectorAll('section > *').forEach(el=>{ el.classList.add('reveal'); io.observe(el); });
+})();
+</script>
+</body>
+</html>
