@@ -728,6 +728,11 @@ function goStore(from){
   set('#cta .lead','Free to play. A one-time purchase removes ads if you ever want.');
   set('#cta .applink','Download on the App Store');
   set('#cta .freebadge','iOS 18+ / Free / Plays offline');
+  const shotAlts=['One tap flips gravity — gameplay','Collect 16 pixel buddies','Initials entry and rankings'];
+  document.querySelectorAll('#shots img').forEach((im,i)=>{
+    im.src = im.src.replace(/shot(\d)\.png/, 'shot$1_en.png');
+    im.alt = shotAlts[i] || im.alt;
+  });
   const pl=document.querySelector('footer a[href="privacy.html"]'); if(pl) pl.textContent='Privacy Policy';
 })();
 
