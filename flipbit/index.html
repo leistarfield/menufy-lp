@@ -134,6 +134,11 @@ button.btn{font-family:var(--ja); appearance:none; -webkit-appearance:none}
   font-size:10px; color:var(--lav); background:none; border:1px solid var(--lav);
   padding:4px 8px; cursor:pointer;
 }
+#langtgl{
+  position:absolute; bottom:8px; left:10px; z-index:6; font-family:var(--en);
+  font-size:10px; color:var(--lav); background:none; border:1px solid var(--lav);
+  padding:4px 8px; cursor:pointer;
+}
 .hint{color:var(--gray); font-size:clamp(11px,2.8vw,13px); margin-top:12px}
 
 /* ---------- sections ---------- */
@@ -263,6 +268,7 @@ footer a{color:var(--lav); text-decoration:underline}
     </div>
 
     <button id="soundtgl" onclick="toggleSound(event)">SOUND: OFF</button>
+    <button id="langtgl" onclick="switchLang(event)">EN</button>
   </div>
   <div class="hint">💡 体験版はここまで。ガチャも図鑑も全国ランキングも、本編で。</div>
 </div>
@@ -324,6 +330,21 @@ footer a{color:var(--lav); text-decoration:underline}
    ============================================================ */
 const APP_STORE_URL = null; // 例: "https://apps.apple.com/jp/app/id0000000000"
 
+/* ---- i18n: ブラウザ言語で自動切替(?lang= / トグルで上書き) ---- */
+const LANG = (new URLSearchParams(location.search).get('lang'))
+  || localStorage.getItem('fb_lang')
+  || ((navigator.language||'').toLowerCase().startsWith('ja') ? 'ja' : 'en');
+function switchLang(e){ e.stopPropagation();
+  localStorage.setItem('fb_lang', LANG==='ja'?'en':'ja'); location.reload(); }
+const TXT = {
+  ja: { ranScore:s=>s+'m でした',
+        toast:'🕹️ まもなくApp Storeで配信! それまでここで腕を磨いてて。',
+        share:s=>'FLIP-BITの体験版で '+s+'m 走った。タップで重力反転、むずい。 #FLIPBIT' },
+  en: { ranScore:s=>'You ran '+s+'m',
+        toast:'🕹️ Coming soon to the App Store! Sharpen your run here till then.',
+        share:s=>'I ran '+s+'m in the FLIP-BIT web demo. One tap flips gravity. Harder than it looks. #FLIPBIT' },
+}[LANG];
+
 const PAL = {0:'#000000',1:'#1D2B53',2:'#7E2553',3:'#008751',4:'#AB5236',5:'#5F574F',
   6:'#C2C3C7',7:'#FFF1E8',8:'#FF004D',9:'#FFA300',a:'#FFEC27',b:'#00E436',
   c:'#29ADFF',d:'#83769C',e:'#FF77A8',f:'#FFCCAA'};
@@ -363,6 +384,17 @@ const MASCOTS=[
  ['ghost','???','ひみつ。ホンモノは本編で。','5','hollow','none',null,true],
  ['shadow','???','ひみつ。ホンモノは本編で。','5','star','horn',null,true],
 ];
+
+const MAS_EN = {
+  bit:['Bit','Gravity is just a suggestion.'], rusty:['Rusty','A little rusty, still runs fine.'],
+  melon:['Melon','Disarms foes with a sweet scent.'], sky:['Sky','Dreams of the open sky.'],
+  berry:['Berry','Always sleepy. Surprisingly fast.'], lemon:['Lemon','Born with that sour face.'],
+  momo:['Momo','Soft, squishy, and calming.'], gray:['Gray','Rumored to be a prototype.'],
+  crimson:['Crimson','A fragment of burning spirit.'], forest:['Forest','Walked here from deep woods.'],
+  violet:['Violet','Collects stars for fun.'], navy:['Navy','A stealth dot that melts into the dark.'],
+  wine:['Wine','Aged to pixel perfection.'], sunny:['Sunny','Slightly brighter than the sun.'],
+  ghost:['???','A secret. Meet the real one in the app.'], shadow:['???','A secret. Meet the real one in the app.'],
+};
 
 function drawGrid(ctx, rows, x, y, s, flipV=false){
   const h=rows.length;
@@ -572,7 +604,7 @@ function die(){
   state.mode='dead'; blip(400,70,.25,.18);
   if(state.score>best){ best=state.score; localStorage.setItem('fb_best',best);
     document.getElementById('best').textContent='BEST '+best+'m'; }
-  document.getElementById('cscore').textContent=state.score+'m でした';
+  document.getElementById('cscore').textContent=TXT.ranScore(state.score);
   const cd=document.getElementById('continue'); cd.classList.remove('hidden');
   let n=9; const cc=document.getElementById('ccount'); cc.textContent=n;
   clearInterval(state.cTimer);
@@ -596,7 +628,7 @@ addEventListener('keydown',e=>{
   if(state.mode==='play') flip(); else startDemo(); });
 
 function shareScore(){
-  const text='FLIP-BITの体験版で '+state.score+'m 走った。タップで重力反転、むずい。 #FLIPBIT';
+  const text=TXT.share(state.score);
   const url='https://menufyjp.com/flipbit/';
   if(navigator.share){ navigator.share({text, url}).catch(()=>{}); return; }
   open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url),'_blank');
@@ -606,7 +638,7 @@ function shareScore(){
 function goStore(from){
   if(APP_STORE_URL){ location.href=APP_STORE_URL; return; }
   const t=document.getElementById('toast');
-  t.textContent='🕹️ まもなくApp Storeで配信! それまでここで腕を磨いてて。';
+  t.textContent=TXT.toast;
   t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3200);
 }
 
@@ -646,6 +678,7 @@ function goStore(from){
 (function(){
   const grid=document.getElementById('masgrid'), bub=document.getElementById('bubble');
   MASCOTS.forEach(([id,name,prof,b,eyes,acc,cheek,secret],i)=>{
+    if(LANG==='en' && MAS_EN[id]){ name=MAS_EN[id][0]; prof=MAS_EN[id][1]; }
     let rows=body(b,eyes,acc,cheek);
     if(secret) rows=rows.map(r=>r.replace(/[^.]/g,'1'));  // 影絵にする
     const d=document.createElement('div'); d.className='mas'+(i===0?' sel':'');
@@ -659,6 +692,43 @@ function goStore(from){
     });
     grid.appendChild(d);
   });
+})();
+
+/* ---- 静的文言のEN適用 ---- */
+(function(){
+  document.documentElement.lang = LANG;
+  document.getElementById('langtgl').textContent = LANG==='ja' ? 'EN' : 'JA';
+  if(LANG!=='en') return;
+  document.title = 'FLIP-BIT — One tap flips gravity. 80s pixel runner';
+  const q=(sel)=>document.querySelector(sel);
+  const set=(sel,html)=>{ const el=q(sel); if(el) el.innerHTML=html; };
+  set('.tagline','One tap flips gravity.');
+  set('#hero .sub','20-second runs. Endless &quot;one more try.&quot;');
+  set('#tapstart .big','TAP TO PLAY');
+  set('#hero .hint','💡 That&#39;s the demo. The gacha, the dex and world rankings live in the app.');
+  set('#continue .btn.green','Take the next run with you.<span class="mini">▸ Free on the App Store</span>');
+  set('#continue .btn.share','Brag about it on X');
+  set('#continue .btn.ghostbtn','One more here');
+  set('#topbar .btn','Download');
+  set('#feat h2','That&#39;s <span class="y">the whole game.</span>');
+  set('#feat .lead','The tutorial is over. The demo above? That was everything.');
+  const cards=document.querySelectorAll('#feat .card');
+  if(cards[0]){ cards[0].querySelector('h3').textContent='One tap × 20 sec';
+    cards[0].querySelector('p').textContent='Floor to ceiling and back. One run per red light. Suddenly it\'s midnight.'; }
+  if(cards[1]){ cards[1].querySelector('h3').textContent='Find your favorite';
+    cards[1].querySelector('p').textContent='Collect coins, spin the retro gacha. 16 pixel buddies — 2 of them secret.'; }
+  if(cards[2]){ cards[2].querySelector('h3').textContent='Carve your name worldwide';
+    cards[2].querySelector('p').textContent='One daily course for the whole planet. Sign your high score with 3 initials.'; }
+  set('#dex h2','16 <span class="y">pixel buddies.</span>');
+  set('#dex .lead','Tap them — they introduce themselves. Who&#39;s your favorite?');
+  set('#bubble','<span class="who">Bit</span>&quot;Gravity is just a suggestion.&quot;');
+  set('#shots h2','An arcade,<span class="y"> in your pocket.</span>');
+  set('#shots .lead','CRT scanlines, chiptunes, initials entry. The whole cabinet.');
+  set('#cta h2','No coins <span class="y">needed.</span>');
+  set('#cta .lead','Free to play. A one-time purchase removes ads if you ever want.');
+  set('#cta .applink','Download on the App Store');
+  set('#cta .freebadge','iOS 18+ / Free / Plays offline');
+  const pl=document.querySelector('footer a[href="privacy.html"]'); if(pl) pl.textContent='Privacy Policy';
 })();
 
 /* ---- topbar on scroll ---- */
