@@ -87,7 +87,7 @@ a{color:var(--blue); text-decoration:none}
 
 /* game shell = CRT bezel */
 #shell{
-  width:min(96vw,860px); position:relative;
+  width:min(96vw,560px); position:relative;
   border:6px solid #10163a; border-radius:14px;
   box-shadow:0 0 0 3px var(--lav), 0 24px 70px rgba(0,0,0,.6), inset 0 0 40px rgba(0,0,0,.6);
   background:#000; overflow:hidden;
@@ -199,6 +199,12 @@ footer{
   border-top:2px dashed rgba(131,118,156,.4); padding:34px 20px 60px;
   text-align:center; font-size:12px; color:var(--lav);
 }
+.follow{margin-top:22px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+.follow a{
+  font-size:13px; color:var(--blue); border:2px solid var(--blue);
+  padding:8px 16px; background:#000;
+}
+#toast a{color:var(--yellow); text-decoration:underline}
 footer a{color:var(--lav); text-decoration:underline}
 
 /* toast */
@@ -313,10 +319,16 @@ footer a{color:var(--lav); text-decoration:underline}
   <p class="lead">無料で遊べます。広告が気になったら買い切りで除去もできます。</p>
   <button class="btn applink" onclick="goStore('footer')">App Store でダウンロード</button>
   <div class="freebadge">iOS 18以上 / 無料 / オフラインでも遊べます</div>
+  <div class="follow">
+    <a href="https://x.com/hossy____426" target="_blank" rel="noopener">X をフォロー</a>
+    <a href="https://www.instagram.com/flipbit_jp" target="_blank" rel="noopener">Instagram をフォロー</a>
+  </div>
 </section>
 
 <footer>
   © 2026 Ryosuke Hoshino — FLIP-BIT<br><br>
+  <a href="https://x.com/hossy____426" target="_blank" rel="noopener">X</a> ·
+  <a href="https://www.instagram.com/flipbit_jp" target="_blank" rel="noopener">Instagram</a> ·
   <a href="privacy.html">プライバシーポリシー</a>
 </footer>
 
@@ -328,7 +340,9 @@ footer a{color:var(--lav); text-decoration:underline}
    FLIP-BIT LP — 遊べるデモ(アプリと同じ物理定数を移植)
    APP_STORE_URL: 公開後にURLを入れるとCTAが本番リンクになる
    ============================================================ */
-const APP_STORE_URL = null; // 例: "https://apps.apple.com/jp/app/id0000000000"
+const APP_STORE_URL = null; // ★審査通過後ここにURLを入れるだけで全CTAが本番化する
+const SOCIAL_X  = 'https://x.com/hossy____426';
+const SOCIAL_IG = 'https://www.instagram.com/flipbit_jp';
 
 /* ---- i18n: ブラウザ言語で自動切替(?lang= / トグルで上書き) ---- */
 const LANG = (new URLSearchParams(location.search).get('lang'))
@@ -338,10 +352,10 @@ function switchLang(e){ e.stopPropagation();
   localStorage.setItem('fb_lang', LANG==='ja'?'en':'ja'); location.reload(); }
 const TXT = {
   ja: { ranScore:s=>s+'m でした',
-        toast:'🕹️ まもなくApp Storeで配信! それまでここで腕を磨いてて。',
+        toast:'🕹️ まもなくApp Storeで配信! フォローして配信通知を受けとってね →',
         share:s=>'FLIP-BITの体験版で '+s+'m 走った。タップで重力反転、むずい。 #FLIPBIT' },
   en: { ranScore:s=>'You ran '+s+'m',
-        toast:'🕹️ Coming soon to the App Store! Sharpen your run here till then.',
+        toast:'🕹️ Coming soon to the App Store! Follow for the launch →',
         share:s=>'I ran '+s+'m in the FLIP-BIT web demo. One tap flips gravity. Harder than it looks. #FLIPBIT' },
 }[LANG];
 
@@ -433,7 +447,7 @@ function blip(f0,f1,dur,vol=0.12,type='square'){
 }
 
 /* ---- ゲーム本体(アプリの Tuning を移植) ---- */
-const T={g:2600, vMax:620, base:115, max:190, ramp:2200, odGain:10, odMax:230, hit:0.8, buffer:0.08};
+const T={g:2600, vMax:620, base:130, max:190, ramp:900, odGain:14, odMax:250, hit:0.8, buffer:0.08};
 const CORR=264, STRIP=24, PXU=1; // 論理単位
 const cv=document.getElementById('game'), cx2=cv.getContext('2d');
 let W=0,H=0,S=1,offY=0; // scale: 論理→画面
@@ -459,26 +473,26 @@ function spawnChunk(x, dist){
   const r=Math.random();
   const O=(ox,side,w,h)=>state.obs.push({x:x+ox,w,h,side,seen:false});
   const C=(ox,y)=>state.coins.push({x:x+ox,y,got:false});
-  if(dist<500){ // singles
-    const side=r<.5?'f':'c'; O(60,side,36,r<.5?72:108); C(42,side==='f'?216:264-16); return x+150;
-  } else if(r<0.34){ // updown
+  if(dist<240){ // 最初の1個だけ易しい単発
+    const side=r<.5?'f':'c'; O(60,side,36,96); C(42,side==='f'?216:264-16); return x+150;
+  } else if(r<0.30){ // updown(強制反転)
     const a=Math.random()<.5;
-    O(48,a?'f':'c',30,132); O(156,a?'c':'f',30,132); C(112,240-8); return x+240;
-  } else if(r<0.62){ // zigzag
+    O(48,a?'f':'c',30,132); O(156,a?'c':'f',30,132); C(112,240-8); return x+228;
+  } else if(r<0.62){ // zigzag(反転2連)
     const a=Math.random()<.5;
     O(48,a?'f':'c',24,132); O(156,a?'c':'f',24,132); O(264,a?'f':'c',24,132);
-    C(114,240-8); C(222,240-8); return x+360;
-  } else if(r<0.82){ // needle
+    C(114,240-8); C(222,240-8); return x+348;
+  } else if(r<0.86){ // needle(60pxのくぐり)
     const a=Math.random()<.5;
-    O(132,a?'c':'f',36,204); C(150,a?120:376-24); return x+312;
-  } else { // pair
+    O(132,a?'c':'f',36,204); C(150,a?120:376-24); return x+300;
+  } else { // pair(高低差)
     const a=Math.random()<.5;
-    O(60,a?'f':'c',36,132); O(168,a?'f':'c',36,72); C(78,a?264-8:216-8); return x+240;
+    O(60,a?'f':'c',36,132); O(168,a?'f':'c',36,96); C(78,a?264-8:216-8); return x+240;
   }
 }
 function resetRun(){
   state.y=STRIP+12; state.vy=0; state.dir=1; state.grounded=true; state.buf=-9;
-  state.scroll=0; state.obs=[]; state.coins=[]; state.nextX=320; state.score=0;
+  state.scroll=0; state.obs=[]; state.coins=[]; state.nextX=260; state.score=0;
 }
 function speedAt(d){
   let s=T.base+(T.max-T.base)*Math.min(1,d/T.ramp);
@@ -491,15 +505,19 @@ function flip(){
   else state.buf=state.t;
 }
 function aiControl(){
-  // アトラクトデモ: 進行方向の同じ面のブロックが近づいたら反転
+  // アトラクトデモ: 反転の横移動(~96px)に合わせて、同じ面のブロック手前で反転。
+  // ただし反対面のブロックの真上/真下では跳ばない(着地事故防止)
   if(!state.grounded) return;
   const px=state.scroll+120;
   const mySide = state.dir>0 ? 'f' : 'c';
+  let danger=null, blocked=false;
   for(const o of state.obs){
-    if(o.x+o.w < px) continue;
-    if(o.x-px > 150) break;
-    if(o.side===mySide){ state.dir*=-1; state.grounded=false; break; }
+    if(o.x+o.w < px-10) continue;
+    if(o.x > px+130) break;
+    if(o.side===mySide && o.x>px && !danger) danger=o;
+    if(o.side!==mySide && o.x < px+110 && o.x+o.w > px-10) blocked=true;
   }
+  if(danger && danger.x-px < 122 && !blocked){ state.dir*=-1; state.grounded=false; }
 }
 function step(dt){
   if(state.mode==='idle') aiControl();
@@ -638,8 +656,10 @@ function shareScore(){
 function goStore(from){
   if(APP_STORE_URL){ location.href=APP_STORE_URL; return; }
   const t=document.getElementById('toast');
-  t.textContent=TXT.toast;
-  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3200);
+  t.innerHTML=TXT.toast
+    +' <a href="'+SOCIAL_X+'" target="_blank" rel="noopener">X</a> / '
+    +'<a href="'+SOCIAL_IG+'" target="_blank" rel="noopener">Instagram</a>';
+  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),6000);
 }
 
 /* ---- boot sequence ---- */
@@ -734,6 +754,9 @@ function goStore(from){
     im.alt = shotAlts[i] || im.alt;
   });
   const pl=document.querySelector('footer a[href="privacy.html"]'); if(pl) pl.textContent='Privacy Policy';
+  const fl=document.querySelectorAll('.follow a');
+  if(fl[0]) fl[0].textContent='Follow on X';
+  if(fl[1]) fl[1].textContent='Follow on Instagram';
 })();
 
 /* ---- topbar on scroll ---- */
