@@ -490,6 +490,8 @@ function spawnChunk(x, dist){
     O(60,a?'f':'c',36,132); O(168,a?'f':'c',36,96); C(78,a?264-8:216-8); return x+240;
   }
 }
+let _demoBeaconed=false;
+function markDemoPlayed(){ if(!_demoBeaconed){ _demoBeaconed=true; beacon('demo'); } }
 function resetRun(){
   state.y=STRIP+12; state.vy=0; state.dir=1; state.grounded=true; state.buf=-9;
   state.scroll=0; state.obs=[]; state.coins=[]; state.nextX=260; state.score=0;
@@ -653,7 +655,12 @@ function shareScore(){
 }
 
 /* ---- CTA ---- */
+const BEACON='https://sns-cockpit.rh0426-thom.workers.dev/b';
+const SRC=(new URLSearchParams(location.search).get('src')||'direct').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,24);
+function beacon(e){ try{ navigator.sendBeacon ? navigator.sendBeacon(`${BEACON}?e=${e}&s=${SRC}`) : fetch(`${BEACON}?e=${e}&s=${SRC}`,{mode:'no-cors',keepalive:true}); }catch(_){} }
+beacon('visit');
 function goStore(from){
+  beacon('store');
   if(APP_STORE_URL){ location.href=APP_STORE_URL; return; }
   const t=document.getElementById('toast');
   t.innerHTML=TXT.toast
