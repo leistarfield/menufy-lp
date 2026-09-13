@@ -106,8 +106,11 @@ body.mmenu-open{overflow:hidden}
 
 /* SCREENS */
 .screens-wrap{position:relative}
-.screens-scroll{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;scrollbar-width:none}
-.screens-scroll::-webkit-scrollbar{display:none}
+.screens-scroll{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;scrollbar-width:thin;scrollbar-color:var(--peach-line) transparent;cursor:grab}
+.screens-scroll::-webkit-scrollbar{height:6px}.screens-scroll::-webkit-scrollbar-thumb{background:var(--peach-line);border-radius:3px}
+.screens-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
+.snav{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:transform .15s}
+.snav:hover{transform:translateY(-1px)}.snav:disabled{opacity:.35;cursor:default;transform:none}
 .screen-item{flex:0 0 240px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
 .screen-phone{border-radius:34px;background:#fff;padding:7px;box-shadow:var(--sh2);border:1.5px solid var(--line)}
 .screen-phone img{border-radius:28px;width:100%;aspect-ratio:393/852;object-fit:cover;object-position:top}
@@ -382,7 +385,7 @@ def build(lang):
   <div class="screens-wrap">
     <div class="screens-scroll">
 {screens}    </div>
-    <div class="screens-hint"><span>{T['screens_hint']}</span><span>→</span></div>
+    <div class="screens-nav"><button class="snav" type="button" data-dir="-1" aria-label="prev">‹</button><span class="screens-hint" style="margin:0"><span>{T['screens_hint']}</span></span><button class="snav" type="button" data-dir="1" aria-label="next">›</button></div>
   </div>
 </section>
 '''

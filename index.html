@@ -155,8 +155,11 @@ body.mmenu-open{overflow:hidden}
 
 /* SCREENS */
 .screens-wrap{position:relative}
-.screens-scroll{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;scrollbar-width:none}
-.screens-scroll::-webkit-scrollbar{display:none}
+.screens-scroll{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 20px;scrollbar-width:thin;scrollbar-color:var(--peach-line) transparent;cursor:grab}
+.screens-scroll::-webkit-scrollbar{height:6px}.screens-scroll::-webkit-scrollbar-thumb{background:var(--peach-line);border-radius:3px}
+.screens-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
+.snav{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:transform .15s}
+.snav:hover{transform:translateY(-1px)}.snav:disabled{opacity:.35;cursor:default;transform:none}
 .screen-item{flex:0 0 240px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
 .screen-phone{border-radius:34px;background:#fff;padding:7px;box-shadow:var(--sh2);border:1.5px solid var(--line)}
 .screen-phone img{border-radius:28px;width:100%;aspect-ratio:393/852;object-fit:cover;object-position:top}
@@ -614,7 +617,7 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
         <div class="screen-cap"><strong>06. 買い切りの回数券</strong>サブスクなし。5回は無料</div>
       </div>
     </div>
-    <div class="screens-hint"><span>横にスクロール</span><span>→</span></div>
+    <div class="screens-nav"><button class="snav" type="button" data-dir="-1" aria-label="prev">‹</button><span class="screens-hint" style="margin:0"><span>横にスクロール</span></span><button class="snav" type="button" data-dir="1" aria-label="next">›</button></div>
   </div>
 </section>
 
@@ -896,9 +899,19 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
 
 <script>
 (function(){
-  /* Mouse wheel → horizontal scroll on the screenshots strip (scrollbar is hidden). */
+  /* Screenshot strip: arrow buttons, drag-to-scroll and wheel → horizontal. */
   var screensEl = document.querySelector('.screens-scroll');
   if(screensEl){
+    var step = 262; /* card 240 + gap 22 */
+    document.querySelectorAll('.snav').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        screensEl.scrollBy({left: step * parseInt(btn.getAttribute('data-dir'), 10), behavior: 'smooth'});
+      });
+    });
+    var drag = null;
+    screensEl.addEventListener('pointerdown', function(e){ if(e.pointerType !== 'mouse') return; drag = {x: e.clientX, left: screensEl.scrollLeft}; screensEl.style.scrollSnapType = 'none'; });
+    window.addEventListener('pointermove', function(e){ if(!drag) return; screensEl.scrollLeft = drag.left - (e.clientX - drag.x); });
+    window.addEventListener('pointerup', function(){ if(!drag) return; drag = null; setTimeout(function(){ screensEl.style.scrollSnapType = ''; }, 300); });
     var snapTimer;
     screensEl.addEventListener('wheel', function(e){
       if (e.deltaX !== 0) return;
