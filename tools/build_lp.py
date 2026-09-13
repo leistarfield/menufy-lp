@@ -532,6 +532,7 @@ def build(lang):
 <footer>
   <a href="#" class="flogo"><img src="{sp}assets/mascot-sushi.png" alt="" class="nicon" style="width:28px;height:28px"><span class="flogo-text">Menufy</span></a>
   <div class="flinks">
+    <a href="/guide/" class="flink">{T['guide_link']}</a>
     <a href="{T['privacy_href']}" class="flink">{T['f_privacy']}</a>
     <a href="{T['terms_href']}" class="flink">{T['f_terms']}</a>
     <a href="{T['alt_href']}" class="flink">{T['alt_label']}</a>
