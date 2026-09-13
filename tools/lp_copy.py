@@ -67,7 +67,7 @@ COPY['ja'] = dict(
                 ('「タイ旅行中に大活躍。屋台のメニューも読めるから、地元の人が食べてるものと同じものを頼めた」','Kenji M.','🇯🇵 バンコク旅行中')],
   cta_title='次の食事を、<br>もっと楽しく。', cta_desc='まず5回、体験してみてください。<br>気に入ったら、旅のスタイルに合ったプランを選ぶだけ。',
   xp_h='旅行に行くなら、Tripfy も。', xp_sub='予約確認を貼るだけで、AI が旅程を自動作成。同じ開発チームの iOS アプリです。', xp_btn='Tripfy を見る →',
-  f_privacy='プライバシーポリシー', f_terms='利用規約',
+  guide_link='メニューの読み方ガイド', f_privacy='プライバシーポリシー', f_terms='利用規約',
 )
 
 COPY['en'] = dict(
@@ -138,5 +138,5 @@ COPY['en'] = dict(
                 ('"Saved me during my Thailand trip. Street food menus are suddenly readable — I could order exactly what the locals were eating."','Kenji M.','🇯🇵 Visiting Bangkok')],
   cta_title='Make your next meal<br>a little more fun.', cta_desc='Start with 5 free scans.<br>If you love it, pick a pack that fits your trip.',
   xp_h='Traveling? Try Tripfy too.', xp_sub='Paste your booking confirmations and AI builds your itinerary. From the same team, on iOS.', xp_btn='See Tripfy →',
-  f_privacy='Privacy Policy', f_terms='Terms',
+  guide_link='Menu reading guides (JA)', f_privacy='Privacy Policy', f_terms='Terms',
 )
