@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /asc/
+Disallow: /asc-tripfy/
+Disallow: /tools/
+
+Sitemap: https://menufyjp.com/sitemap.xml

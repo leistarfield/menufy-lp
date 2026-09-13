@@ -6,9 +6,13 @@
 <title>Menufy — メニューを、あなたの言葉で。</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23FF6B47'/><circle cx='29' cy='29' r='12' stroke='white' stroke-width='4' fill='none'/><line x1='38' y1='38' x2='51' y2='51' stroke='white' stroke-width='4' stroke-linecap='round'/></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23FF6B47'/><circle cx='29' cy='29' r='12' stroke='white' stroke-width='4' fill='none'/><line x1='38' y1='38' x2='51' y2='51' stroke='white' stroke-width='4' stroke-linecap='round'/></svg>">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FF6B47">
+<meta name="apple-itunes-app" content="app-id=6760161339">
 
 <!-- SEO -->
 <meta name="description" content="撮るだけで外国語メニューを日本語に。アレルギー警告、店員に見せる注文票、会計チェック、おすすめ料理まで。14言語・買い切り制・まず5回無料。">
@@ -26,11 +30,12 @@
 <meta property="og:site_name" content="Menufy">
 <meta property="og:title" content="Menufy — メニューを、あなたの言葉で。">
 <meta property="og:description" content="撮るだけで外国語メニューを日本語に。アレルギー警告、店員に見せる注文票、会計チェック、おすすめ料理まで。14言語・買い切り制・まず5回無料。">
-<meta property="og:url" content="https://menufyjp.com">
+<meta property="og:url" content="https://menufyjp.com/">
 <meta property="og:image" content="https://menufyjp.com/ogp.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="fb:app_id" content="1487897909710082">
 
 <!-- Twitter Card -->
@@ -295,7 +300,7 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   "@type": "Organization",
   "name": "Menufy",
   "url": "https://menufyjp.com",
-  "logo": "https://menufyjp.com/ogp.png",
+  "logo": "https://menufyjp.com/icon-512.png",
   "sameAs": ["https://www.instagram.com/menufy_translator/"]
 }
 </script>
@@ -445,7 +450,7 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     <a href="/tripfy/" class="nlink">Tripfy</a>
     <a href="/en/" class="nlink" aria-label="English">English</a>
   </div>
-  <a href="#cta" class="ncta" onclick="fbq('trackCustom','NavCtaClick')">アプリを入手</a>
+  <a href="#cta" class="ncta">アプリを入手</a>
   <button class="mmenu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mmenu"><span></span></button>
 </nav>
 
@@ -458,7 +463,7 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   <a href="#faq" data-mmenu-link>よくある質問</a>
   <a href="/tripfy/" data-mmenu-link>Tripfy</a>
   <a href="/en/" data-mmenu-link>English</a>
-  <a href="#cta" data-mmenu-link class="btn-primary" onclick="fbq('trackCustom','MobileMenuCtaClick')">アプリを入手</a>
+  <a href="#cta" data-mmenu-link class="btn-primary">アプリを入手</a>
 </div>
 
 <div class="sticky-cta" id="sticky-cta" hidden>
@@ -506,7 +511,7 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     barBtn.href = target;
     barBtn.textContent = isIOS ? 'App Storeで入手' : 'Google Playで入手';
     barBtn.addEventListener('click', function(){
-      try { fbq('track','InitiateCheckout',{content_name: isIOS ? 'AppStore_StickyBar' : 'GooglePlay_StickyBar'}); } catch(_){}
+      try { fbq('track','InitiateCheckout',{content_name:'sticky',content_category: isIOS ? 'AppStore' : 'GooglePlay'}); } catch(_){}
     });
     document.addEventListener('DOMContentLoaded', function(){
       var heroPassed = false, visible = {};
@@ -526,7 +531,7 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     if (!link.classList.contains('ncta') && !link.hasAttribute('data-mmenu-link')) return;
     link.addEventListener('click', function(e){
       e.preventDefault();
-      try { fbq('track','InitiateCheckout',{content_name: isIOS ? 'AppStore_SmartNav' : 'GooglePlay_SmartNav'}); } catch(_){}
+      try { fbq('track','InitiateCheckout',{content_name:'smartnav',content_category: isIOS ? 'AppStore' : 'GooglePlay'}); } catch(_){}
       window.location.href = target;
     });
   });
@@ -541,8 +546,8 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     <p class="hdesc">撮るだけで、料理の名前・説明・値段があなたの言葉に。アレルギーの警告、店員に見せる注文票、会計のチェックまで。旅先の食事の不安を、ぜんぶ引き受けます。</p>
     <div class="hactions">
       <a href="#cta" class="btn-primary"><span style="display:inline-flex;width:20px;height:20px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>無料でダウンロード</a>
-      <a href="https://apps.apple.com/app/id6760161339" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_Hero'})"><svg width="22" height="22" viewBox="0 0 24 24" fill="#3B2C26"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="sub">Download on the</span><span class="main">App Store</span></div></a>
-      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'GooglePlay_Hero'})"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35"/><path fill="#34A853" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27"/><path fill="#EA4335" d="M20.16 10.81c.35.2.59.58.59 1.19s-.24.98-.59 1.19l-2.29 1.32L15.39 12l2.48-2.48 2.29 1.29"/><path fill="#FBBC04" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></svg><div><span class="sub">Get it on</span><span class="main">Google Play</span></div></a>
+      <a href="https://apps.apple.com/app/id6760161339" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'hero',content_category:'AppStore'})"><svg width="22" height="22" viewBox="0 0 24 24" fill="#3B2C26"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="sub">Download on the</span><span class="main">App Store</span></div></a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'hero',content_category:'GooglePlay'})"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35"/><path fill="#34A853" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27"/><path fill="#EA4335" d="M20.16 10.81c.35.2.59.58.59 1.19s-.24.98-.59 1.19l-2.29 1.32L15.39 12l2.48-2.48 2.29 1.29"/><path fill="#FBBC04" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></svg><div><span class="sub">Get it on</span><span class="main">Google Play</span></div></a>
     </div>
     <div class="hmeta"><span>14言語</span><span>·</span><span>買い切り・サブスクなし</span><span>·</span><span>まず5回無料</span></div>
   </div>
@@ -732,8 +737,8 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
       <div class="pprice-jpy">$2.99</div>
       <div class="pdivider"></div>
       <div class="pfeature"><span class="pcheck">✓</span>翻訳と会計チェック 25回分</div><div class="pfeature"><span class="pcheck">✓</span>為替換算・おすすめ・注文票</div><div class="pfeature"><span class="pcheck">✓</span>翻訳履歴 無制限</div><div class="pfeature"><span class="pcheck">✓</span>保存・共有・旅カード</div>
-      <a href="https://apps.apple.com/app/id6760161339" class="pbtn pbtn-outline" target="_blank" onclick="fbq('trackCustom','ClickStarterPack');fbq('track','InitiateCheckout',{content_name:'StarterPack',value:2.99,currency:'USD'})">App Storeで入手</a>
-      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn pbtn-outline" target="_blank" onclick="fbq('trackCustom','ClickStarterPack_GP');fbq('track','InitiateCheckout',{content_name:'StarterPack_Android',value:2.99,currency:'USD'})">Google Playで入手</a>
+      <a href="https://apps.apple.com/app/id6760161339" class="pbtn pbtn-outline" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'pricing_starter',content_category:'AppStore'})">App Storeで入手</a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn pbtn-outline" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'pricing_starter',content_category:'GooglePlay'})">Google Playで入手</a>
     </div>
     <div class="pcard pcard-featured">
       <div class="pbadge-feat">人気</div>
@@ -744,8 +749,8 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
       <div class="pprice-jpy">$6.99</div>
       <div class="pdivider"></div>
       <div class="pfeature"><span class="pcheck">✓</span>翻訳と会計チェック 150回分</div><div class="pfeature"><span class="pcheck">✓</span>為替換算・おすすめ・注文票</div><div class="pfeature"><span class="pcheck">✓</span>翻訳履歴 無制限</div><div class="pfeature"><span class="pcheck">✓</span>保存・共有・旅カード</div>
-      <a href="https://apps.apple.com/app/id6760161339" class="pbtn" target="_blank" onclick="fbq('trackCustom','ClickTravelerPack');fbq('track','InitiateCheckout',{content_name:'TravelerPack',value:6.99,currency:'USD'})">App Storeで入手</a>
-      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn" target="_blank" onclick="fbq('trackCustom','ClickTravelerPack_GP');fbq('track','InitiateCheckout',{content_name:'TravelerPack_Android',value:6.99,currency:'USD'})">Google Playで入手</a>
+      <a href="https://apps.apple.com/app/id6760161339" class="pbtn" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'pricing_traveler',content_category:'AppStore'})">App Storeで入手</a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'pricing_traveler',content_category:'GooglePlay'})">Google Playで入手</a>
     </div>
     <div class="pcard">
       
@@ -756,8 +761,8 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
       <div class="pprice-jpy">$14.99</div>
       <div class="pdivider"></div>
       <div class="pfeature"><span class="pcheck">✓</span>翻訳と会計チェック 400回分</div><div class="pfeature"><span class="pcheck">✓</span>為替換算・おすすめ・注文票</div><div class="pfeature"><span class="pcheck">✓</span>翻訳履歴 無制限</div><div class="pfeature"><span class="pcheck">✓</span>保存・共有・旅カード</div>
-      <a href="https://apps.apple.com/app/id6760161339" class="pbtn pbtn-outline" target="_blank" onclick="fbq('trackCustom','ClickExplorerPack');fbq('track','InitiateCheckout',{content_name:'ExplorerPack',value:14.99,currency:'USD'})">App Storeで入手</a>
-      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn pbtn-outline" target="_blank" onclick="fbq('trackCustom','ClickExplorerPack_GP');fbq('track','InitiateCheckout',{content_name:'ExplorerPack_Android',value:14.99,currency:'USD'})">Google Playで入手</a>
+      <a href="https://apps.apple.com/app/id6760161339" class="pbtn pbtn-outline" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'pricing_explorer',content_category:'AppStore'})">App Storeで入手</a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="pbtn pbtn-outline" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'pricing_explorer',content_category:'GooglePlay'})">Google Playで入手</a>
     </div>
   </div>
   <p class="pfree-note">ダウンロードするだけで、まず<strong>5回</strong>体験できます。</p>
@@ -866,8 +871,8 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   <h2 class="cta-title">次の食事を、<br>もっと楽しく。</h2>
   <p class="cta-desc">まず5回、体験してみてください。<br>気に入ったら、旅のスタイルに合ったプランを選ぶだけ。</p>
   <div class="cta-actions">
-      <a href="https://apps.apple.com/app/id6760161339" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'AppStore_CTA'})"><svg width="22" height="22" viewBox="0 0 24 24" fill="#3B2C26"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="sub">Download on the</span><span class="main">App Store</span></div></a>
-      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'GooglePlay_CTA'})"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35"/><path fill="#34A853" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27"/><path fill="#EA4335" d="M20.16 10.81c.35.2.59.58.59 1.19s-.24.98-.59 1.19l-2.29 1.32L15.39 12l2.48-2.48 2.29 1.29"/><path fill="#FBBC04" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></svg><div><span class="sub">Get it on</span><span class="main">Google Play</span></div></a>
+      <a href="https://apps.apple.com/app/id6760161339" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'cta',content_category:'AppStore'})"><svg width="22" height="22" viewBox="0 0 24 24" fill="#3B2C26"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="sub">Download on the</span><span class="main">App Store</span></div></a>
+      <a href="https://play.google.com/store/apps/details?id=com.menufy.app" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'cta',content_category:'GooglePlay'})"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35"/><path fill="#34A853" d="M16.81 15.12L6.05 21.34l8.49-8.49 2.27 2.27"/><path fill="#EA4335" d="M20.16 10.81c.35.2.59.58.59 1.19s-.24.98-.59 1.19l-2.29 1.32L15.39 12l2.48-2.48 2.29 1.29"/><path fill="#FBBC04" d="M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></svg><div><span class="sub">Get it on</span><span class="main">Google Play</span></div></a>
   </div>
 </section>
 
@@ -891,121 +896,17 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
 
 <script>
 (function(){
-  if(typeof fbq !== 'function') return;
-
-  /* 1. Section-level ViewContent tracking (fires once per section) */
-  var sectionMap = {
-    'how':          'ViewHow',
-    'screens':      'ViewScreens',
-    'features':     'ViewFeatures',
-    'why':          'ViewWhyMenufy',
-    'order':        'ViewOrderMode',
-    'pricing':      'ViewPricing',
-    'languages':    'ViewLanguages',
-    'faq':          'ViewFAQ'
-  };
-  var firedSections = {};
-  var sectionObserver = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(!entry.isIntersecting) return;
-      var id = entry.target.id;
-      if(firedSections[id]) return;
-      firedSections[id] = true;
-      var eventName = sectionMap[id];
-      if(eventName){
-        fbq('trackCustom', eventName);
-        /* Fire standard ViewContent for pricing (high-intent) so Meta can optimize */
-        if(id === 'pricing'){
-          fbq('track', 'ViewContent', {content_name:'Pricing', content_category:'pricing'});
-        }
-      }
-    });
-  }, {threshold: 0.35});
-  Object.keys(sectionMap).forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) sectionObserver.observe(el);
-  });
-
-  /* 2. Scroll depth tracking (25 / 50 / 75 / 90%) */
-  var depthsFired = {};
-  var depthEvents = [25, 50, 75, 90];
-  function checkScrollDepth(){
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if(docHeight <= 0) return;
-    var pct = Math.round((scrollTop / docHeight) * 100);
-    depthEvents.forEach(function(d){
-      if(pct >= d && !depthsFired[d]){
-        depthsFired[d] = true;
-        fbq('trackCustom', 'ScrollDepth_' + d);
-      }
-    });
-  }
-  var scrollTimeout;
-  window.addEventListener('scroll', function(){
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(checkScrollDepth, 200);
-  }, {passive:true});
-
-  /* 3. Time-on-page engagement signals */
-  setTimeout(function(){ fbq('trackCustom', 'Engaged_30s'); }, 30000);
-  setTimeout(function(){
-    fbq('trackCustom', 'Engaged_60s');
-    /* Standard Lead event = highly engaged visitor */
-    fbq('track', 'Lead', {content_name:'Engaged60s'});
-  }, 60000);
-
-  /* 4. FAQ toggle tracking */
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    item.addEventListener('toggle', function(){
-      if(item.open){
-        var q = item.querySelector('.faq-q');
-        var text = q ? q.textContent.trim().slice(0, 80) : 'unknown';
-        fbq('trackCustom', 'FAQOpen', {question: text});
-      }
-    });
-  });
-
-  /* 5. Nav link clicks */
-  document.querySelectorAll('nav .nlink').forEach(function(link){
-    link.addEventListener('click', function(){
-      var target = link.getAttribute('href') || '';
-      fbq('trackCustom', 'NavClick', {target: target});
-    });
-  });
-
-  /* 6. External link clicks (Instagram, App Store anywhere, etc.) */
-  document.querySelectorAll('a[target="_blank"]').forEach(function(link){
-    link.addEventListener('click', function(){
-      var href = link.href || '';
-      if(href.indexOf('apps.apple.com') !== -1) return; /* already tracked via InitiateCheckout */
-      if(href.indexOf('play.google.com') !== -1) return; /* already tracked via InitiateCheckout */
-      fbq('trackCustom', 'ExternalClick', {url: href.slice(0, 100)});
-    });
-  });
-
-  /* 7. Screenshots scroll engagement (signals high intent — user inspecting UI) */
+  /* Mouse wheel → horizontal scroll on the screenshots strip (scrollbar is hidden). */
   var screensEl = document.querySelector('.screens-scroll');
   if(screensEl){
-    var screensInteracted = false;
-    screensEl.addEventListener('scroll', function(){
-      if(screensInteracted) return;
-      screensInteracted = true;
-      fbq('trackCustom', 'ScreensInteracted');
-    }, {passive:true, once:true});
-
-    /* Mouse wheel → horizontal scroll. The scrollbar is hidden, so Windows
-       mice otherwise have no way to scroll this strip (no touch, no swipe). */
     var snapTimer;
     screensEl.addEventListener('wheel', function(e){
-      if (e.deltaX !== 0) return; /* trackpad horizontal swipe works natively */
+      if (e.deltaX !== 0) return;
       var max = screensEl.scrollWidth - screensEl.clientWidth;
       if (max <= 0) return;
       var d = e.deltaY * (e.deltaMode === 1 ? 33 : 1);
-      /* at either end, let the page keep scrolling vertically */
       if ((d < 0 && screensEl.scrollLeft <= 0) || (d > 0 && screensEl.scrollLeft >= max - 1)) return;
       e.preventDefault();
-      /* suspend snap while wheeling so small ticks aren't bounced back */
       screensEl.style.scrollSnapType = 'none';
       screensEl.scrollLeft = Math.max(0, Math.min(max, screensEl.scrollLeft + d));
       clearTimeout(snapTimer);
@@ -1013,8 +914,23 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     }, {passive:false});
   }
 
-  /* 8. Hero CTA visibility (fires immediately, used as baseline ViewContent) */
-  fbq('track', 'ViewContent', {content_name:'LandingPage', content_category:'landing'});
+  /* Meta Pixel — deliberately small:
+     PageView (head) → ViewContent when the pricing section is seen → InitiateCheckout on a store click.
+     One custom "Engaged" after 30s for retargeting audiences. Nothing else. */
+  if(typeof fbq !== 'function') return;
+  var pricing = document.getElementById('pricing');
+  if(pricing && 'IntersectionObserver' in window){
+    var seen = false;
+    var io = new IntersectionObserver(function(entries){
+      if(seen) return;
+      if(entries.some(function(e){ return e.isIntersecting; })){
+        seen = true; io.disconnect();
+        fbq('track', 'ViewContent', {content_name: 'pricing', content_category: 'landing'});
+      }
+    }, {threshold: 0.35});
+    io.observe(pricing);
+  }
+  setTimeout(function(){ fbq('trackCustom', 'Engaged', {seconds: 30}); }, 30000);
 })();
 </script>
 

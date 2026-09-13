@@ -266,8 +266,8 @@ APP_STORE = "https://apps.apple.com/app/id6760161339"
 PLAY_STORE = "https://play.google.com/store/apps/details?id=com.menufy.app"
 
 def store_buttons(where, T, cls="btn-store"):
-    return f'''<a href="{APP_STORE}" class="{cls}" target="_blank" onclick="fbq('track','InitiateCheckout',{{content_name:'AppStore_{where}'}})">{APPLE_SVG}<div><span class="sub">{T['dl_sub_ios']}</span><span class="main">App Store</span></div></a>
-      <a href="{PLAY_STORE}" class="{cls}" target="_blank" onclick="fbq('track','InitiateCheckout',{{content_name:'GooglePlay_{where}'}})">{PLAY_SVG}<div><span class="sub">{T['dl_sub_play']}</span><span class="main">Google Play</span></div></a>'''
+    return f'''<a href="{APP_STORE}" class="{cls}" target="_blank" onclick="fbq('track','InitiateCheckout',{{content_name:'{where.lower()}',content_category:'AppStore'}})">{APPLE_SVG}<div><span class="sub">{T['dl_sub_ios']}</span><span class="main">App Store</span></div></a>
+      <a href="{PLAY_STORE}" class="{cls}" target="_blank" onclick="fbq('track','InitiateCheckout',{{content_name:'{where.lower()}',content_category:'GooglePlay'}})">{PLAY_SVG}<div><span class="sub">{T['dl_sub_play']}</span><span class="main">Google Play</span></div></a>'''
 
 def build(lang):
     T = COPY[lang]
@@ -276,8 +276,7 @@ def build(lang):
     head = src[:src.index('</head>')]
     # swap fonts, favicon, theme-color, style
     head = re.sub(r'<link rel="preconnect" href="https://fonts.googleapis.com">\s*<link href="https://fonts.googleapis.com[^>]*>', FONTS, head)
-    head = re.sub(r'(<link rel="icon" type="image/svg\+xml" href=")[^"]*(")', lambda m: m.group(1)+FAVICON+m.group(2), head)
-    head = re.sub(r'(<link rel="apple-touch-icon" href=")[^"]*(")', lambda m: m.group(1)+FAVICON+m.group(2), head)
+    # favicon/apple-touch-icon/manifest are real files at the site root (2026-09-13); left untouched
     head = head.replace('<meta name="theme-color" content="#f05a28">', '<meta name="theme-color" content="#FF6B47">')
     head = re.sub(r'<style>.*?</style>', '<style>'+CSS+'</style>', head, flags=re.S)
     # FAQ JSON-LD: add the two new questions
@@ -317,7 +316,7 @@ def build(lang):
     <a href="{T['tripfy_href']}" class="nlink">Tripfy</a>
     <a href="{T['alt_href']}" class="nlink" aria-label="{T['alt_label']}">{T['alt_label']}</a>
   </div>
-  <a href="#cta" class="ncta" onclick="fbq('trackCustom','NavCtaClick')">{T['nav_cta']}</a>
+  <a href="#cta" class="ncta">{T['nav_cta']}</a>
   <button class="mmenu-btn" aria-label="{T['menu_open']}" aria-expanded="false" aria-controls="mmenu"><span></span></button>
 </nav>
 
@@ -330,7 +329,7 @@ def build(lang):
   <a href="#faq" data-mmenu-link>{T['nav_faq']}</a>
   <a href="{T['tripfy_href']}" data-mmenu-link>Tripfy</a>
   <a href="{T['alt_href']}" data-mmenu-link>{T['alt_label']}</a>
-  <a href="#cta" data-mmenu-link class="btn-primary" onclick="fbq('trackCustom','MobileMenuCtaClick')">{T['nav_cta']}</a>
+  <a href="#cta" data-mmenu-link class="btn-primary">{T['nav_cta']}</a>
 </div>
 
 <div class="sticky-cta" id="sticky-cta" hidden>
@@ -458,8 +457,8 @@ def build(lang):
       <div class="pprice-jpy">{usd}</div>
       <div class="pdivider"></div>
       {fl}
-      <a href="{APP_STORE}" class="{btn}" target="_blank" onclick="fbq('trackCustom','Click{key}');fbq('track','InitiateCheckout',{{content_name:'{key}',value:{value},currency:'USD'}})">{T['p_btn_ios']}</a>
-      <a href="{PLAY_STORE}" class="{btn}" target="_blank" onclick="fbq('trackCustom','Click{key}_GP');fbq('track','InitiateCheckout',{{content_name:'{key}_Android',value:{value},currency:'USD'}})">{T['p_btn_play']}</a>
+      <a href="{APP_STORE}" class="{btn}" target="_blank" onclick="fbq('track','InitiateCheckout',{{content_name:'pricing_{key.replace('Pack','').lower()}',content_category:'AppStore'}})">{T['p_btn_ios']}</a>
+      <a href="{PLAY_STORE}" class="{btn}" target="_blank" onclick="fbq('track','InitiateCheckout',{{content_name:'pricing_{key.replace('Pack','').lower()}',content_category:'GooglePlay'}})">{T['p_btn_play']}</a>
     </div>
 '''
     P = T['plans']
