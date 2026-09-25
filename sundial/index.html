@@ -39,15 +39,26 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0
 nav .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;color:#fff;text-decoration:none}
 nav .brand img{width:34px;height:34px;border-radius:10px}
 nav .lang a{text-decoration:none;color:#fff;opacity:.8;font-weight:700;font-size:13px}
-/* hero: night → dawn */
-.hero{background:linear-gradient(180deg,var(--deep) 0%,#2E3A66 35%,#6B5FA8 62%,#C98FB2 80%,#FFCF9A 100%);color:#fff;padding-bottom:70px}
-.hero .top{padding:34px 0 26px;display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}
-.hero h1{font-size:clamp(28px,4.4vw,50px);line-height:1.28;font-weight:900;letter-spacing:.01em}
-.hero p.lead{font-size:clamp(15px,1.7vw,18px);margin:16px 0 0;opacity:.92;max-width:560px}
-.hero .art{display:flex;justify-content:center}
-.hero .art img{width:min(300px,70%);filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+/* hero: anime dawn over the airport */
+.hero{position:relative;color:#fff;padding-bottom:70px;background:#1A2242 url(img/art_hero.jpg) center 35%/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,22,50,.78) 0%,rgba(18,22,50,.55) 45%,rgba(18,22,50,.15) 100%),linear-gradient(180deg,rgba(18,22,50,.35),rgba(18,22,50,0) 30%,rgba(18,22,50,.25) 100%)}
+.hero>.wrap{position:relative}
+.hero .top{padding:60px 0 34px;max-width:720px}
+.hero h1{font-size:clamp(30px,4.4vw,52px);line-height:1.25;font-weight:900;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero p.lead{font-size:clamp(15px,1.7vw,18px);margin:18px 0 0;opacity:.95;max-width:560px;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+/* bands with art */
+.band{position:relative;color:#fff;padding:90px 0;background:#1A2242 center/cover no-repeat}
+.band::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,22,50,.55),rgba(18,22,50,.65))}
+.band>.wrap{position:relative}
+.band.wing{background-image:url(img/art_wing.jpg)} .band.office{background-image:url(img/art_office.jpg)} .band.hotel{background-image:url(img/art_hotel.jpg)}
+.band .glass{background:rgba(255,255,255,.10);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:28px 30px;max-width:640px}
+.band h2{color:#fff} .band p{color:rgba(255,255,255,.92)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 8px}
+.metric{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:16px}
+.metric b{display:block;font-size:26px;font-weight:900;line-height:1.1} .metric span{font-size:13px;opacity:.9}
+.band .glass.wide{max-width:none}
 /* planner */
-.planner{background:#fff;color:var(--ink);border-radius:26px;padding:26px;box-shadow:0 30px 70px rgba(10,15,40,.35)}
+.planner{background:rgba(255,255,255,.96);color:var(--ink);border-radius:26px;padding:26px;box-shadow:0 30px 70px rgba(10,15,40,.45)}
 .planner h2{font-size:18px;font-weight:900;margin-bottom:4px}
 .planner .hint{font-size:13px;color:var(--soft);margin-bottom:16px}
 .form{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
@@ -91,7 +102,7 @@ summary{font-weight:900;cursor:pointer;font-size:15px} details p{font-size:14px;
 .shots figcaption{font-size:13px;color:var(--soft);margin-top:8px;text-align:center}
 footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-right:14px}
 @media(max-width:860px){
-  .hero .top{grid-template-columns:1fr;text-align:center} .hero p.lead{margin-left:auto;margin-right:auto} .hero .art img{width:min(200px,55%)}
+  .hero{background-position:60% 30%} .hero .top{padding-top:36px} .metrics{grid-template-columns:1fr}
   .form{grid-template-columns:1fr 1fr} .result{grid-template-columns:1fr}
   .grid3,.needle,.biz,.pledge ul{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr}
 }
@@ -110,7 +121,6 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
         <h1><span class="l-ja">出張の翌朝、<br>いつもの頭で会議に出る。</span><span class="l-en">Walk into the meeting<br>with your usual head.</span></h1>
         <p class="lead"><span class="l-ja">時差ぼけは着いてから治すものではなく、出発前から設計するもの。Sundial は体内時計の「針」を Apple Watch から毎朝推定し、いつ光を避け、いつ浴び、いつ食べるかを、その日の時刻表にします。</span><span class="l-en">Jet lag isn't something you fix after landing. It's something you design before departure. Sundial estimates your body clock's "needle" from Apple Watch every morning and turns it into a daily timetable: when to avoid light, when to seek it, when to eat.</span></p>
       </div>
-      <div class="art"><img src="img/chara_traveling.png" alt=""></div>
     </div>
 
     <div class="planner" id="planner">
@@ -140,21 +150,40 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
   </div>
 </header>
 
-<section>
+<section class="band wing">
   <div class="wrap">
-    <h2 class="sec"><span class="l-ja">なぜ「朝日を浴びる」だけでは足りないのか</span><span class="l-en">Why "get morning sun" isn't enough</span></h2>
-    <div class="needle">
-      <div>
-        <p class="sub" style="margin-bottom:14px"><span class="l-ja">体内時計には「針」があります。深部体温がいちばん低くなる時刻で、ふだんは起床の3時間ほど前。その前に浴びる光は針を遅らせ、後に浴びる光は針を早めます。</span><span class="l-en">Your body clock has a needle: the time your core temperature is lowest, usually about 3 hours before you wake. Light before it delays your clock; light after it advances it.</span></p>
-        <p class="sub" style="margin-bottom:14px"><span class="l-ja">東京からロサンゼルスへ飛ぶと、到着初日の針は現地の正午にあります。朝の散歩で浴びた光は「針の前」なので、時計を進めるどころか逆に遅らせ、順応を何日も長引かせます。正しいのは、午前は光を避け、正午を過ぎてから浴びること。</span><span class="l-en">Fly Tokyo to Los Angeles and on day one your needle sits at local noon. A morning walk puts light before the needle, so it delays your clock instead of advancing it, and adds days to your recovery. The right move: avoid light in the morning, seek it after noon.</span></p>
-        <p class="sub"><span class="l-ja">Sundial はこの針を毎朝推定し、光・食事・運動・入浴・就寝の5行の時刻表を出します。針が合った日は、何も言いません。</span><span class="l-en">Sundial estimates the needle every morning and gives you a five-line timetable: light, meals, exercise, bath, bedtime. On days the needle is aligned, it says nothing.</span></p>
-      </div>
-      <img class="l-ja" src="img/today_drift_ja.jpg" alt="Sundial 今日の画面"><img class="l-en" src="img/today_drift_en.jpg" alt="Sundial today screen">
+    <div class="glass">
+      <h2 class="sec"><span class="l-ja">なぜ「朝日を浴びる」だけでは足りないのか</span><span class="l-en">Why "get morning sun" isn't enough</span></h2>
+      <p style="font-size:15px;margin-bottom:12px"><span class="l-ja">体内時計には「針」があります。深部体温がいちばん低くなる時刻で、ふだんは起床の3時間ほど前。その前に浴びる光は針を遅らせ、後に浴びる光は針を早めます。</span><span class="l-en">Your body clock has a needle: the time your core temperature is lowest, usually about 3 hours before you wake. Light before it delays your clock; light after it advances it.</span></p>
+      <p style="font-size:15px;margin-bottom:12px"><span class="l-ja">東京からロサンゼルスへ飛ぶと、到着初日の針は現地の正午にあります。朝の散歩で浴びた光は「針の前」なので、時計を進めるどころか逆に遅らせ、順応を何日も長引かせます。正しいのは、午前は光を避け、正午を過ぎてから浴びること。</span><span class="l-en">Fly Tokyo to Los Angeles and on day one your needle sits at local noon. A morning walk puts light before the needle, so it delays your clock instead of advancing it, and adds days to your recovery. The right move: avoid light in the morning, seek it after noon.</span></p>
+      <p style="font-size:15px"><span class="l-ja">Sundial はこの針を毎朝 Apple Watch から推定し、光・食事・運動・入浴・就寝の5行の時刻表を出します。針が合った日は、何も言いません。</span><span class="l-en">Sundial estimates the needle every morning from Apple Watch and gives you a five-line timetable: light, meals, exercise, bath, bedtime. On days the needle is aligned, it says nothing.</span></p>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section>
+  <div class="wrap">
+    <div class="needle">
+      <img class="l-ja" src="img/today_drift_ja.jpg" alt="Sundial 今日の画面"><img class="l-en" src="img/today_drift_en.jpg" alt="Sundial today screen">
+      <div>
+        <h2 class="sec"><span class="l-ja">毎朝、針を測り直す</span><span class="l-en">Re-measured every morning</span></h2>
+        <p class="sub" style="margin-bottom:12px"><span class="l-ja">針の位置は人によって2時間ほど違い、日によっても動きます。Sundial は Apple Watch の睡眠と睡眠中の最低心拍の時刻から、あなた自身の針を毎朝推定し、その日の時刻表を引き直します。</span><span class="l-en">The needle differs by about 2 hours between people and moves day to day. Sundial estimates yours every morning from Apple Watch sleep and the timing of your lowest heart rate during sleep, and redraws the day's timetable.</span></p>
+        <p class="sub"><span class="l-ja">今日の計画は動かしません。明日の計画は前日18時に確定します。深夜に開いても、まだ前日の続きとして就寝の目安が見えます。出張者の生活に合わせた決めごとです。</span><span class="l-en">Today's plan never changes. Tomorrow's is fixed at 6 pm the day before. Open it at 1 am and you still see last night's bedtime. Rules made for people who travel.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band hotel">
+  <div class="wrap">
+    <div class="glass">
+      <h2 class="sec"><span class="l-ja">到着初日の朝、カーテンを開ける前に</span><span class="l-en">Before you open the curtains on day one</span></h2>
+      <p style="font-size:15px"><span class="l-ja">その朝の光を浴びるべきか、避けるべきかは、針がどこにあるかで決まります。Sundial は到着日の時刻表を現地時刻で出し、光を避ける時間にはサングラスを、浴びる時間には外へ出ることを勧めます。機内食は抜いて、現地の朝食を「最初の一口」に。</span><span class="l-en">Whether to seek or avoid that morning light depends on where your needle is. Sundial gives you arrival day in local time: sunglasses during the avoid window, outdoors during the seek window. Skip in-flight meals and make the local breakfast your "first bite".</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="wrap">
     <h2 class="sec"><span class="l-ja">出張の前後で、やること</span><span class="l-en">Before, during and after the trip</span></h2>
     <div class="grid3">
@@ -165,7 +194,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
   </div>
 </section>
 
-<section style="padding-top:0">
+<section>
   <div class="wrap">
     <h2 class="sec"><span class="l-ja">出張がない月も</span><span class="l-en">On the months you don't fly</span></h2>
     <p class="sub"><span class="l-ja">平日6時起床、週末は10時。この4時間の差は、毎週末4時間の時差のある土地へ飛んで月曜に帰ってくるのと同じです。Sundial はふだんの起床を基準に、ずれた朝だけ戻す時刻表を出します。朝7時に起きる人を前提にしないので、夜型の人も遅番の人も、そのままの生活が基準です。</span><span class="l-en">Up at 6 on weekdays, 10 on weekends: that four-hour gap is the same as flying four time zones every weekend and coming back on Monday. Sundial uses your own wake time as the baseline and only gives you a timetable on mornings you've drifted. It doesn't assume you wake at 7; night owls and late shifts keep their own life as the baseline.</span></p>
@@ -191,29 +220,27 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
   </div>
 </section>
 
-<section style="padding-top:0" id="biz">
+<section class="band office" id="biz">
   <div class="wrap">
-    <h2 class="sec"><span class="l-ja">出張者を抱える企業の方へ</span><span class="l-en">For companies with frequent travelers</span></h2>
-    <div class="biz">
-      <div>
-        <p class="sub" style="margin-bottom:14px"><span class="l-ja">メジャーリーグ4万6千試合の解析では、2時間以上の時差が残る試合で成績が明確に落ちていました（Song 2017）。鍛え抜かれた選手でそうなら、到着翌日の商談で判断力だけが普段どおりと考えるほうが不自然です。</span><span class="l-en">An analysis of 46,000 MLB games found performance clearly dropped in games with 2+ hours of residual jet lag (Song 2017). If elite athletes suffer, expecting normal judgment in a meeting the day after landing is the odd assumption.</span></p>
-        <ul>
-          <li><span class="l-ja">法人コードを社員に配るだけ。アカウント登録も個人情報の提出も要りません</span><span class="l-en">Hand out a company code. No accounts, no personal data</span></li>
-          <li><span class="l-ja">会社が見えるのは「有効化した人数」と「今月使った人数」だけ。個人の睡眠や予定は見えません</span><span class="l-en">The company sees only activation and monthly active counts. Never anyone's sleep or plans</span></li>
-          <li><span class="l-ja">出張規程に合わせた既定値（現地の起床時刻、準備日数）を配布</span><span class="l-en">Company defaults (local wake time, preparation days) distributed with the code</span></li>
-          <li><span class="l-ja">日本語・英語。席数単位の年額、請求書払い</span><span class="l-en">Japanese and English. Per-seat annual pricing, invoiced</span></li>
-        </ul>
+    <div class="glass wide">
+      <h2 class="sec"><span class="l-ja">出張者を抱える企業の方へ</span><span class="l-en">For companies with frequent travelers</span></h2>
+      <p style="font-size:15px;max-width:720px"><span class="l-ja">メジャーリーグ4万6千試合の解析では、2時間以上の時差が残る試合で成績が明確に落ちていました（Song 2017）。鍛え抜かれた選手でそうなら、到着翌日の商談で判断力だけが普段どおりと考えるほうが不自然です。Sundial の法人版は、その損失をどれだけ減らせたかを数字で示します。</span><span class="l-en">An analysis of 46,000 MLB games found performance clearly dropped with 2+ hours of residual jet lag (Song 2017). If elite athletes suffer, expecting normal judgment in a meeting the day after landing is the odd assumption. Sundial for companies shows, in numbers, how much of that loss you recovered.</span></p>
+      <div class="metrics">
+        <div class="metric"><b><span class="l-ja">事前調整率</span><span class="l-en">Prep rate</span></b><span><span class="l-ja">出張のうち、出発前に調整を始めた割合</span><span class="l-en">Share of trips where adjustment began before departure</span></span></div>
+        <div class="metric"><b><span class="l-ja">再同調日数</span><span class="l-en">Days to resync</span></b><span><span class="l-ja">現地時刻に合うまでの平均日数と、未使用時の推定との差</span><span class="l-en">Average days to local time, versus the estimate without the app</span></span></div>
+        <div class="metric"><b><span class="l-ja">削減人日・金額</span><span class="l-en">Person-days saved</span></b><span><span class="l-ja">減った時差ぼけ日数 × 出張件数 × 人件費。四半期ごとに</span><span class="l-en">Jet-lag days avoided × trips × daily cost, per quarter</span></span></div>
       </div>
-      <div class="box">
-        <b><span class="l-ja">導入のご相談</span><span class="l-en">Talk to us</span></b>
-        <p style="font-size:14px;color:var(--soft);margin-top:6px"><span class="l-ja">まずは数名での試用から。社内説明用の資料もお送りします。</span><span class="l-en">Start with a small pilot. We'll send materials for internal rollout.</span></p>
-        <a href="mailto:rh0426.thom@gmail.com?subject=Sundial%20%E6%B3%95%E4%BA%BA%E5%B0%8E%E5%85%A5%E3%81%AE%E7%9B%B8%E8%AB%87">rh0426.thom@gmail.com →</a>
-      </div>
+      <ul style="padding-left:20px;font-size:14.5px;margin:10px 0 14px">
+        <li><span class="l-ja">会社が受け取るのは、出張ごとの匿名のサマリーを集計した数字だけ。個人の睡眠・針・予定・日付は届きません。5人未満の集計は表示しません</span><span class="l-en">The company receives only aggregates of anonymous per-trip summaries. No one's sleep, needle, plans or dates. Groups under 5 are never shown</span></li>
+        <li><span class="l-ja">送るかどうかは社員本人が選びます。オフでも法人版の他の機能は使えます</span><span class="l-en">Each employee chooses whether to send. Everything else works with it off</span></li>
+        <li><span class="l-ja">法人コードを配るだけ。アカウント登録なし。出張規程に合わせた既定値を配布。日本語・英語。席数単位の年額、請求書払い</span><span class="l-en">Hand out a company code. No accounts. Company defaults distributed with it. Japanese and English. Per-seat annual pricing, invoiced</span></li>
+      </ul>
+      <a class="cta" style="margin-top:4px" href="mailto:rh0426.thom@gmail.com?subject=Sundial%20%E6%B3%95%E4%BA%BA%E5%B0%8E%E5%85%A5%E3%81%AE%E7%9B%B8%E8%AB%87"><span class="l-ja">導入のご相談（数名の試用から）</span><span class="l-en">Talk to us (start with a small pilot)</span></a>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section>
   <div class="wrap">
     <h2 class="sec"><span class="l-ja">よくある質問</span><span class="l-en">FAQ</span></h2>
     <details><summary><span class="l-ja">Apple Watch は必須ですか？</span><span class="l-en">Do I need an Apple Watch?</span></summary><p><span class="l-ja">推奨です。針の推定には Watch の睡眠と睡眠中の心拍を使います。無くても、ふだんの起床時刻を入れれば時刻表は出ます。</span><span class="l-en">Recommended. The needle is estimated from Watch sleep and heart rate during sleep. Without one, enter your usual wake time and the timetable still works.</span></p></details>
