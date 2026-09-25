@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sundial — 体内時計の針を、光で合わせる</title>
+<meta name="description" content="旅行・シフト変更・週末の寝坊。Apple Watch の睡眠と心拍から体内時計の「針」を推定し、目標との差だけを扱う無料アプリ。合っている日は何も言いません。">
+<meta property="og:title" content="Sundial — 体内時計の針を、光で合わせる">
+<meta property="og:description" content="旅行・シフト変更・週末の寝坊を、同じ1つの仕組みで。データは端末の外に出ません。">
+<meta property="og:image" content="https://menufyjp.com/sundial/img/ogp.png">
+<meta property="og:url" content="https://menufyjp.com/sundial/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#8E7CC3">
+<link rel="icon" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sundial",
+ "description":"体内時計の針を、行きたい時刻へそっと動かすアプリ",
+ "operatingSystem":"iOS","applicationCategory":"HealthApplication",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},
+ "author":{"@type":"Person","name":"Ryosuke Hoshino"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#FFF8F0;--card:#FFFFFF;--ink:#332E38;--soft:#736E78;--line:rgba(51,46,56,.10);
+  --dawn:#FFB88C;--sun:#FFCC5C;--sky:#6EC2E6;--dusk:#8E7CC3;--night:#243050;--leaf:#73B880;--berry:#EB7380;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html[lang=en] body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif}
+a{color:var(--dusk)}
+html:not([lang=en]) .l-en{display:none!important} html[lang=en] .l-ja{display:none!important}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+nav .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;color:var(--ink);text-decoration:none}
+nav .brand img{width:36px;height:36px;border-radius:10px}
+nav .lang{font-size:13px;color:var(--soft)} nav .lang a{text-decoration:none;color:var(--dusk);font-weight:700}
+/* hero */
+.hero{position:relative;background:linear-gradient(180deg,#5B5AA6 0%,#8E7CC3 30%,#F2B4C0 62%,#FFCF9A 85%,#FFF1D6 100%);color:#fff;border-radius:0 0 40px 40px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:56px 20px 0;min-height:520px}
+.hero h1{font-size:clamp(30px,4.6vw,52px);line-height:1.25;font-weight:900;text-shadow:0 2px 20px rgba(0,0,0,.15)}
+.hero p.lead{font-size:clamp(15px,1.8vw,19px);margin:18px 0 26px;opacity:.95;max-width:520px}
+.hero .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);font-weight:900;padding:14px 22px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(40,30,80,.25)}
+.hero .cta small{font-weight:700;color:var(--soft)}
+.hero .art{display:flex;justify-content:center;align-items:flex-end;height:100%}
+.hero .art img{width:min(360px,80%);filter:drop-shadow(0 20px 40px rgba(40,30,80,.35))}
+.hero .note{font-size:12.5px;color:var(--ink);opacity:.75;margin-top:12px;font-weight:700}
+/* sections */
+section{padding:64px 0}
+h2{font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1.4;margin-bottom:10px}
+.sub{color:var(--soft);font-size:15px;margin-bottom:28px;max-width:640px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.card .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:12px}
+.card h3{font-size:17px;font-weight:900;margin-bottom:6px} .card p{font-size:14px;color:var(--soft)}
+/* needle explainer */
+.needle{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.needle img{width:min(320px,100%);border-radius:28px;box-shadow:0 20px 50px rgba(40,30,80,.18);justify-self:center}
+.rows{display:grid;gap:10px;margin-top:16px}
+.row{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.row .dot{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:17px}
+.row b{font-size:14px} .row span{font-size:13px;color:var(--soft);display:block}
+/* screens */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.shots figure img{width:100%;border-radius:22px;box-shadow:0 14px 34px rgba(40,30,80,.14)}
+.shots figcaption{font-size:13px;color:var(--soft);margin-top:8px;text-align:center}
+/* pledge */
+.pledge{background:var(--night);color:#fff;border-radius:30px;padding:36px}
+.pledge h2{color:#fff} .pledge ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;margin-top:8px}
+.pledge li{font-size:15px;padding-left:26px;position:relative} .pledge li::before{content:'✓';position:absolute;left:0;color:var(--sun);font-weight:900}
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:10px}
+summary{font-weight:900;cursor:pointer;font-size:15px} details p{font-size:14px;color:var(--soft);margin-top:8px}
+.evidence{font-size:12.5px;color:var(--soft);line-height:1.8}
+footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-right:14px}
+@media(max-width:820px){
+  .hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:40px;min-height:0}
+  .hero p.lead{margin-left:auto;margin-right:auto} .hero .art img{width:min(260px,70%)}
+  .grid3{grid-template-columns:1fr} .needle{grid-template-columns:1fr} .shots{grid-template-columns:repeat(2,1fr)} .pledge ul{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="brand" href="./"><img src="img/icon.png" alt="">Sundial</a>
+  <div class="lang"><a href="#" id="tolang">English</a></div>
+</nav>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1><span class="l-ja">体内時計の針を、<br>光で合わせる。</span><span class="l-en">Set your body clock<br>with light.</span></h1>
+      <p class="lead"><span class="l-ja">旅行、シフト変更、週末の寝坊。体内時計がずれる場面はどれも同じ問題です。Sundial は Apple Watch の睡眠と心拍から「針」の位置を推定し、目標との差だけを扱います。合っている日は、何も言いません。</span><span class="l-en">Trips, shift changes, weekend sleep-ins: your body clock drifts the same way each time. Sundial estimates your clock's "needle" from Apple Watch sleep and heart rate, and deals only with the gap. On aligned days, it says nothing.</span></p>
+      <a class="cta" id="cta" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a>
+      <p class="note"><span class="l-ja">Apple Watch 推奨。無くても基準の起床時刻を入れれば動きます。</span><span class="l-en">Apple Watch recommended. Works without one if you enter your usual wake time.</span></p>
+    </div>
+    <div class="art"><img src="img/chara_traveling.png" alt=""></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2><span class="l-ja">3つの場面、1つの仕組み</span><span class="l-en">Three situations, one mechanism</span></h2>
+    <p class="sub"><span class="l-ja">「いまの針」と「行きたい時刻」の差だけを見ます。差の出どころが違うだけで、やることは同じです。</span><span class="l-en">It only looks at the gap between where your needle is and where you want it. The source of the gap differs; the work is the same.</span></p>
+    <div class="grid3">
+      <div class="card"><div class="ico" style="background:#DFF1FA">✈️</div><h3><span class="l-ja">旅行</span><span class="l-en">Trips</span></h3><p><span class="l-ja">出発の数日前から寝起きを1日1歩ずつ。到着後は「光を浴びる時間」と「避ける時間」を現地の時刻で出します。東行きと西行きは別の作業です。</span><span class="l-en">Shift your sleep step by step for a few days before departure. After arrival, get windows for seeking and avoiding light in local time. Eastward and westward are different jobs.</span></p></div>
+      <div class="card"><div class="ico" style="background:#EDE7F8">🔁</div><h3><span class="l-ja">シフト変更</span><span class="l-en">Shift changes</span></h3><p><span class="l-ja">前のシフトの最終日から、休みの日を使って少しずつ。勤務時間を入れれば、仕事の日からでも早められます。</span><span class="l-en">From the last day of your old shift, use your days off to move gradually. Enter working hours and it can start on work days too.</span></p></div>
+      <div class="card"><div class="ico" style="background:#FFF1D6">☀️</div><h3><span class="l-ja">日常</span><span class="l-en">Daily life</span></h3><p><span class="l-ja">週末に寝坊して針が遅れた朝だけ、戻すための時刻表が出ます。合っている日は「今日は自由に」。</span><span class="l-en">Only on a morning your needle has drifted, you get a timetable to bring it back. On aligned days: "Today is free."</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap needle">
+    <div>
+      <h2><span class="l-ja">「針」とは</span><span class="l-en">What the needle is</span></h2>
+      <p class="sub"><span class="l-ja">深部体温がいちばん低くなる時刻です。その前に浴びる光は針を遅らせ、後に浴びる光は針を早めます。だから「朝日を浴びましょう」は、いつもの土地でいつもの時刻に起きている限りは正しく、旅先の朝や寝坊した休日には逆に働きます。Sundial はこの針を、Apple Watch の睡眠と睡眠中の心拍から推定します。</span><span class="l-en">The time your core body temperature is lowest. Light before it delays your clock; light after it advances it. So "get morning sun" is right at home on your usual schedule, and backwards on the first morning in a new time zone or after a sleep-in. Sundial estimates the needle from Apple Watch sleep and heart rate during sleep.</span></p>
+      <div class="rows">
+        <div class="row"><div class="dot" style="background:#FFE7A8">☀️</div><div><b><span class="l-ja">光を浴びる・避ける</span><span class="l-en">Seek and avoid light</span></b><span class="l-ja">針の位置から計算した、その日だけの時間帯</span><span class="l-en">Windows computed from the needle, for that day only</span></div></div>
+        <div class="row"><div class="dot" style="background:#FFD3C0">⏰</div><div><b><span class="l-ja">起床・就寝</span><span class="l-en">Wake and bedtime</span></b><span class="l-ja">1日1時間まで。無理に動かさない</span><span class="l-en">Up to an hour a day. Never forced</span></div></div>
+        <div class="row"><div class="dot" style="background:#FBD1D6">🍽️</div><div><b><span class="l-ja">最初と最後の一口</span><span class="l-en">First and last bite</span></b><span class="l-ja">内臓の時計は食事で合う</span><span class="l-en">Meals set your gut clock</span></div></div>
+        <div class="row"><div class="dot" style="background:#D8EEDB">🚶</div><div><b><span class="l-ja">運動の時間帯</span><span class="l-en">Exercise window</span></b><span class="l-ja">朝と午後は早める、夜は遅らせる</span><span class="l-en">Morning and afternoon advance; evening delays</span></div></div>
+        <div class="row"><div class="dot" style="background:#D4ECF8">🛁</div><div><b><span class="l-ja">入浴</span><span class="l-en">Bath</span></b><span class="l-ja">就寝90分前。眠りの入口を作る</span><span class="l-en">90 minutes before bed, to open the door to sleep</span></div></div>
+      </div>
+    </div>
+    <img class="l-ja" src="img/today_drift_ja.jpg" alt="Sundial 今日の画面"><img class="l-en" src="img/today_drift_en.jpg" alt="Sundial today screen">
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2><span class="l-ja">画面</span><span class="l-en">Screens</span></h2>
+    <div class="shots">
+      <figure><img class="l-ja" src="img/today_drift_ja.jpg" alt=""><img class="l-en" src="img/today_drift_en.jpg" alt=""><figcaption><span class="l-ja">針の位置と今日の時刻表</span><span class="l-en">Needle and today's timetable</span></figcaption></figure>
+      <figure><img class="l-ja" src="img/today_hold_ja.jpg" alt=""><img class="l-en" src="img/today_hold_en.jpg" alt=""><figcaption><span class="l-ja">合っている日は「今日は自由に」</span><span class="l-en">On aligned days: "Today is free"</span></figcaption></figure>
+      <figure><img class="l-ja" src="img/plans_ja.jpg" alt=""><img class="l-en" src="img/plans_en.jpg" alt=""><figcaption><span class="l-ja">旅行とシフトの予定</span><span class="l-en">Trips and shift plans</span></figcaption></figure>
+      <figure><img class="l-ja" src="img/trend_ja.jpg" alt=""><img class="l-en" src="img/trend_en.jpg" alt=""><figcaption><span class="l-ja">戻っていく様子</span><span class="l-en">Watch it come back</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="pledge">
+      <h2><span class="l-ja">データは端末の外に出ません</span><span class="l-en">Your data stays on your device</span></h2>
+      <ul>
+        <li><span class="l-ja">Apple Health は読み取りのみ。計算結果も iPhone の中だけ</span><span class="l-en">Apple Health is read-only; results stay on your iPhone</span></li>
+        <li><span class="l-ja">サーバーがありません。アカウントもありません</span><span class="l-en">No server. No account</span></li>
+        <li><span class="l-ja">広告なし。追跡なし。解析 SDK なし</span><span class="l-en">No ads, no tracking, no analytics SDKs</span></li>
+        <li><span class="l-ja">個人の方はすべての機能を無料で。応援課金は任意で、機能は変わりません</span><span class="l-en">Every feature is free for individuals. Tips are optional and unlock nothing</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2><span class="l-ja">よくある質問</span><span class="l-en">FAQ</span></h2>
+    <details><summary><span class="l-ja">Apple Watch は必須ですか？</span><span class="l-en">Do I need an Apple Watch?</span></summary><p><span class="l-ja">推奨です。針の推定には Watch の睡眠と睡眠中の心拍を使います。無くても、ふだんの起床時刻を入れれば時刻表は出ます。</span><span class="l-en">Recommended. The needle is estimated from Watch sleep and heart rate during sleep. Without one, enter your usual wake time and the timetable still works.</span></p></details>
+    <details><summary><span class="l-ja">夜型でも使えますか？</span><span class="l-en">I'm a night owl. Will it nag me?</span></summary><p><span class="l-ja">朝7時に起きる人を前提にしません。基準はあなた自身の直近14日の起床から学びます。遅番の人も、そのままの生活が基準です。</span><span class="l-en">It doesn't assume you wake at 7. Your baseline is learned from your own last 14 wake times. Late shifts keep their own life as the baseline.</span></p></details>
+    <details><summary><span class="l-ja">時差ぼけは治りますか？</span><span class="l-en">Will it cure jet lag?</span></summary><p><span class="l-ja">約束はできません。出発前3日の調整で体内時計を1〜2時間ほど動かせたという小規模な報告（Burgess 2003）が根拠で、残りは現地で1日1時間ずつです。Sundial は医療機器ではありません。</span><span class="l-en">No promises. The evidence is a small study where three days of pre-departure adjustment shifted the clock by 1–2 hours (Burgess 2003); the rest continues at about an hour a day after arrival. Sundial is not a medical device.</span></p></details>
+    <details><summary><span class="l-ja">根拠は？</span><span class="l-en">What's the evidence?</span></summary><p class="evidence"><span class="l-ja">針＝深部体温の谷は起床の3〜4.5時間前（Eastman &amp; Burgess 2009）。光の位相反応（Khalsa 2003）、運動の位相反応（Youngstedt 2019）、食事と末梢時計（Wehrens 2017）、出発前の調整（Burgess 2003）、睡眠の規則性と死亡率（Windred 2024）。</span><span class="l-en">Needle = core temperature trough, 3–4.5 h before waking (Eastman &amp; Burgess 2009). Light phase response (Khalsa 2003), exercise phase response (Youngstedt 2019), meals and peripheral clocks (Wehrens 2017), pre-flight adjustment (Burgess 2003), sleep regularity and mortality (Windred 2024).</span></p></details>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <a href="privacy.html"><span class="l-ja">プライバシーポリシー</span><span class="l-en">Privacy Policy</span></a>
+  <a href="mailto:rh0426.thom@gmail.com"><span class="l-ja">お問い合わせ</span><span class="l-en">Contact</span></a>
+  <span>© 2026 Ryosuke Hoshino</span>
+</div></footer>
+
+<script>
+// APP_STORE_URL: 公開後に URL を入れると CTA が本番リンクになる（地域指定なし＝各ユーザーの地域ストアで開く）
+const APP_STORE_URL = '';
+const cta = document.getElementById('cta');
+cta.addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(document.documentElement.lang === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
+function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English'; document.title = l === 'en' ? 'Sundial — Set your body clock with light' : 'Sundial — 体内時計の針を、光で合わせる'; }
+document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(document.documentElement.lang === 'en' ? 'ja' : 'en'); });
+const q = new URLSearchParams(location.search).get('lang');
+setLang(q === 'en' || (q !== 'ja' && !navigator.language.startsWith('ja')) ? 'en' : 'ja');
+</script>
+</body>
+</html>
