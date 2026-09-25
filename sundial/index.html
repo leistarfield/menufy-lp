@@ -3,143 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Sundial — 体内時計の針を、光で合わせる</title>
-<meta name="description" content="旅行・シフト変更・週末の寝坊。Apple Watch の睡眠と心拍から体内時計の「針」を推定し、目標との差だけを扱う無料アプリ。合っている日は何も言いません。">
-<meta property="og:title" content="Sundial — 体内時計の針を、光で合わせる">
-<meta property="og:description" content="旅行・シフト変更・週末の寝坊を、同じ1つの仕組みで。データは端末の外に出ません。">
+<title>Sundial — 出張の翌朝、いつもの頭で会議に出る</title>
+<meta name="description" content="次の出張の時差ぼけを、出発前から設計する。出発地・目的地・現地で起きたい時刻を入れるだけで、体内時計を何日かけてどちらへ動かすか、到着初日にいつ光を避けていつ浴びるかが分かります。Apple Watch で毎朝測り直す無料アプリ。">
+<meta property="og:title" content="Sundial — 出張の翌朝、いつもの頭で会議に出る">
+<meta property="og:description" content="次の出張の時差ぼけを、出発前から設計する。このページでその場で試せます。">
 <meta property="og:image" content="https://menufyjp.com/sundial/img/ogp.png">
 <meta property="og:url" content="https://menufyjp.com/sundial/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#8E7CC3">
-<link rel="icon" href="img/icon.png">
-<link rel="apple-touch-icon" href="img/icon.png">
+<meta name="theme-color" content="#243050">
+<link rel="icon" href="img/icon.png"><link rel="apple-touch-icon" href="img/icon.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sundial",
- "description":"体内時計の針を、行きたい時刻へそっと動かすアプリ",
+ "description":"出張の時差ぼけを出発前から設計する。体内時計の針を Apple Watch から推定し、光・食事・運動の時刻表を出すアプリ",
  "operatingSystem":"iOS","applicationCategory":"HealthApplication",
  "offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},
  "author":{"@type":"Person","name":"Ryosuke Hoshino"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --paper:#FFF8F0;--card:#FFFFFF;--ink:#332E38;--soft:#736E78;--line:rgba(51,46,56,.10);
-  --dawn:#FFB88C;--sun:#FFCC5C;--sky:#6EC2E6;--dusk:#8E7CC3;--night:#243050;--leaf:#73B880;--berry:#EB7380;
+  --paper:#FFF8F0;--card:#FFFFFF;--ink:#2B2733;--soft:#6F6A78;--line:rgba(43,39,51,.10);
+  --dawn:#FFB88C;--sun:#FFCC5C;--sky:#6EC2E6;--dusk:#8E7CC3;--night:#243050;--deep:#171F36;--leaf:#73B880;--berry:#EB7380;
 }
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'Zen Maru Gothic','Hiragino Maru Gothic ProN',sans-serif;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 html[lang=en] body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif}
 a{color:var(--dusk)}
 html:not([lang=en]) .l-en{display:none!important} html[lang=en] .l-ja{display:none!important}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-nav .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;color:var(--ink);text-decoration:none}
-nav .brand img{width:36px;height:36px;border-radius:10px}
-nav .lang{font-size:13px;color:var(--soft)} nav .lang a{text-decoration:none;color:var(--dusk);font-weight:700}
-/* hero */
-.hero{position:relative;background:linear-gradient(180deg,#5B5AA6 0%,#8E7CC3 30%,#F2B4C0 62%,#FFCF9A 85%,#FFF1D6 100%);color:#fff;border-radius:0 0 40px 40px;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:56px 20px 0;min-height:520px}
-.hero h1{font-size:clamp(30px,4.6vw,52px);line-height:1.25;font-weight:900;text-shadow:0 2px 20px rgba(0,0,0,.15)}
-.hero p.lead{font-size:clamp(15px,1.8vw,19px);margin:18px 0 26px;opacity:.95;max-width:520px}
-.hero .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);font-weight:900;padding:14px 22px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(40,30,80,.25)}
-.hero .cta small{font-weight:700;color:var(--soft)}
-.hero .art{display:flex;justify-content:center;align-items:flex-end;height:100%}
-.hero .art img{width:min(360px,80%);filter:drop-shadow(0 20px 40px rgba(40,30,80,.35))}
-.hero .note{font-size:12.5px;color:var(--ink);opacity:.75;margin-top:12px;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+nav .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;color:#fff;text-decoration:none}
+nav .brand img{width:34px;height:34px;border-radius:10px}
+nav .lang a{text-decoration:none;color:#fff;opacity:.8;font-weight:700;font-size:13px}
+/* hero: night → dawn */
+.hero{background:linear-gradient(180deg,var(--deep) 0%,#2E3A66 35%,#6B5FA8 62%,#C98FB2 80%,#FFCF9A 100%);color:#fff;padding-bottom:70px}
+.hero .top{padding:34px 0 26px;display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}
+.hero h1{font-size:clamp(28px,4.4vw,50px);line-height:1.28;font-weight:900;letter-spacing:.01em}
+.hero p.lead{font-size:clamp(15px,1.7vw,18px);margin:16px 0 0;opacity:.92;max-width:560px}
+.hero .art{display:flex;justify-content:center}
+.hero .art img{width:min(300px,70%);filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+/* planner */
+.planner{background:#fff;color:var(--ink);border-radius:26px;padding:26px;box-shadow:0 30px 70px rgba(10,15,40,.35)}
+.planner h2{font-size:18px;font-weight:900;margin-bottom:4px}
+.planner .hint{font-size:13px;color:var(--soft);margin-bottom:16px}
+.form{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--soft);margin-bottom:4px}
+.field select,.field input{width:100%;font:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#FAF7F2;color:var(--ink)}
+.result{margin-top:18px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.big{background:linear-gradient(135deg,#FFF1D6,#FFE0C2);border-radius:18px;padding:18px 20px}
+.big .dir{font-size:13px;color:var(--soft);font-weight:700}
+.big .num{font-size:clamp(28px,3.4vw,38px);font-weight:900;line-height:1.2;margin:2px 0 6px}
+.big .days{font-size:14px;color:var(--ink)}
+.big .warn{font-size:12.5px;color:#9A5A2E;margin-top:8px}
+.plan{display:grid;gap:8px}
+.plan .item{display:flex;gap:10px;align-items:flex-start;background:#FAF7F2;border-radius:14px;padding:10px 12px}
+.plan .item .ic{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:15px}
+.plan .item b{font-size:13.5px;display:block} .plan .item span{font-size:12.5px;color:var(--soft)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--night);color:#fff;font-weight:900;padding:14px 22px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(20,25,60,.3);margin-top:16px}
+.cta small{font-weight:700;opacity:.8}
+.planner .after{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:6px}
+.planner .after p{font-size:13px;color:var(--soft);max-width:520px}
 /* sections */
 section{padding:64px 0}
-h2{font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1.4;margin-bottom:10px}
-.sub{color:var(--soft);font-size:15px;margin-bottom:28px;max-width:640px}
+h2.sec{font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1.4;margin-bottom:10px}
+.sub{color:var(--soft);font-size:15px;margin-bottom:28px;max-width:660px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
 .card .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:12px}
 .card h3{font-size:17px;font-weight:900;margin-bottom:6px} .card p{font-size:14px;color:var(--soft)}
-/* needle explainer */
-.needle{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.needle img{width:min(320px,100%);border-radius:28px;box-shadow:0 20px 50px rgba(40,30,80,.18);justify-self:center}
-.rows{display:grid;gap:10px;margin-top:16px}
-.row{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
-.row .dot{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:17px}
-.row b{font-size:14px} .row span{font-size:13px;color:var(--soft);display:block}
-/* screens */
-.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.shots figure img{width:100%;border-radius:22px;box-shadow:0 14px 34px rgba(40,30,80,.14)}
-.shots figcaption{font-size:13px;color:var(--soft);margin-top:8px;text-align:center}
-/* pledge */
+.needle{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.needle img{width:min(300px,100%);border-radius:28px;box-shadow:0 20px 50px rgba(40,30,80,.18);justify-self:center}
 .pledge{background:var(--night);color:#fff;border-radius:30px;padding:36px}
 .pledge h2{color:#fff} .pledge ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;margin-top:8px}
 .pledge li{font-size:15px;padding-left:26px;position:relative} .pledge li::before{content:'✓';position:absolute;left:0;color:var(--sun);font-weight:900}
-/* faq */
+.biz{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.biz ul{padding-left:20px;font-size:14.5px;color:var(--ink)} .biz li{margin-bottom:6px}
+.biz .box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.biz .box a{display:inline-block;margin-top:10px;font-weight:900}
 details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:10px}
 summary{font-weight:900;cursor:pointer;font-size:15px} details p{font-size:14px;color:var(--soft);margin-top:8px}
-.evidence{font-size:12.5px;color:var(--soft);line-height:1.8}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shots img{width:100%;border-radius:22px;box-shadow:0 14px 34px rgba(40,30,80,.14)}
+.shots figcaption{font-size:13px;color:var(--soft);margin-top:8px;text-align:center}
 footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-right:14px}
-@media(max-width:820px){
-  .hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:40px;min-height:0}
-  .hero p.lead{margin-left:auto;margin-right:auto} .hero .art img{width:min(260px,70%)}
-  .grid3{grid-template-columns:1fr} .needle{grid-template-columns:1fr} .shots{grid-template-columns:repeat(2,1fr)} .pledge ul{grid-template-columns:1fr}
+@media(max-width:860px){
+  .hero .top{grid-template-columns:1fr;text-align:center} .hero p.lead{margin-left:auto;margin-right:auto} .hero .art img{width:min(200px,55%)}
+  .form{grid-template-columns:1fr 1fr} .result{grid-template-columns:1fr}
+  .grid3,.needle,.biz,.pledge ul{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr}
 }
+@media(max-width:480px){.form{grid-template-columns:1fr}.shots{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<nav>
-  <a class="brand" href="./"><img src="img/icon.png" alt="">Sundial</a>
-  <div class="lang"><a href="#" id="tolang">English</a></div>
-</nav>
-</div>
-
 <header class="hero">
   <div class="wrap">
-    <div>
-      <h1><span class="l-ja">体内時計の針を、<br>光で合わせる。</span><span class="l-en">Set your body clock<br>with light.</span></h1>
-      <p class="lead"><span class="l-ja">旅行、シフト変更、週末の寝坊。体内時計がずれる場面はどれも同じ問題です。Sundial は Apple Watch の睡眠と心拍から「針」の位置を推定し、目標との差だけを扱います。合っている日は、何も言いません。</span><span class="l-en">Trips, shift changes, weekend sleep-ins: your body clock drifts the same way each time. Sundial estimates your clock's "needle" from Apple Watch sleep and heart rate, and deals only with the gap. On aligned days, it says nothing.</span></p>
-      <a class="cta" id="cta" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a>
-      <p class="note"><span class="l-ja">Apple Watch 推奨。無くても基準の起床時刻を入れれば動きます。</span><span class="l-en">Apple Watch recommended. Works without one if you enter your usual wake time.</span></p>
+    <nav>
+      <a class="brand" href="./"><img src="img/icon.png" alt="">Sundial</a>
+      <div class="lang"><a href="#" id="tolang">English</a></div>
+    </nav>
+    <div class="top">
+      <div>
+        <h1><span class="l-ja">出張の翌朝、<br>いつもの頭で会議に出る。</span><span class="l-en">Walk into the meeting<br>with your usual head.</span></h1>
+        <p class="lead"><span class="l-ja">時差ぼけは着いてから治すものではなく、出発前から設計するもの。Sundial は体内時計の「針」を Apple Watch から毎朝推定し、いつ光を避け、いつ浴び、いつ食べるかを、その日の時刻表にします。</span><span class="l-en">Jet lag isn't something you fix after landing. It's something you design before departure. Sundial estimates your body clock's "needle" from Apple Watch every morning and turns it into a daily timetable: when to avoid light, when to seek it, when to eat.</span></p>
+      </div>
+      <div class="art"><img src="img/chara_traveling.png" alt=""></div>
     </div>
-    <div class="art"><img src="img/chara_traveling.png" alt=""></div>
+
+    <div class="planner" id="planner">
+      <h2><span class="l-ja">次の出張を、いま設計してみる</span><span class="l-en">Design your next trip, right now</span></h2>
+      <p class="hint"><span class="l-ja">3つ入れるだけ。アプリと同じ計算です（体内時計の位置は「ふだんの起床の3時間前」で仮置き）。</span><span class="l-en">Three inputs. Same math as the app (your body clock is placed 3 hours before your usual wake time).</span></p>
+      <div class="form">
+        <div class="field"><label><span class="l-ja">出発地</span><span class="l-en">From</span></label><select id="from"></select></div>
+        <div class="field"><label><span class="l-ja">目的地</span><span class="l-en">To</span></label><select id="to"></select></div>
+        <div class="field"><label><span class="l-ja">出発日</span><span class="l-en">Departure</span></label><input type="date" id="date"></div>
+        <div class="field"><label><span class="l-ja">ふだんの起床</span><span class="l-en">Usual wake</span></label><input type="time" id="wake" value="07:00"></div>
+        <div class="field"><label><span class="l-ja">現地で起きたい時刻</span><span class="l-en">Wake time there</span></label><input type="time" id="want" value="07:00"></div>
+      </div>
+      <div class="result">
+        <div class="big">
+          <div class="dir" id="r-dir"></div>
+          <div class="num" id="r-num"></div>
+          <div class="days" id="r-days"></div>
+          <div class="warn" id="r-warn"></div>
+        </div>
+        <div class="plan" id="r-plan"></div>
+      </div>
+      <div class="after">
+        <p><span class="l-ja">実際の針は人によって2時間ほどずれます。アプリは Apple Watch の睡眠と睡眠中の心拍から毎朝測り直し、時刻表を引き直します。</span><span class="l-en">The real needle varies by about 2 hours between people. The app re-measures it every morning from Apple Watch sleep and heart rate, and redraws the timetable.</span></p>
+        <a class="cta" id="cta" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a>
+      </div>
+    </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <h2><span class="l-ja">3つの場面、1つの仕組み</span><span class="l-en">Three situations, one mechanism</span></h2>
-    <p class="sub"><span class="l-ja">「いまの針」と「行きたい時刻」の差だけを見ます。差の出どころが違うだけで、やることは同じです。</span><span class="l-en">It only looks at the gap between where your needle is and where you want it. The source of the gap differs; the work is the same.</span></p>
-    <div class="grid3">
-      <div class="card"><div class="ico" style="background:#DFF1FA">✈️</div><h3><span class="l-ja">旅行</span><span class="l-en">Trips</span></h3><p><span class="l-ja">出発の数日前から寝起きを1日1歩ずつ。到着後は「光を浴びる時間」と「避ける時間」を現地の時刻で出します。東行きと西行きは別の作業です。</span><span class="l-en">Shift your sleep step by step for a few days before departure. After arrival, get windows for seeking and avoiding light in local time. Eastward and westward are different jobs.</span></p></div>
-      <div class="card"><div class="ico" style="background:#EDE7F8">🔁</div><h3><span class="l-ja">シフト変更</span><span class="l-en">Shift changes</span></h3><p><span class="l-ja">前のシフトの最終日から、休みの日を使って少しずつ。勤務時間を入れれば、仕事の日からでも早められます。</span><span class="l-en">From the last day of your old shift, use your days off to move gradually. Enter working hours and it can start on work days too.</span></p></div>
-      <div class="card"><div class="ico" style="background:#FFF1D6">☀️</div><h3><span class="l-ja">日常</span><span class="l-en">Daily life</span></h3><p><span class="l-ja">週末に寝坊して針が遅れた朝だけ、戻すための時刻表が出ます。合っている日は「今日は自由に」。</span><span class="l-en">Only on a morning your needle has drifted, you get a timetable to bring it back. On aligned days: "Today is free."</span></p></div>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap needle">
-    <div>
-      <h2><span class="l-ja">「針」とは</span><span class="l-en">What the needle is</span></h2>
-      <p class="sub"><span class="l-ja">深部体温がいちばん低くなる時刻です。その前に浴びる光は針を遅らせ、後に浴びる光は針を早めます。だから「朝日を浴びましょう」は、いつもの土地でいつもの時刻に起きている限りは正しく、旅先の朝や寝坊した休日には逆に働きます。Sundial はこの針を、Apple Watch の睡眠と睡眠中の心拍から推定します。</span><span class="l-en">The time your core body temperature is lowest. Light before it delays your clock; light after it advances it. So "get morning sun" is right at home on your usual schedule, and backwards on the first morning in a new time zone or after a sleep-in. Sundial estimates the needle from Apple Watch sleep and heart rate during sleep.</span></p>
-      <div class="rows">
-        <div class="row"><div class="dot" style="background:#FFE7A8">☀️</div><div><b><span class="l-ja">光を浴びる・避ける</span><span class="l-en">Seek and avoid light</span></b><span class="l-ja">針の位置から計算した、その日だけの時間帯</span><span class="l-en">Windows computed from the needle, for that day only</span></div></div>
-        <div class="row"><div class="dot" style="background:#FFD3C0">⏰</div><div><b><span class="l-ja">起床・就寝</span><span class="l-en">Wake and bedtime</span></b><span class="l-ja">1日1時間まで。無理に動かさない</span><span class="l-en">Up to an hour a day. Never forced</span></div></div>
-        <div class="row"><div class="dot" style="background:#FBD1D6">🍽️</div><div><b><span class="l-ja">最初と最後の一口</span><span class="l-en">First and last bite</span></b><span class="l-ja">内臓の時計は食事で合う</span><span class="l-en">Meals set your gut clock</span></div></div>
-        <div class="row"><div class="dot" style="background:#D8EEDB">🚶</div><div><b><span class="l-ja">運動の時間帯</span><span class="l-en">Exercise window</span></b><span class="l-ja">朝と午後は早める、夜は遅らせる</span><span class="l-en">Morning and afternoon advance; evening delays</span></div></div>
-        <div class="row"><div class="dot" style="background:#D4ECF8">🛁</div><div><b><span class="l-ja">入浴</span><span class="l-en">Bath</span></b><span class="l-ja">就寝90分前。眠りの入口を作る</span><span class="l-en">90 minutes before bed, to open the door to sleep</span></div></div>
+    <h2 class="sec"><span class="l-ja">なぜ「朝日を浴びる」だけでは足りないのか</span><span class="l-en">Why "get morning sun" isn't enough</span></h2>
+    <div class="needle">
+      <div>
+        <p class="sub" style="margin-bottom:14px"><span class="l-ja">体内時計には「針」があります。深部体温がいちばん低くなる時刻で、ふだんは起床の3時間ほど前。その前に浴びる光は針を遅らせ、後に浴びる光は針を早めます。</span><span class="l-en">Your body clock has a needle: the time your core temperature is lowest, usually about 3 hours before you wake. Light before it delays your clock; light after it advances it.</span></p>
+        <p class="sub" style="margin-bottom:14px"><span class="l-ja">東京からロサンゼルスへ飛ぶと、到着初日の針は現地の正午にあります。朝の散歩で浴びた光は「針の前」なので、時計を進めるどころか逆に遅らせ、順応を何日も長引かせます。正しいのは、午前は光を避け、正午を過ぎてから浴びること。</span><span class="l-en">Fly Tokyo to Los Angeles and on day one your needle sits at local noon. A morning walk puts light before the needle, so it delays your clock instead of advancing it, and adds days to your recovery. The right move: avoid light in the morning, seek it after noon.</span></p>
+        <p class="sub"><span class="l-ja">Sundial はこの針を毎朝推定し、光・食事・運動・入浴・就寝の5行の時刻表を出します。針が合った日は、何も言いません。</span><span class="l-en">Sundial estimates the needle every morning and gives you a five-line timetable: light, meals, exercise, bath, bedtime. On days the needle is aligned, it says nothing.</span></p>
       </div>
+      <img class="l-ja" src="img/today_drift_ja.jpg" alt="Sundial 今日の画面"><img class="l-en" src="img/today_drift_en.jpg" alt="Sundial today screen">
     </div>
-    <img class="l-ja" src="img/today_drift_ja.jpg" alt="Sundial 今日の画面"><img class="l-en" src="img/today_drift_en.jpg" alt="Sundial today screen">
   </div>
 </section>
 
 <section style="padding-top:0">
   <div class="wrap">
-    <h2><span class="l-ja">画面</span><span class="l-en">Screens</span></h2>
+    <h2 class="sec"><span class="l-ja">出張の前後で、やること</span><span class="l-en">Before, during and after the trip</span></h2>
+    <div class="grid3">
+      <div class="card"><div class="ico" style="background:#FFF1D6">📅</div><h3><span class="l-ja">出発の3日前から</span><span class="l-en">Three days before</span></h3><p><span class="l-ja">寝起きを1日1時間ずつ目的地の方向へ。出発前に1〜2時間動かしておけば、現地で必要な日数がその分減ります。</span><span class="l-en">Shift sleep an hour a day toward the destination. Moving 1–2 hours before you leave is that many fewer days to adjust on site.</span></p></div>
+      <div class="card"><div class="ico" style="background:#DFF1FA">✈️</div><h3><span class="l-ja">機内と到着初日</span><span class="l-en">In flight and on arrival</span></h3><p><span class="l-ja">現地の夜にあたる時間だけ眠り、機内食は抜いて現地の朝食を「最初の一口」に。到着日は光を避ける時間と浴びる時間が現地時刻で出ます。</span><span class="l-en">Sleep only during local night, skip in-flight meals and make the local breakfast your "first bite". On arrival day you get light-avoid and light-seek windows in local time.</span></p></div>
+      <div class="card"><div class="ico" style="background:#EDE7F8">🏠</div><h3><span class="l-ja">帰国後も</span><span class="l-en">And after you're home</span></h3><p><span class="l-ja">崩れやすいのは帰ってきた後。いつもの生活時刻表に身体だけが追いつかない。帰りの便も同じ仕組みで、家の時刻に戻す時刻表を出します。</span><span class="l-en">The return is where people slip: your life resumes on schedule, your body doesn't. The trip home uses the same mechanism to bring you back to home time.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="sec"><span class="l-ja">出張がない月も</span><span class="l-en">On the months you don't fly</span></h2>
+    <p class="sub"><span class="l-ja">平日6時起床、週末は10時。この4時間の差は、毎週末4時間の時差のある土地へ飛んで月曜に帰ってくるのと同じです。Sundial はふだんの起床を基準に、ずれた朝だけ戻す時刻表を出します。朝7時に起きる人を前提にしないので、夜型の人も遅番の人も、そのままの生活が基準です。</span><span class="l-en">Up at 6 on weekdays, 10 on weekends: that four-hour gap is the same as flying four time zones every weekend and coming back on Monday. Sundial uses your own wake time as the baseline and only gives you a timetable on mornings you've drifted. It doesn't assume you wake at 7; night owls and late shifts keep their own life as the baseline.</span></p>
     <div class="shots">
-      <figure><img class="l-ja" src="img/today_drift_ja.jpg" alt=""><img class="l-en" src="img/today_drift_en.jpg" alt=""><figcaption><span class="l-ja">針の位置と今日の時刻表</span><span class="l-en">Needle and today's timetable</span></figcaption></figure>
       <figure><img class="l-ja" src="img/today_hold_ja.jpg" alt=""><img class="l-en" src="img/today_hold_en.jpg" alt=""><figcaption><span class="l-ja">合っている日は「今日は自由に」</span><span class="l-en">On aligned days: "Today is free"</span></figcaption></figure>
-      <figure><img class="l-ja" src="img/plans_ja.jpg" alt=""><img class="l-en" src="img/plans_en.jpg" alt=""><figcaption><span class="l-ja">旅行とシフトの予定</span><span class="l-en">Trips and shift plans</span></figcaption></figure>
+      <figure><img class="l-ja" src="img/plans_ja.jpg" alt=""><img class="l-en" src="img/plans_en.jpg" alt=""><figcaption><span class="l-ja">出張とシフトの予定</span><span class="l-en">Trips and shift plans</span></figcaption></figure>
       <figure><img class="l-ja" src="img/trend_ja.jpg" alt=""><img class="l-en" src="img/trend_en.jpg" alt=""><figcaption><span class="l-ja">戻っていく様子</span><span class="l-en">Watch it come back</span></figcaption></figure>
     </div>
   </div>
@@ -148,7 +180,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 <section style="padding-top:0">
   <div class="wrap">
     <div class="pledge">
-      <h2><span class="l-ja">データは端末の外に出ません</span><span class="l-en">Your data stays on your device</span></h2>
+      <h2 class="sec"><span class="l-ja">データは端末の外に出ません</span><span class="l-en">Your data stays on your device</span></h2>
       <ul>
         <li><span class="l-ja">Apple Health は読み取りのみ。計算結果も iPhone の中だけ</span><span class="l-en">Apple Health is read-only; results stay on your iPhone</span></li>
         <li><span class="l-ja">サーバーがありません。アカウントもありません</span><span class="l-en">No server. No account</span></li>
@@ -159,13 +191,35 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
   </div>
 </section>
 
+<section style="padding-top:0" id="biz">
+  <div class="wrap">
+    <h2 class="sec"><span class="l-ja">出張者を抱える企業の方へ</span><span class="l-en">For companies with frequent travelers</span></h2>
+    <div class="biz">
+      <div>
+        <p class="sub" style="margin-bottom:14px"><span class="l-ja">メジャーリーグ4万6千試合の解析では、2時間以上の時差が残る試合で成績が明確に落ちていました（Song 2017）。鍛え抜かれた選手でそうなら、到着翌日の商談で判断力だけが普段どおりと考えるほうが不自然です。</span><span class="l-en">An analysis of 46,000 MLB games found performance clearly dropped in games with 2+ hours of residual jet lag (Song 2017). If elite athletes suffer, expecting normal judgment in a meeting the day after landing is the odd assumption.</span></p>
+        <ul>
+          <li><span class="l-ja">法人コードを社員に配るだけ。アカウント登録も個人情報の提出も要りません</span><span class="l-en">Hand out a company code. No accounts, no personal data</span></li>
+          <li><span class="l-ja">会社が見えるのは「有効化した人数」と「今月使った人数」だけ。個人の睡眠や予定は見えません</span><span class="l-en">The company sees only activation and monthly active counts. Never anyone's sleep or plans</span></li>
+          <li><span class="l-ja">出張規程に合わせた既定値（現地の起床時刻、準備日数）を配布</span><span class="l-en">Company defaults (local wake time, preparation days) distributed with the code</span></li>
+          <li><span class="l-ja">日本語・英語。席数単位の年額、請求書払い</span><span class="l-en">Japanese and English. Per-seat annual pricing, invoiced</span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <b><span class="l-ja">導入のご相談</span><span class="l-en">Talk to us</span></b>
+        <p style="font-size:14px;color:var(--soft);margin-top:6px"><span class="l-ja">まずは数名での試用から。社内説明用の資料もお送りします。</span><span class="l-en">Start with a small pilot. We'll send materials for internal rollout.</span></p>
+        <a href="mailto:rh0426.thom@gmail.com?subject=Sundial%20%E6%B3%95%E4%BA%BA%E5%B0%8E%E5%85%A5%E3%81%AE%E7%9B%B8%E8%AB%87">rh0426.thom@gmail.com →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section style="padding-top:0">
   <div class="wrap">
-    <h2><span class="l-ja">よくある質問</span><span class="l-en">FAQ</span></h2>
+    <h2 class="sec"><span class="l-ja">よくある質問</span><span class="l-en">FAQ</span></h2>
     <details><summary><span class="l-ja">Apple Watch は必須ですか？</span><span class="l-en">Do I need an Apple Watch?</span></summary><p><span class="l-ja">推奨です。針の推定には Watch の睡眠と睡眠中の心拍を使います。無くても、ふだんの起床時刻を入れれば時刻表は出ます。</span><span class="l-en">Recommended. The needle is estimated from Watch sleep and heart rate during sleep. Without one, enter your usual wake time and the timetable still works.</span></p></details>
-    <details><summary><span class="l-ja">夜型でも使えますか？</span><span class="l-en">I'm a night owl. Will it nag me?</span></summary><p><span class="l-ja">朝7時に起きる人を前提にしません。基準はあなた自身の直近14日の起床から学びます。遅番の人も、そのままの生活が基準です。</span><span class="l-en">It doesn't assume you wake at 7. Your baseline is learned from your own last 14 wake times. Late shifts keep their own life as the baseline.</span></p></details>
-    <details><summary><span class="l-ja">時差ぼけは治りますか？</span><span class="l-en">Will it cure jet lag?</span></summary><p><span class="l-ja">約束はできません。出発前3日の調整で体内時計を1〜2時間ほど動かせたという小規模な報告（Burgess 2003）が根拠で、残りは現地で1日1時間ずつです。Sundial は医療機器ではありません。</span><span class="l-en">No promises. The evidence is a small study where three days of pre-departure adjustment shifted the clock by 1–2 hours (Burgess 2003); the rest continues at about an hour a day after arrival. Sundial is not a medical device.</span></p></details>
-    <details><summary><span class="l-ja">根拠は？</span><span class="l-en">What's the evidence?</span></summary><p class="evidence"><span class="l-ja">針＝深部体温の谷は起床の3〜4.5時間前（Eastman &amp; Burgess 2009）。光の位相反応（Khalsa 2003）、運動の位相反応（Youngstedt 2019）、食事と末梢時計（Wehrens 2017）、出発前の調整（Burgess 2003）、睡眠の規則性と死亡率（Windred 2024）。</span><span class="l-en">Needle = core temperature trough, 3–4.5 h before waking (Eastman &amp; Burgess 2009). Light phase response (Khalsa 2003), exercise phase response (Youngstedt 2019), meals and peripheral clocks (Wehrens 2017), pre-flight adjustment (Burgess 2003), sleep regularity and mortality (Windred 2024).</span></p></details>
+    <details><summary><span class="l-ja">時差ぼけは治りますか？</span><span class="l-en">Will it cure jet lag?</span></summary><p><span class="l-ja">約束はできません。出発前3日の調整で体内時計を1〜2時間ほど動かせたという小規模な報告（Burgess 2003）が根拠で、残りは現地で1日1時間ずつです。Sundial は医療機器ではありません。</span><span class="l-en">No promises. The evidence is a small study where three days of pre-departure adjustment shifted the clock 1–2 hours (Burgess 2003); the rest continues at about an hour a day after arrival. Sundial is not a medical device.</span></p></details>
+    <details><summary><span class="l-ja">メラトニンは使いますか？</span><span class="l-en">Does it use melatonin?</span></summary><p><span class="l-ja">設定でオンにした人にだけ、針を動かす少量と寝つき用の時刻を出します。日本では医薬品扱いで市販されていないため、既定はオフです。</span><span class="l-en">Only if you turn it on: it then shows timing for a small clock-shifting dose and a sleep dose. Off by default, as it's a prescription medicine in Japan.</span></p></details>
+    <details><summary><span class="l-ja">根拠は？</span><span class="l-en">What's the evidence?</span></summary><p><span class="l-ja">針＝深部体温の谷は起床の3〜4.5時間前（Eastman &amp; Burgess 2009）。光の位相反応（Khalsa 2003）、運動の位相反応（Youngstedt 2019）、食事と末梢時計（Wehrens 2017）、出発前の調整（Burgess 2003）、時差と成績（Song 2017）。</span><span class="l-en">Needle = core temperature trough, 3–4.5 h before waking (Eastman &amp; Burgess 2009). Light phase response (Khalsa 2003), exercise phase response (Youngstedt 2019), meals and peripheral clocks (Wehrens 2017), pre-flight adjustment (Burgess 2003), jet lag and performance (Song 2017).</span></p></details>
   </div>
 </section>
 
@@ -176,12 +230,72 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 </div></footer>
 
 <script>
-// APP_STORE_URL: 公開後に URL を入れると CTA が本番リンクになる（地域指定なし＝各ユーザーの地域ストアで開く）
-const APP_STORE_URL = '';
-const cta = document.getElementById('cta');
-cta.addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(document.documentElement.lang === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
-function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English'; document.title = l === 'en' ? 'Sundial — Set your body clock with light' : 'Sundial — 体内時計の針を、光で合わせる'; }
-document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(document.documentElement.lang === 'en' ? 'ja' : 'en'); });
+// ---------- 言語 ----------
+const APP_STORE_URL = ''; // 公開後に入れる（地域指定なし）
+const L = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
+function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
+  document.title = l === 'en' ? 'Sundial — Walk into the meeting with your usual head' : 'Sundial — 出張の翌朝、いつもの頭で会議に出る'; fillCities(); render(); }
+document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(L() === 'en' ? 'ja' : 'en'); });
+document.getElementById('cta').addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
+
+// ---------- 都市 ----------
+const CITIES = [
+ ['Asia/Tokyo','東京','Tokyo'],['Asia/Seoul','ソウル','Seoul'],['Asia/Shanghai','上海・北京','Shanghai / Beijing'],['Asia/Hong_Kong','香港','Hong Kong'],['Asia/Taipei','台北','Taipei'],
+ ['Asia/Singapore','シンガポール','Singapore'],['Asia/Bangkok','バンコク','Bangkok'],['Asia/Kuala_Lumpur','クアラルンプール','Kuala Lumpur'],['Asia/Jakarta','ジャカルタ','Jakarta'],['Asia/Ho_Chi_Minh','ホーチミン','Ho Chi Minh City'],
+ ['Asia/Kolkata','ムンバイ・バンガロール','Mumbai / Bangalore'],['Asia/Dubai','ドバイ','Dubai'],
+ ['Europe/London','ロンドン','London'],['Europe/Paris','パリ','Paris'],['Europe/Berlin','フランクフルト・ベルリン','Frankfurt / Berlin'],['Europe/Amsterdam','アムステルダム','Amsterdam'],['Europe/Zurich','チューリッヒ','Zurich'],['Europe/Madrid','マドリード','Madrid'],
+ ['America/New_York','ニューヨーク','New York'],['America/Chicago','シカゴ・ダラス','Chicago / Dallas'],['America/Denver','デンバー','Denver'],['America/Los_Angeles','ロサンゼルス・サンフランシスコ','Los Angeles / San Francisco'],['America/Vancouver','バンクーバー','Vancouver'],['America/Toronto','トロント','Toronto'],
+ ['America/Mexico_City','メキシコシティ','Mexico City'],['America/Sao_Paulo','サンパウロ','São Paulo'],['Australia/Sydney','シドニー・メルボルン','Sydney / Melbourne'],['Pacific/Auckland','オークランド','Auckland'],['Pacific/Honolulu','ホノルル','Honolulu'],
+];
+function fillCities(){
+  for (const id of ['from','to']) {
+    const sel = document.getElementById(id); const cur = sel.value;
+    sel.innerHTML = CITIES.map(c => `<option value="${c[0]}">${L()==='en'?c[2]:c[1]}</option>`).join('');
+    sel.value = cur || (id === 'from' ? (Intl.DateTimeFormat().resolvedOptions().timeZone) : 'America/Los_Angeles');
+    if (!sel.value) sel.value = id === 'from' ? 'Asia/Tokyo' : 'America/Los_Angeles';
+  }
+}
+// ---------- 計算（アプリの ShiftPlanner / DayPlan と同じ） ----------
+const RATE = { advance: 1.0, delay: 1.5 }, TOL = 0.75, AMB = 10, PRE_DAYS = 3;
+const norm = h => ((h % 24) + 24) % 24; const wrap12 = h => { const x = norm(h); return x > 12 ? x - 24 : x; };
+function offsetMin(tz, date){ const p = Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:tz,hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(date).map(x=>[x.type,x.value]));
+  return (Date.UTC(+p.year, +p.month-1, +p.day, (+p.hour)%24, +p.minute) - date.getTime())/60000; }
+const fmt = h => { const n = norm(h); const m = Math.round(n*60); return String(Math.floor(m/60)%24).padStart(2,'0')+':'+String(m%60).padStart(2,'0'); };
+const dur = h => { const m = Math.round(Math.abs(h)*60), hh = Math.floor(m/60), mm = m%60; return L()==='en' ? (hh?`${hh} h`:'')+(mm?` ${mm} min`:'') : (hh?`${hh}時間`:'')+(mm?`${mm}分`:''); };
+const hm = s => { const [h,m] = s.split(':').map(Number); return h + m/60; };
+function assess(p, t){ let d = wrap12(t - p), amb = false; if (Math.abs(d) <= TOL) return {dir:'hold', delta:d, days:0, amb};
+  if (Math.abs(d) >= AMB) { amb = true; if (d < 0) d += 24; } const dir = d < 0 ? 'advance' : 'delay'; return {dir, delta:d, days:Math.ceil(Math.abs(d)/RATE[dir]), amb}; }
+function render(){
+  const from = document.getElementById('from').value, to = document.getElementById('to').value;
+  const dateEl = document.getElementById('date'); if (!dateEl.value) { const d = new Date(Date.now()+7*86400000); dateEl.value = d.toISOString().slice(0,10); }
+  const dep = new Date(dateEl.value + 'T12:00:00');
+  const wake = hm(document.getElementById('wake').value || '07:00'), want = hm(document.getElementById('want').value || '07:00');
+  const pHome = norm(wake - 3), pDest = norm(pHome + (offsetMin(to, dep) - offsetMin(from, dep))/60), t = norm(want - 3);
+  const a = assess(pDest, t); const en = L()==='en';
+  const dirEl = document.getElementById('r-dir'), numEl = document.getElementById('r-num'), daysEl = document.getElementById('r-days'), warn = document.getElementById('r-warn'), plan = document.getElementById('r-plan');
+  if (a.dir === 'hold') { dirEl.textContent = en ? 'Your clock' : '針'; numEl.textContent = en ? 'Already fits' : 'ほぼ合っています'; daysEl.textContent = en ? 'No adjustment needed for this route.' : 'この行程では動かす必要がありません。'; warn.textContent=''; plan.innerHTML=''; return; }
+  const adv = a.dir === 'advance';
+  dirEl.textContent = en ? (adv ? 'Advance your clock by' : 'Delay your clock by') : (adv ? '針を早める' : '針を遅らせる');
+  numEl.textContent = dur(a.delta);
+  const pre = Math.min(a.days, PRE_DAYS), startDate = new Date(dep.getTime() - pre*86400000);
+  const df = new Intl.DateTimeFormat(en?'en-US':'ja-JP',{month:'numeric',day:'numeric',weekday:'short'});
+  daysEl.textContent = en ? `${a.days} days at ${adv?'1 h':'1.5 h'} a day. Start on ${df.format(startDate)}, ${pre} days before departure; the rest continues after arrival.`
+                          : `1日${adv?'1時間':'1時間半'}なので${a.days}日。出発の${pre}日前、${df.format(startDate)} から始め、残りは現地で続けます。`;
+  warn.textContent = a.amb ? (en ? 'Large difference: advancing and delaying compete. Planning on the easier delay side.' : '時差が大きく、早める・遅らせるが競合します。扱いやすい「遅らせる」側で計画しています。')
+                    : (adv ? (en ? 'Eastward-type shift: the harder direction. Preparation before departure matters most here.' : '東行き型の調整です。身体は遅らせるより早めるのが苦手なので、出発前の準備がいちばん効きます。') : '');
+  // 到着初日の光の窓（現地時刻）: 針 P を基準に
+  const P = pDest; const seek = adv ? [P+0.5, P+5] : [P-7, P-0.5], avoid = adv ? [P-7, P-0.5] : [P+0.5, P+5];
+  const steps = []; for (let i = 1; i <= pre; i++) steps.push(fmt(wake + (adv ? -i : i)));
+  const items = [
+    ['🛌', en ? `Sleep before departure` : '出発前の寝起き', en ? `Wake ${steps.join(' → ')}, an hour a day toward ${adv?'earlier':'later'}.` : `起床を ${steps.join(' → ')} と1日1時間ずつ${adv?'早めて':'遅らせて'}いく。`],
+    ['🕶️', en ? `Arrival day: avoid light ${fmt(avoid[0])}–${fmt(avoid[1])}` : `到着初日: ${fmt(avoid[0])}〜${fmt(avoid[1])} は光を避ける`, en ? 'Sunglasses, indoors. Light here pushes your clock the wrong way.' : 'サングラス、室内。この時間の光は針を逆に動かします。'],
+    ['☀️', en ? `Arrival day: seek light ${fmt(seek[0])}–${fmt(seek[1])}` : `到着初日: ${fmt(seek[0])}〜${fmt(seek[1])} は外の光を浴びる`, en ? '15–30 minutes outdoors, not through a window.' : '屋外で15〜30分。窓越しではなく外へ。'],
+    ['🍽️', en ? 'First bite at local breakfast' : '最初の一口は現地の朝食で', en ? 'Skip in-flight meals. Meals set your gut clock.' : '機内食は抜く。内臓の時計は食事で合います。'],
+  ];
+  plan.innerHTML = items.map(i => `<div class="item"><div class="ic" style="background:#FFF1D6">${i[0]}</div><div><b>${i[1]}</b><span>${i[2]}</span></div></div>`).join('');
+}
+for (const id of ['from','to','date','wake','want']) document.getElementById(id).addEventListener('change', render);
+fillCities();
 const q = new URLSearchParams(location.search).get('lang');
 setLang(q === 'en' || (q !== 'ja' && !navigator.language.startsWith('ja')) ? 'en' : 'ja');
 </script>
