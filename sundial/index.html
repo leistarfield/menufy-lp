@@ -363,19 +363,28 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 const L = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
 const YOUTUBE_ID_JA = 'kVYhuCy-wbw'; // 紹介動画（日本語）を YouTube に上げたら ID を入れる（例 'dQw4w9WgXcQ'）
 const YOUTUBE_ID_EN = 'sgIBPeJ8POo'; // 英語版の ID。空なら日本語版を使う
-const YOUTUBE_ID = (L() === 'en' && YOUTUBE_ID_EN) ? YOUTUBE_ID_EN : YOUTUBE_ID_JA; // 空なら節ごと非表示
-if (YOUTUBE_ID) {
-  const sec = document.getElementById('video'); sec.style.display = 'block';
-  document.getElementById('videoPoster').src = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
+const youtubeId = () => (L() === 'en' && YOUTUBE_ID_EN) ? YOUTUBE_ID_EN : YOUTUBE_ID_JA; // 言語切替のたびに引き直す。空なら節ごと非表示
+function syncVideo(){
+  const id = youtubeId(); const sec = document.getElementById('video'); const f = document.getElementById('videoFrame');
+  if (!id) { sec.style.display = 'none'; return; }
+  sec.style.display = 'block';
+  // 再生中でなければサムネイルを言語に合わせて差し替える（再生中なら触らない）
+  if (!f.querySelector('iframe')) document.getElementById('videoPoster').src = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+  else if (f.dataset.id !== id) { f.innerHTML = `<img id="videoPoster" alt="" loading="lazy" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg"><button class="play" id="videoPlay" aria-label="再生"></button>`; bindPlay(); }
+}
+function bindPlay(){
   document.getElementById('videoPlay').addEventListener('click', () => {
-    const f = document.getElementById('videoFrame'); f.innerHTML = '';
+    const id = youtubeId(); const f = document.getElementById('videoFrame'); f.innerHTML = ''; f.dataset.id = id;
     const ifr = document.createElement('iframe');
-    ifr.src = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&rel=0&modestbranding=1&hl=${L()}`;
-    ifr.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; ifr.title = 'Sundial'; f.appendChild(ifr);
+    ifr.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&hl=${L()}`;
+    ifr.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; ifr.title = 'Sundial';
+    ifr.referrerPolicy = 'strict-origin-when-cross-origin';   // YouTube の埋め込みは参照元が無いと「設定エラー 153」になる
+    f.appendChild(ifr);
   });
 }
+bindPlay(); syncVideo();
 const APP_STORE_URL = ''; // 公開後に入れる（地域指定なし）
-function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
+function setLang(l){ document.documentElement.lang = l; if (typeof syncVideo === 'function') syncVideo(); document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
   document.title = l === 'en' ? 'Sundial — Finish your jet lag before you fly' : 'Sundial — 時差ぼけは、出発前に終わらせる'; fillCities(); render(); }
 document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(L() === 'en' ? 'ja' : 'en'); });
 for (const el of document.querySelectorAll('#cta, .cta-link')) el.addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
