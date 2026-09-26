@@ -365,7 +365,7 @@ const YOUTUBE_ID_JA = 'kVYhuCy-wbw'; // 紹介動画（日本語）を YouTube �
 const YOUTUBE_ID_EN = 'sgIBPeJ8POo'; // 英語版の ID。空なら日本語版を使う
 const YOUTUBE_ID = (L() === 'en' && YOUTUBE_ID_EN) ? YOUTUBE_ID_EN : YOUTUBE_ID_JA; // 空なら節ごと非表示
 if (YOUTUBE_ID) {
-  const sec = document.getElementById('video'); sec.style.display = '';
+  const sec = document.getElementById('video'); sec.style.display = 'block';
   document.getElementById('videoPoster').src = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
   document.getElementById('videoPlay').addEventListener('click', () => {
     const f = document.getElementById('videoFrame'); f.innerHTML = '';
