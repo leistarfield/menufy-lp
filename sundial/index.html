@@ -50,7 +50,7 @@ nav .lang a{text-decoration:none;color:#fff;opacity:.8;font-weight:700;font-size
 .band{position:relative;color:#fff;padding:90px 0;background:#1A2242 center/cover no-repeat}
 .band::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,22,50,.55),rgba(18,22,50,.65))}
 .band>.wrap{position:relative}
-.band.wing{background-image:url(img/art_wing.jpg)} .band.office{background-image:url(img/art_walk.jpg)}
+.band.wing{background-image:url(img/art_wing.jpg)} .band.office{background-image:url(img/art_office.jpg)}
 .band .bgvideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .band::before{z-index:1} .band>.wrap{z-index:2}
 @media(prefers-reduced-motion:reduce){.band .bgvideo{display:none}} .band.hotel{background-image:url(img/art_hotel.jpg)}
@@ -101,6 +101,18 @@ h2.sec{font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1.4;margin-bot
 .biz ul{padding-left:20px;font-size:14.5px;color:var(--ink)} .biz li{margin-bottom:6px}
 .biz .box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
 .biz .box a{display:inline-block;margin-top:10px;font-weight:900}
+/* itinerary */
+.itin{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:2px solid var(--line);margin-top:8px}
+.stop{padding:22px 18px 8px 0;position:relative}
+.stop::before{content:'';position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--dawn);box-shadow:0 0 0 4px var(--paper)}
+.stop .when{font-size:12px;font-weight:900;color:var(--dusk);letter-spacing:.06em;margin-bottom:6px}
+.stop b{display:block;font-size:15px;line-height:1.5;margin-bottom:8px}
+.stop ul{list-style:none;padding:0} .stop li{font-size:13px;color:var(--soft);padding:4px 0;border-top:1px dashed var(--line)}
+.ctaline{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;font-size:13px;color:var(--soft)}
+.ctaline .cta{margin-top:0}
+.band .ctaline{color:rgba(255,255,255,.85)} .band .ctaline .cta{background:#fff;color:var(--ink)}
+.stickycta{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,248,240,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.stickycta .cta{width:100%;justify-content:center;margin-top:0;padding:12px 18px}
 details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:10px}
 summary{font-weight:900;cursor:pointer;font-size:15px} details p{font-size:14px;color:var(--soft);margin-top:8px}
 .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -108,6 +120,8 @@ summary{font-weight:900;cursor:pointer;font-size:15px} details p{font-size:14px;
 .shots figcaption{font-size:13px;color:var(--soft);margin-top:8px;text-align:center}
 footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-right:14px}
 @media(max-width:860px){
+  .itin{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--line);padding-left:18px} .stop{padding:14px 0} .stop::before{left:-25px;top:18px}
+  .stickycta{display:block} body{padding-bottom:70px}
   .hero{background-position:60% 30%} .hero .top{padding-top:36px} .metrics{grid-template-columns:1fr}
   .form{grid-template-columns:1fr 1fr} .result{grid-template-columns:1fr}
   .grid3,.needle,.biz,.pledge ul{grid-template-columns:1fr} .shots{grid-template-columns:1fr 1fr}
@@ -211,6 +225,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
         <h2 class="sec"><span class="l-ja">毎朝、針を測り直す</span><span class="l-en">Re-measured every morning</span></h2>
         <p class="sub" style="margin-bottom:12px"><span class="l-ja">針の位置は人によって2時間ほど違い、日によっても動きます。Sundial は Apple Watch の睡眠と睡眠中の最低心拍の時刻から、あなた自身の針を毎朝推定し、その日の時刻表を引き直します。</span><span class="l-en">The needle differs by about 2 hours between people and moves day to day. Sundial estimates yours every morning from Apple Watch sleep and the timing of your lowest heart rate during sleep, and redraws the day's timetable.</span></p>
         <p class="sub"><span class="l-ja">今日の計画は動かしません。明日の計画は前日18時に確定します。深夜に開いても、まだ前日の続きとして就寝の目安が見えます。出張者の生活に合わせた決めごとです。</span><span class="l-en">Today's plan never changes. Tomorrow's is fixed at 6 pm the day before. Open it at 1 am and you still see last night's bedtime. Rules made for people who travel.</span></p>
+        <div class="ctaline"><a class="cta cta-link" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a></div>
       </div>
     </div>
   </div>
@@ -228,11 +243,15 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 <section>
   <div class="wrap">
     <h2 class="sec"><span class="l-ja">出張の前後で、やること</span><span class="l-en">Before, during and after the trip</span></h2>
-    <div class="grid3">
-      <div class="card"><div class="ico" style="background:#FFF1D6">📅</div><h3><span class="l-ja">出発の3日前から</span><span class="l-en">Three days before</span></h3><p><span class="l-ja">寝起きを1日1時間ずつ目的地の方向へ。出発前に1〜2時間動かしておけば、現地で必要な日数がその分減ります。</span><span class="l-en">Shift sleep an hour a day toward the destination. Moving 1–2 hours before you leave is that many fewer days to adjust on site.</span></p></div>
-      <div class="card"><div class="ico" style="background:#DFF1FA">✈️</div><h3><span class="l-ja">機内と到着初日</span><span class="l-en">In flight and on arrival</span></h3><p><span class="l-ja">現地の夜にあたる時間だけ眠り、機内食は抜いて現地の朝食を「最初の一口」に。到着日は光を避ける時間と浴びる時間が現地時刻で出ます。</span><span class="l-en">Sleep only during local night, skip in-flight meals and make the local breakfast your "first bite". On arrival day you get light-avoid and light-seek windows in local time.</span></p></div>
-      <div class="card"><div class="ico" style="background:#EDE7F8">🏠</div><h3><span class="l-ja">帰国後も</span><span class="l-en">And after you're home</span></h3><p><span class="l-ja">崩れやすいのは帰ってきた後。いつもの生活時刻表に身体だけが追いつかない。帰りの便も同じ仕組みで、家の時刻に戻す時刻表を出します。</span><span class="l-en">The return is where people slip: your life resumes on schedule, your body doesn't. The trip home uses the same mechanism to bring you back to home time.</span></p></div>
+    <p class="sub"><span class="l-ja">東京 → ロサンゼルスの例。すべてアプリが日付と針から出す時刻で、あなたは行を消していくだけです。</span><span class="l-en">Tokyo → Los Angeles as an example. Every time comes from the date and your needle; you just tick the rows off.</span></p>
+    <div class="itin">
+      <div class="stop"><div class="when"><span class="l-ja">出発3日前</span><span class="l-en">3 days out</span></div><div class="what"><b><span class="l-ja">寝起きを1時間早める</span><span class="l-en">Sleep an hour earlier</span></b><ul><li>06:00 <span class="l-ja">起床、外の光を15分</span><span class="l-en">wake, 15 min outdoors</span></li><li>20:00〜 <span class="l-ja">照明を落とす</span><span class="l-en">dim the lights</span></li><li>22:30 <span class="l-ja">就寝</span><span class="l-en">bed</span></li></ul></div></div>
+      <div class="stop"><div class="when"><span class="l-ja">前日</span><span class="l-en">Day before</span></div><div class="what"><b><span class="l-ja">3時間早まった状態で出発へ</span><span class="l-en">Leave already 3 hours ahead</span></b><ul><li>04:00 <span class="l-ja">起床</span><span class="l-en">wake</span></li><li>17:30 <span class="l-ja">メラトニン（使う人だけ）</span><span class="l-en">melatonin (optional)</span></li><li>20:30 <span class="l-ja">就寝</span><span class="l-en">bed</span></li></ul></div></div>
+      <div class="stop"><div class="when"><span class="l-ja">機内</span><span class="l-en">In flight</span></div><div class="what"><b><span class="l-ja">現地の夜だけ眠る</span><span class="l-en">Sleep only during local night</span></b><ul><li><span class="l-ja">時計を現地時刻に</span><span class="l-en">watch to local time</span></li><li><span class="l-ja">機内食は抜く</span><span class="l-en">skip in-flight meals</span></li><li><span class="l-ja">現地の昼は起きている</span><span class="l-en">stay awake during local day</span></li></ul></div></div>
+      <div class="stop"><div class="when"><span class="l-ja">到着初日</span><span class="l-en">Arrival day</span></div><div class="what"><b><span class="l-ja">針はまだ正午。午前は避け、午後に浴びる</span><span class="l-en">Needle still at noon: avoid a.m., seek p.m.</span></b><ul><li>〜12:30 <span class="l-ja">サングラス・室内</span><span class="l-en">sunglasses, indoors</span></li><li>12:30〜17:00 <span class="l-ja">外の光</span><span class="l-en">outdoor light</span></li><li>08:00 <span class="l-ja">現地の朝食＝最初の一口</span><span class="l-en">local breakfast = first bite</span></li></ul></div></div>
+      <div class="stop"><div class="when"><span class="l-ja">帰国後</span><span class="l-en">Back home</span></div><div class="what"><b><span class="l-ja">帰りの便も同じ仕組みで家の時刻へ</span><span class="l-en">Same mechanism brings you back to home time</span></b><ul><li><span class="l-ja">崩れやすいのは帰ってから</span><span class="l-en">the return is where people slip</span></li><li><span class="l-ja">針が合ったら、時刻表は消える</span><span class="l-en">once aligned, the timetable disappears</span></li></ul></div></div>
     </div>
+    <div class="ctaline"><a class="cta cta-link" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a><span class="l-ja">Apple Watch 推奨。無くても動きます。</span><span class="l-en">Apple Watch recommended. Works without one.</span></div>
   </div>
 </section>
 
@@ -245,6 +264,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
       <figure><img class="l-ja" src="img/plans_ja.jpg" alt=""><img class="l-en" src="img/plans_en.jpg" alt=""><figcaption><span class="l-ja">出張とシフトの予定</span><span class="l-en">Trips and shift plans</span></figcaption></figure>
       <figure><img class="l-ja" src="img/trend_ja.jpg" alt=""><img class="l-en" src="img/trend_en.jpg" alt=""><figcaption><span class="l-ja">戻っていく様子</span><span class="l-en">Watch it come back</span></figcaption></figure>
     </div>
+    <div class="ctaline"><a class="cta cta-link" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a><span class="l-ja">個人の方はすべて無料。広告なし。</span><span class="l-en">Free for individuals. No ads.</span></div>
   </div>
 </section>
 
@@ -263,9 +283,6 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 </section>
 
 <section class="band office" id="biz">
-  <video class="bgvideo" autoplay muted loop playsinline poster="img/art_walk.jpg" aria-hidden="true">
-    <source src="img/art_walk.mp4" type="video/mp4">
-  </video>
   <div class="wrap">
     <div class="glass wide">
       <h2 class="sec"><span class="l-ja">出張者を抱える企業の方へ</span><span class="l-en">For companies with frequent travelers</span></h2>
@@ -296,6 +313,15 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
   </div>
 </section>
 
+<section style="padding-top:0">
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec"><span class="l-ja">次の出張は、いつですか。</span><span class="l-en">When is your next trip?</span></h2>
+    <p class="sub" style="margin:0 auto 18px"><span class="l-ja">出発の3日前に開けば間に合います。</span><span class="l-en">Open it three days before you leave and you're on time.</span></p>
+    <a class="cta cta-link" href="#"><span class="l-ja">App Store で入手</span><span class="l-en">Get it on the App Store</span> <small><span class="l-ja">無料</span><span class="l-en">Free</span></small></a>
+  </div>
+</section>
+<div class="stickycta"><a class="cta cta-link" href="#"><span class="l-ja">App Store で入手（無料）</span><span class="l-en">Get it on the App Store (free)</span></a></div>
+
 <footer><div class="wrap">
   <a href="privacy.html"><span class="l-ja">プライバシーポリシー</span><span class="l-en">Privacy Policy</span></a>
   <a href="mailto:rh0426.thom@gmail.com"><span class="l-ja">お問い合わせ</span><span class="l-en">Contact</span></a>
@@ -309,7 +335,7 @@ const L = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
 function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
   document.title = l === 'en' ? 'Sundial — Walk into the meeting with your usual head' : 'Sundial — 出張の翌朝、いつもの頭で会議に出る'; fillCities(); render(); }
 document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(L() === 'en' ? 'ja' : 'en'); });
-document.getElementById('cta').addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
+for (const el of document.querySelectorAll('#cta, .cta-link')) el.addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
 
 // ---------- 都市 ----------
 const CITIES = [
@@ -360,12 +386,12 @@ function render(){
   const P = pDest; const seek = adv ? [P+0.5, P+5] : [P-7, P-0.5], avoid = adv ? [P-7, P-0.5] : [P+0.5, P+5];
   const steps = []; for (let i = 1; i <= pre; i++) steps.push(fmt(wake + (adv ? -i : i)));
   const items = [
-    ['🛌', en ? `Sleep before departure` : '出発前の寝起き', en ? `Wake ${steps.join(' → ')}, an hour a day toward ${adv?'earlier':'later'}.` : `起床を ${steps.join(' → ')} と1日1時間ずつ${adv?'早めて':'遅らせて'}いく。`],
-    ['🕶️', en ? `Arrival day: avoid light ${fmt(avoid[0])}–${fmt(avoid[1])}` : `到着初日: ${fmt(avoid[0])}〜${fmt(avoid[1])} は光を避ける`, en ? 'Sunglasses, indoors. Light here pushes your clock the wrong way.' : 'サングラス、室内。この時間の光は針を逆に動かします。'],
-    ['☀️', en ? `Arrival day: seek light ${fmt(seek[0])}–${fmt(seek[1])}` : `到着初日: ${fmt(seek[0])}〜${fmt(seek[1])} は外の光を浴びる`, en ? '15–30 minutes outdoors, not through a window.' : '屋外で15〜30分。窓越しではなく外へ。'],
-    ['🍽️', en ? 'First bite at local breakfast' : '最初の一口は現地の朝食で', en ? 'Skip in-flight meals. Meals set your gut clock.' : '機内食は抜く。内臓の時計は食事で合います。'],
+    ['#243050', en ? `Sleep before departure` : '出発前の寝起き', en ? `Wake ${steps.join(' → ')}, an hour a day toward ${adv?'earlier':'later'}.` : `起床を ${steps.join(' → ')} と1日1時間ずつ${adv?'早めて':'遅らせて'}いく。`],
+    ['#8E7CC3', en ? `Arrival day: avoid light ${fmt(avoid[0])}–${fmt(avoid[1])}` : `到着初日: ${fmt(avoid[0])}〜${fmt(avoid[1])} は光を避ける`, en ? 'Sunglasses, indoors. Light here pushes your clock the wrong way.' : 'サングラス、室内。この時間の光は針を逆に動かします。'],
+    ['#FFCC5C', en ? `Arrival day: seek light ${fmt(seek[0])}–${fmt(seek[1])}` : `到着初日: ${fmt(seek[0])}〜${fmt(seek[1])} は外の光を浴びる`, en ? '15–30 minutes outdoors, not through a window.' : '屋外で15〜30分。窓越しではなく外へ。'],
+    ['#EB7380', en ? 'First bite at local breakfast' : '最初の一口は現地の朝食で', en ? 'Skip in-flight meals. Meals set your gut clock.' : '機内食は抜く。内臓の時計は食事で合います。'],
   ];
-  plan.innerHTML = items.map(i => `<div class="item"><div class="ic" style="background:#FFF1D6">${i[0]}</div><div><b>${i[1]}</b><span>${i[2]}</span></div></div>`).join('');
+  plan.innerHTML = items.map(i => `<div class="item"><div class="ic" style="background:${i[0]};width:12px;height:12px;margin-top:6px"></div><div><b>${i[1]}</b><span>${i[2]}</span></div></div>`).join('');
 }
 for (const id of ['from','to','date','wake','want']) document.getElementById(id).addEventListener('change', render);
 fillCities();
