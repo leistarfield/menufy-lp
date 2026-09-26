@@ -360,6 +360,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 
 <script>
 // ---------- 言語 ----------
+const L = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
 const YOUTUBE_ID_JA = ''; // 紹介動画（日本語）を YouTube に上げたら ID を入れる（例 'dQw4w9WgXcQ'）
 const YOUTUBE_ID_EN = ''; // 英語版の ID。空なら日本語版を使う
 const YOUTUBE_ID = (L() === 'en' && YOUTUBE_ID_EN) ? YOUTUBE_ID_EN : YOUTUBE_ID_JA; // 空なら節ごと非表示
@@ -374,7 +375,6 @@ if (YOUTUBE_ID) {
   });
 }
 const APP_STORE_URL = ''; // 公開後に入れる（地域指定なし）
-const L = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
 function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
   document.title = l === 'en' ? 'Sundial — Finish your jet lag before you fly' : 'Sundial — 時差ぼけは、出発前に終わらせる'; fillCities(); render(); }
 document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(L() === 'en' ? 'ja' : 'en'); });
