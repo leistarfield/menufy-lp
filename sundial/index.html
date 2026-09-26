@@ -40,9 +40,15 @@ nav .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18
 nav .brand img{width:34px;height:34px;border-radius:10px}
 nav .lang a{text-decoration:none;color:#fff;opacity:.8;font-weight:700;font-size:13px}
 /* hero: anime dawn over the airport */
-.hero{position:relative;color:#fff;padding-bottom:70px;background:#1A2242 url(img/art_hero.jpg) center 35%/cover no-repeat}
-.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,22,50,.78) 0%,rgba(18,22,50,.55) 45%,rgba(18,22,50,.15) 100%),linear-gradient(180deg,rgba(18,22,50,.35),rgba(18,22,50,0) 30%,rgba(18,22,50,.25) 100%)}
-.hero>.wrap{position:relative}
+/* 映像は上の 640px だけに置き、下は紺に溶かす。人物の顔が切れないように */
+.hero{position:relative;color:#fff;padding-bottom:70px;background:#1A2242;overflow:hidden}
+.hero .media{position:absolute;top:0;left:0;right:0;height:min(720px,90vw);overflow:hidden;z-index:0;background:#1A2242 url(img/art_woman.jpg) center 30%/cover no-repeat}
+.hero .media .bgvideo{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.hero .media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,34,66,.15) 0%,rgba(26,34,66,0) 35%,rgba(26,34,66,.55) 75%,#1A2242 100%)}
+.hero::before{z-index:1;background:linear-gradient(90deg,rgba(18,22,50,.55) 0%,rgba(18,22,50,.25) 40%,rgba(18,22,50,0) 65%)}
+@media(prefers-reduced-motion:reduce){.hero .bgvideo{display:none}}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,22,50,.72) 0%,rgba(18,22,50,.45) 40%,rgba(18,22,50,.05) 70%),linear-gradient(180deg,rgba(18,22,50,.30),rgba(18,22,50,0) 30%,rgba(18,22,50,.35) 100%)}
+.hero>.wrap{position:relative;z-index:2}
 .hero .top{padding:60px 0 34px;max-width:720px}
 .hero h1{font-size:clamp(30px,4.4vw,52px);line-height:1.25;font-weight:900;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.35)}
 .hero p.lead{font-size:clamp(15px,1.7vw,18px);margin:18px 0 0;opacity:.95;max-width:560px;text-shadow:0 1px 12px rgba(0,0,0,.35)}
@@ -131,6 +137,11 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 </head>
 <body>
 <header class="hero">
+  <div class="media" aria-hidden="true">
+    <video class="bgvideo" autoplay muted loop playsinline poster="img/art_woman.jpg">
+      <source src="img/art_woman.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="wrap">
     <nav>
       <a class="brand" href="./"><img src="img/icon.png" alt="">Sundial</a>
