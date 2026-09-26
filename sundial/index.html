@@ -144,6 +144,13 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 @media(max-width:480px){#video{padding-top:64px;padding-bottom:56px}#video .play{width:64px;height:64px}#video .play::after{left:24px;top:18px;border-left:22px solid #243050;border-top:14px solid transparent;border-bottom:14px solid transparent}#video .frame{border-radius:14px}}
 #video .vlabel{text-align:center;font-size:12px;letter-spacing:.3em;opacity:.55;margin:0 0 14px;font-weight:700}
 </style>
+<!-- Meta Pixel: 計測は PageView / ViewContent(プランナー) / InitiateCheckout(App Store) / Lead(法人) / Engaged の5つだけ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '496242083443998');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=496242083443998&ev=PageView&noscript=1"></noscript>
 </head>
 <body>
 <header class="hero">
@@ -330,7 +337,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
         <li><span class="l-ja">送るかどうかは社員本人が選びます。オフでも法人版の他の機能は使えます</span><span class="l-en">Each employee chooses whether to send. Everything else works with it off</span></li>
         <li><span class="l-ja">法人コードを配るだけ。アカウント登録なし。出張規程に合わせた既定値を配布。日本語・英語。席数単位の年額、請求書払い</span><span class="l-en">Hand out a company code. No accounts. Company defaults distributed with it. Japanese and English. Per-seat annual pricing, invoiced</span></li>
       </ul>
-      <a class="cta" style="margin-top:4px" href="mailto:rh0426.thom@gmail.com?subject=Sundial%20%E6%B3%95%E4%BA%BA%E5%B0%8E%E5%85%A5%E3%81%AE%E7%9B%B8%E8%AB%87"><span class="l-ja">導入のご相談（数名の試用から）</span><span class="l-en">Talk to us (start with a small pilot)</span></a>
+      <a class="cta" style="margin-top:4px" onclick="if(window.fbq)fbq('track','Lead',{content_name:'enterprise'})" href="mailto:rh0426.thom@gmail.com?subject=Sundial%20%E6%B3%95%E4%BA%BA%E5%B0%8E%E5%85%A5%E3%81%AE%E7%9B%B8%E8%AB%87"><span class="l-ja">導入のご相談（数名の試用から）</span><span class="l-en">Talk to us (start with a small pilot)</span></a>
     </div>
   </div>
 </section>
@@ -389,7 +396,7 @@ const APP_STORE_URL = ''; // 公開後に入れる（地域指定なし）
 function setLang(l){ document.documentElement.lang = l; if (typeof syncVideo === 'function') syncVideo(); document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
   document.title = l === 'en' ? 'Sundial — Finish your jet lag before you fly' : 'Sundial — 時差ぼけは、出発前に終わらせる'; fillCities(); render(); }
 document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(L() === 'en' ? 'ja' : 'en'); });
-for (const el of document.querySelectorAll('#cta, .cta-link')) el.addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
+for (const el of document.querySelectorAll('#cta, .cta-link')) el.addEventListener('click', e => { e.preventDefault(); if (window.fbq) fbq('track', 'InitiateCheckout', {content_name: 'app_store', content_category: L()}); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
 
 // ---------- 都市 ----------
 const CITIES = [
@@ -448,6 +455,12 @@ function render(){
   plan.innerHTML = items.map(i => `<div class="item"><div class="ic" style="background:${i[0]};width:12px;height:12px;margin-top:6px"></div><div><b>${i[1]}</b><span>${i[2]}</span></div></div>`).join('');
 }
 for (const id of ['from','to','date','wake','want']) document.getElementById(id).addEventListener('change', render);
+let engaged = false;
+function markEngaged(){ if (engaged || !window.fbq) return; engaged = true; fbq('trackCustom', 'Engaged', {lang: L()}); }
+setTimeout(markEngaged, 30000);
+window.addEventListener('scroll', () => { if ((window.scrollY + innerHeight) / document.documentElement.scrollHeight > 0.5) markEngaged(); }, {passive: true});
+let plannerTracked = false;
+for (const id of ['from','to','date','wake','want']) document.getElementById(id).addEventListener('change', () => { if (!plannerTracked && window.fbq) { plannerTracked = true; fbq('track', 'ViewContent', {content_name: 'planner', content_category: L()}); } });
 fillCities();
 const q = new URLSearchParams(location.search).get('lang');
 setLang(q === 'en' || (q !== 'ja' && !navigator.language.startsWith('ja')) ? 'en' : 'ja');
