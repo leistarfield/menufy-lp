@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Sundial — 出張の翌朝、いつもの頭で会議に出る</title>
+<title>Sundial — 時差ぼけは、出発前に終わらせる</title>
 <meta name="description" content="次の出張の時差ぼけを、出発前から設計する。出発地・目的地・現地で起きたい時刻を入れるだけで、体内時計を何日かけてどちらへ動かすか、到着初日にいつ光を避けていつ浴びるかが分かります。Apple Watch で毎朝測り直す無料アプリ。">
-<meta property="og:title" content="Sundial — 出張の翌朝、いつもの頭で会議に出る">
+<meta property="og:title" content="Sundial — 時差ぼけは、出発前に終わらせる">
 <meta property="og:description" content="次の出張の時差ぼけを、出発前から設計する。このページでその場で試せます。">
 <meta property="og:image" content="https://menufyjp.com/sundial/img/ogp.png">
 <meta property="og:url" content="https://menufyjp.com/sundial/">
@@ -149,7 +149,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
     </nav>
     <div class="top">
       <div>
-        <h1><span class="l-ja">出張の翌朝、<br>いつもの頭で会議に出る。</span><span class="l-en">Walk into the meeting<br>with your usual head.</span></h1>
+        <h1><span class="l-ja">時差ぼけは、<br>出発前に終わらせる。</span><span class="l-en">Finish your jet lag<br>before you fly.</span></h1>
         <p class="lead"><span class="l-ja">時差ぼけは着いてから治すものではなく、出発前から設計するもの。Sundial は体内時計の「針」を Apple Watch から毎朝推定し、いつ光を避け、いつ浴び、いつ食べるかを、その日の時刻表にします。</span><span class="l-en">Jet lag isn't something you fix after landing. It's something you design before departure. Sundial estimates your body clock's "needle" from Apple Watch every morning and turns it into a daily timetable: when to avoid light, when to seek it, when to eat.</span></p>
       </div>
     </div>
@@ -344,7 +344,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 const APP_STORE_URL = ''; // 公開後に入れる（地域指定なし）
 const L = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
 function setLang(l){ document.documentElement.lang = l; document.getElementById('tolang').textContent = l === 'en' ? '日本語' : 'English';
-  document.title = l === 'en' ? 'Sundial — Walk into the meeting with your usual head' : 'Sundial — 出張の翌朝、いつもの頭で会議に出る'; fillCities(); render(); }
+  document.title = l === 'en' ? 'Sundial — Finish your jet lag before you fly' : 'Sundial — 時差ぼけは、出発前に終わらせる'; fillCities(); render(); }
 document.getElementById('tolang').addEventListener('click', e => { e.preventDefault(); setLang(L() === 'en' ? 'ja' : 'en'); });
 for (const el of document.querySelectorAll('#cta, .cta-link')) el.addEventListener('click', e => { e.preventDefault(); if (APP_STORE_URL) location.href = APP_STORE_URL; else alert(L() === 'en' ? 'Coming soon on the App Store.' : 'App Store で近日公開です。'); });
 
