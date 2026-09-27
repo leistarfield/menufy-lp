@@ -144,7 +144,7 @@ footer{padding:30px 0 60px;font-size:13px;color:var(--soft)} footer a{margin-rig
 @media(max-width:480px){#video{padding-top:64px;padding-bottom:56px}#video .play{width:64px;height:64px}#video .play::after{left:24px;top:18px;border-left:22px solid #243050;border-top:14px solid transparent;border-bottom:14px solid transparent}#video .frame{border-radius:14px}}
 #video .vlabel{text-align:center;font-size:12px;letter-spacing:.3em;opacity:.55;margin:0 0 14px;font-weight:700}
 </style>
-<!-- Meta Pixel: 計測は PageView / ViewContent(プランナー) / InitiateCheckout(App Store) / Lead(法人) / Engaged の5つだけ -->
+<!-- Meta Pixel: 標準は PageView / ViewContent(プランナー) / InitiateCheckout(App Store) / Lead(法人)。カスタムは Engaged と動画の VideoPlay / Video30s / Video60s / VideoEnd -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '496242083443998');
@@ -385,11 +385,32 @@ function bindPlay(){
   document.getElementById('videoPlay').addEventListener('click', () => {
     const id = youtubeId(); const f = document.getElementById('videoFrame'); f.innerHTML = ''; f.dataset.id = id;
     const ifr = document.createElement('iframe');
-    ifr.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&hl=${L()}`;
+    ifr.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&hl=${L()}&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
     ifr.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; ifr.title = 'Sundial';
     ifr.referrerPolicy = 'strict-origin-when-cross-origin';   // YouTube の埋め込みは参照元が無いと「設定エラー 153」になる
     f.appendChild(ifr);
+    if (window.fbq) fbq('trackCustom', 'VideoPlay', {lang: L()}); if (typeof markEngaged === 'function') markEngaged();
+    watchProgress(ifr);
   });
+}
+/* 視聴の深さ: YouTube の Player API で再生位置を1秒ごとに見て、30秒・60秒・最後まで の3点を1回ずつ送る（Video30s / Video60s / VideoEnd）。API はクリック後にしか読み込まない */
+function watchProgress(ifr){
+  const sent = {}; const hit = (name) => { if (sent[name] || !window.fbq) return; sent[name] = true; fbq('trackCustom', name, {lang: L(), video: ifr.parentNode.dataset.id}); };
+  const start = () => {
+    const player = new YT.Player(ifr, { events: {
+      onStateChange: (e) => {
+        if (e.data === YT.PlayerState.ENDED) hit('VideoEnd');
+        if (e.data === YT.PlayerState.PLAYING && !player._tick) player._tick = setInterval(() => {
+          if (!document.body.contains(ifr)) { clearInterval(player._tick); return; }   // 言語切替で差し替わったら止める
+          const t = player.getCurrentTime ? player.getCurrentTime() : 0;
+          if (t >= 30) hit('Video30s'); if (t >= 60) hit('Video60s');
+        }, 1000);
+      }
+    }});
+  };
+  if (window.YT && YT.Player) return start();
+  const prev = window.onYouTubeIframeAPIReady; window.onYouTubeIframeAPIReady = () => { if (prev) prev(); start(); };
+  if (!document.getElementById('ytapi')) { const sc = document.createElement('script'); sc.id = 'ytapi'; sc.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(sc); }
 }
 bindPlay(); syncVideo();
 const APP_STORE_URL = ''; // 公開後に入れる（地域指定なし）
