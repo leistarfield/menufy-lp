@@ -622,3 +622,127 @@ All other AI data-consent behavior is unchanged from 1.0 build 3 (consent sheet 
 - zh-Hant / ko のプライバシーポリシー URL: `https://menufyjp.com/tripfy/en/privacy.html`（英語版を流用。将来 LP を翻訳したら差し替え）
 - スクショ: zh-Hant / ko は未アップロードでプライマリのものが表示される。後日 `-demo-seed tokyo -AppleLanguages "(zh-Hant)"` 等で撮影して差し替え推奨
 - 輸出コンプライアンス: ITSAppUsesNonExemptEncryption=NO 設定済みのため質問は自動回答
+
+
+---
+---
+
+# ═══ v1.4 提出用（2026-10-01 作成）═══
+
+バージョン 1.4 / ビルド 6（1.3 ビルド 5 は未提出のまま 1.4 に吸収）。
+**アプリアイコンが変わる**（フェルトのスーツケース）。ASC のアイコンはビルドから自動で取り込まれるので入力不要。
+スクショは新デザインで撮り直し済み: `out/ja/`, `out/en/`（1284×2778）。ko / zh-Hant は日本語スクショが自動表示される（従来どおり）。
+
+## このバージョンの新機能（What's New / v1.4）
+
+### JA
+```
+見た目を一新しました。
+
+■ 新しいデザイン
+・空色の落ち着いた配色と丸いフォントに。アイコンも新しくなりました
+・旅の相棒「スーツケース」が登場。取り込みの待ち時間や空っぽの画面、保存できたときに顔を出します
+・ホーム画面の相棒が「宿はもう決まった？」「そろそろ荷づくり」など、次にやることをひとこと教えてくれます
+
+■ AI プランがもっと賢く
+・「旅のプロフィール」: チェーンホテルは避ける、朝は遅め…など自分の流儀を一度書いておくと、毎回のプランと持ち物提案に反映されます
+・候補を多めに提案し、エリアごとにまとめて表示。チェックした場所だけ追加できます
+・AI からの質問に答えたり「直してほしいこと」を伝えたりして、会話でプランを詰められるようになりました（1 プランにつき 2 回まで無料）
+・提案された場所を Apple マップで照合し、見つからない候補にはしるしを付けます
+
+■ 改善
+・乗り継ぎ便を含む航空券を取り込んでも、旅が経由地で分かれなくなりました。往復航空券も 1 つの旅にまとまります
+・タイムラインに乗り継ぎの待ち時間（例: 乗り継ぎ ハノイ · 3 時間）を表示
+・同じ予約番号の別の便（復路など）を取り込んだとき、便が消えたように見える問題を修正
+・最初の画面から「予約メールを転送して取り込む」へ進めるようになりました
+```
+
+### EN
+```
+A fresh new look.
+
+■ New design
+- Calm sky-blue palette, rounded type, and a brand-new app icon
+- Meet your travel buddy, the felt suitcase. It shows up while the AI reads your booking, on empty screens, and when a save succeeds
+- On the home screen, your buddy drops a one-line hint on what to do next: "Got a place to stay?", "Time to start packing"
+
+■ Smarter AI Plan
+- Travel profile: write down how you like to travel once (skip chain hotels, late mornings…) and every plan and packing list reflects it
+- More suggestions, grouped by area. Only the places you check get added
+- Refine the plan through conversation: answer the AI's questions or tell it what to change (up to 2 rebuilds per plan are free)
+- Suggested places are checked against Apple Maps; anything not found is flagged
+
+■ Improvements
+- Tickets with connecting flights no longer split your trip at the layover. Round-trip tickets become one trip
+- Timeline shows layover time (e.g. "Layover in Hanoi · 3h")
+- Fixed an issue where importing another flight under the same booking reference (such as the return leg) appeared to drop it
+- Email forwarding import is now reachable from the first screen
+```
+
+### ZH-HANT
+```
+全新外觀。
+
+■ 新設計
+・沉穩的天空藍配色與圓體字型，App 圖示也煥然一新
+・旅行夥伴「毛氈行李箱」登場。在 AI 讀取訂位、畫面空白、儲存成功時現身
+・首頁的夥伴會提示下一步：「住宿決定了嗎？」「差不多該打包了」
+
+■ AI 行程更聰明
+・旅行檔案：寫一次自己的旅行習慣（避開連鎖飯店、早上晚點出門…），之後每份行程與行李建議都會反映
+・提案數量更多，並依區域分組顯示。只會加入你勾選的地點
+・可透過對話調整行程：回答 AI 的提問，或告訴它想修改的地方（每份行程 2 次免費）
+・提案地點會與 Apple 地圖比對，找不到的候選會加上標記
+
+■ 改善
+・含轉機的機票匯入後，行程不再在轉機地被拆開；來回機票也會合併為一趟旅程
+・時間軸顯示轉機等待時間（例：於 Hanoi 轉機 · 3 小時）
+・修正匯入同一訂位代號的另一航段（如回程）時，航班看似消失的問題
+・可從第一個畫面直接進入「轉寄訂位郵件來匯入」
+```
+
+### KO
+```
+새로운 디자인으로 단장했습니다.
+
+■ 새 디자인
+・차분한 하늘색 배색과 둥근 글꼴, 새 앱 아이콘
+・여행 친구 '펠트 캐리어' 등장. AI가 예약을 읽는 동안, 빈 화면, 저장 성공 시에 나타납니다
+・홈 화면의 친구가 "숙소는 정했어?" "슬슬 짐 쌀 때" 같은 다음 할 일을 한마디로 알려줍니다
+
+■ 더 똑똑해진 AI 플랜
+・여행 프로필: 체인 호텔은 피함, 아침은 늦게… 같은 나만의 방식을 한 번 적어 두면 매번의 플랜과 준비물 제안에 반영됩니다
+・후보를 넉넉히 제안하고 지역별로 묶어서 표시. 체크한 장소만 추가됩니다
+・AI의 질문에 답하거나 '고치고 싶은 점'을 전해 대화로 플랜을 다듬을 수 있습니다 (플랜 하나당 2회 무료)
+・제안된 장소를 Apple 지도와 대조해, 찾을 수 없는 후보에는 표시를 붙입니다
+
+■ 개선
+・경유 항공편이 포함된 항공권을 가져와도 여행이 경유지에서 나뉘지 않습니다. 왕복 항공권도 하나의 여행으로 묶입니다
+・타임라인에 경유 대기 시간 표시 (예: Hanoi 경유 · 3시간)
+・같은 예약 번호의 다른 항공편(귀국편 등)을 가져올 때 항공편이 사라진 것처럼 보이던 문제 수정
+・첫 화면에서 '예약 메일을 전달해서 가져오기'로 바로 이동할 수 있습니다
+```
+
+## プロモーションテキスト（170 字・審査不要・即反映）
+
+### JA
+```
+新デザイン＆旅の相棒が登場。乗り継ぎ便も往復航空券も 1 つの旅に。AI プランは「旅のプロフィール」と会話でもっと自分らしく。
+```
+### EN
+```
+New look and a new travel buddy. Connecting and round-trip flights stay in one trip. AI Plan now learns your travel profile and refines through conversation.
+```
+
+## App Review メモ（追記）
+```
+v1.4 は見た目の刷新と AI プランの改善です。新しい権限の追加はありません。
+「旅のプロフィール」はユーザーが任意で書く自由テキストで、AI プラン / 持ち物提案の実行時にのみ、既存の AI 送信同意の範囲で送信されます（プライバシー表示は変更なし）。
+提案場所の照合には MapKit のローカル検索（MKLocalSearch）を使用しており、位置情報の権限は要求しません。
+```
+
+## 提出前チェック
+- [ ] 実機: ペイウォールで価格 2 行と「7 日間無料トライアル付き」が表示される（商品が ASC で承認済みか）
+- [ ] 実機: AI プランを 1 回作り、「直してほしいこと」で作り直せる
+- [ ] 実機: ダークモードでホーム・空の状態・ペイウォール
+- [ ] Archive → アップロード → ASC で 1.4 (6) を選択 → 上記 What's New 4 言語とプロモーションテキストを貼付 → スクショ ja/en を差し替え → 審査提出

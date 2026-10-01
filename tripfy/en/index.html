@@ -6,8 +6,8 @@
 <title>Tripfy — Every trip, in one place.</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232c6fb0'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232c6fb0'/><rect x='26.5' y='12' width='11' height='11' rx='3.5' fill='none' stroke='white' stroke-width='3.5'/><rect x='17' y='19' width='30' height='32' rx='7' fill='white'/><rect x='24' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/><rect x='36.5' y='19' width='3.5' height='32' fill='%232c6fb0' opacity='.3'/></svg>">
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon-64.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#2c6fb0">
 
 <!-- SEO -->
@@ -27,7 +27,7 @@
 <meta property="og:title" content="Tripfy — Every trip, in one place.">
 <meta property="og:description" content="Turn booking confirmations into a single itinerary with one tap. AI sorts everything onto a timeline. A sibling app of Menufy.">
 <meta property="og:url" content="https://menufyjp.com/tripfy/en/">
-<meta property="og:image" content="https://menufyjp.com/tripfy/ogp.png">
+<meta property="og:image" content="https://menufyjp.com/tripfy/ogp.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
@@ -36,20 +36,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tripfy — Every trip, in one place.">
 <meta name="twitter:description" content="Turn booking confirmations into a single itinerary with one tap. AI sorts everything onto a timeline.">
-<meta name="twitter:image" content="https://menufyjp.com/tripfy/ogp.png">
+<meta name="twitter:image" content="https://menufyjp.com/tripfy/ogp.png?v=2">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --o1:#4e97d1;--o2:#2c6fb0;--o3:#1d4e79;
   --opale:#eff6fc;--opale2:#dcebf7;
-  --white:#fafaf8;--cream:#fdf8f4;
-  --black:#17110b;--gray:#90847d;--glight:#ece5de;--text:#261e17;
+  --white:#fafcff;--cream:#eaf3fb;
+  --black:#1d3557;--gray:#5e7390;--glight:#cfe0ef;--text:#1d3557;
   --ink:#2c4868;--ink-soft:#5a7095;
-  --sh-soft:0 1px 2px rgba(60,38,24,.04),0 8px 28px rgba(60,38,24,.08);
-  --sh-medium:0 2px 4px rgba(60,38,24,.05),0 16px 44px rgba(60,38,24,.10);
+  --sh-soft:0 1px 2px rgba(29,53,87,.04),0 8px 28px rgba(29,53,87,.08);
+  --sh-medium:0 2px 4px rgba(29,53,87,.05),0 16px 44px rgba(29,53,87,.10);
   --sh-warm:0 2px 6px rgba(44,111,176,.10),0 14px 40px rgba(44,111,176,.18);
   --sh-warm-soft:0 1px 3px rgba(44,111,176,.08),0 6px 18px rgba(44,111,176,.14);
   --ease:cubic-bezier(.4,0,.2,1);
@@ -73,7 +73,7 @@ nav{
 }
 .nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .nicon{width:32px;height:32px;border-radius:12px;background:linear-gradient(148deg,var(--o1),var(--o2));display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-warm-soft)}
-.ntext{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.1em}
+.ntext{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:20px;font-weight:800;color:var(--black);letter-spacing:.02em}
 .nlinks{display:flex;align-items:center;gap:40px}
 .nlink{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:.06em;transition:color .2s;font-weight:300}
 .nlink:hover{color:var(--black)}
@@ -91,7 +91,7 @@ nav{
 /* HERO */
 .hero{
   min-height:100vh;
-  background:linear-gradient(158deg,#4e97d1 0%,#2c6fb0 44%,#1d4e79 100%);
+  background:linear-gradient(158deg,#bfdbf2 0%,#4e97d1 48%,#2c6fb0 100%);
   display:grid;grid-template-columns:1fr 1fr;
   align-items:center;padding-top:62px;
   position:relative;
@@ -108,9 +108,9 @@ nav{
 .heyebrow::before{content:'';width:18px;height:1px;background:rgba(255,255,255,.38);display:block}
 
 .htitle{
-  font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
   font-size:clamp(32px,4.4vw,68px);
-  font-weight:400;line-height:1.18;
+  font-weight:800;line-height:1.18;
   color:white;margin-bottom:10px;
   letter-spacing:.02em;
 }
@@ -121,10 +121,10 @@ nav{
   display:block;
 }
 .htagline{
-  font-family:'Cormorant Garamond',serif;
-  font-size:16px;font-style:italic;font-weight:300;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  font-size:16px;font-style:normal;font-weight:800;
   color:rgba(255,255,255,.45);
-  margin-bottom:44px;letter-spacing:.08em;
+  margin-bottom:44px;letter-spacing:.01em;
 }
 .hdesc{
   font-size:14px;line-height:2;
@@ -143,7 +143,7 @@ nav{
   text-decoration:none;
 }
 .btas-sub{font-size:9px;color:var(--gray);letter-spacing:.12em;display:block;text-transform:uppercase;font-weight:300}
-.btas-main{font-size:15px;font-weight:400;color:var(--black);display:block;font-family:'Shippori Mincho',serif;letter-spacing:.06em}
+.btas-main{font-size:15px;font-weight:800;color:var(--black);display:block;font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;letter-spacing:.01em}
 .htrial{font-size:13px;color:rgba(255,255,255,.55);letter-spacing:.06em;font-weight:300}
 
 .hstats{
@@ -161,9 +161,9 @@ nav{
   text-align:center;
 }
 .hstat-val{
-  font-family:'Shippori Mincho',serif;
-  font-size:15px;font-weight:500;color:white;
-  line-height:1.5;margin-bottom:4px;letter-spacing:.04em;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  font-size:15px;font-weight:800;color:white;
+  line-height:1.5;margin-bottom:4px;letter-spacing:.01em;
   white-space:nowrap;
 }
 .hstat-label{font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.04em;font-weight:300;white-space:nowrap}
@@ -173,9 +173,9 @@ nav{
 .pscene{position:relative;width:220px}
 .pwrap{width:220px;animation:float 6s ease-in-out infinite;position:relative;z-index:2}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-14px) rotate(.5deg)}}
-.pouter{background:#110b05;border-radius:48px;padding:9px;box-shadow:0 56px 120px rgba(0,0,0,.36),0 0 0 .5px rgba(255,255,255,.07)}
+.pouter{background:#0e3257;border-radius:48px;padding:9px;box-shadow:0 56px 120px rgba(0,0,0,.36),0 0 0 .5px rgba(255,255,255,.07)}
 .pinner{
-  background:linear-gradient(158deg,#4e97d1 0%,#2c6fb0 44%,#1d4e79 100%);
+  background:linear-gradient(158deg,#bfdbf2 0%,#4e97d1 48%,#2c6fb0 100%);
   border-radius:41px;overflow:hidden;
   aspect-ratio:9/19.5;position:relative;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -184,9 +184,9 @@ nav{
 .pcircle{position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07);top:50%;left:50%;transform:translate(-50%,-64%);pointer-events:none}
 .piconwrap{position:relative;z-index:1;margin-bottom:4px}
 .pplate{width:64px;height:64px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.15);position:relative;z-index:1}
-.pbrand{font-family:'Shippori Mincho',serif;font-size:26px;font-weight:500;color:white;letter-spacing:.12em;position:relative;z-index:1}
-.pbrand-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.1em;position:relative;z-index:1;font-style:italic;font-family:'Cormorant Garamond',serif}
-.pnotch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#110b05;border-radius:0 0 14px 14px;z-index:10}
+.pbrand{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:26px;font-weight:800;color:white;letter-spacing:.02em;position:relative;z-index:1}
+.pbrand-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.02em;position:relative;z-index:1;font-style:normal;font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif}
+.pnotch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#0e3257;border-radius:0 0 14px 14px;z-index:10}
 
 .fcard{position:absolute;background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);border-radius:18px;padding:11px 15px;box-shadow:var(--sh-soft);white-space:nowrap;z-index:10}
 .fc1{top:8%;left:160px;animation:fc1 4.5s ease-in-out infinite}
@@ -194,7 +194,7 @@ nav{
 @keyframes fc1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes fc2{0%,100%{transform:translateY(-4px)}50%{transform:translateY(5px)}}
 .fcard-em{font-size:16px;display:block;margin-bottom:3px}
-.fcard-t{font-size:11px;font-weight:400;color:var(--black);display:block;letter-spacing:.06em;font-family:'Shippori Mincho',serif}
+.fcard-t{font-size:11px;font-weight:800;color:var(--black);display:block;letter-spacing:.01em;font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif}
 .fcard-s{font-size:10px;color:var(--gray);display:block;letter-spacing:.04em;font-weight:200}
 .fbadge{position:absolute;top:-7px;right:-7px;background:var(--ink);color:white;font-size:9px;padding:3px 9px;border-radius:100px;font-weight:300;letter-spacing:.06em;box-shadow:0 2px 8px rgba(44,72,104,.28)}
 
@@ -209,9 +209,9 @@ nav{
 .slbl::after{content:'';display:block;width:22px;height:1px;background:var(--o3)}
 
 .stitle{
-  font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
   font-size:clamp(32px,3.2vw,48px);
-  font-weight:400;line-height:1.25;
+  font-weight:800;line-height:1.25;
   color:var(--black);margin-bottom:22px;
   letter-spacing:.03em;
 }
@@ -235,14 +235,14 @@ nav{
 .step{display:flex;flex-direction:column;gap:16px}
 .step:hover .uicon{transform:scale(1.12) rotate(-4deg)}
 .stepn{
-  font-family:'Cormorant Garamond',serif;
-  font-size:64px;font-weight:300;color:var(--opale2);
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  font-size:64px;font-weight:800;color:var(--opale2);
   line-height:1;letter-spacing:-.02em;
 }
 .stept{
-  font-family:'Shippori Mincho',serif;
-  font-size:19px;font-weight:500;color:var(--black);
-  line-height:1.4;letter-spacing:.04em;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  font-size:19px;font-weight:800;color:var(--black);
+  line-height:1.4;letter-spacing:.01em;
 }
 .stepd{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.04em;font-weight:300}
 
@@ -257,9 +257,9 @@ nav{
 .feat:hover .uicon{transform:scale(1.12) rotate(-4deg)}
 .feat .uicon{margin-bottom:24px}
 .ft{
-  font-family:'Shippori Mincho',serif;
-  font-size:19px;font-weight:500;color:var(--black);
-  margin-bottom:8px;line-height:1.4;letter-spacing:.04em;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  font-size:19px;font-weight:800;color:var(--black);
+  margin-bottom:8px;line-height:1.4;letter-spacing:.01em;
 }
 .fd{font-size:14px;color:var(--gray);line-height:1.9;letter-spacing:.04em;font-weight:300}
 
@@ -273,8 +273,8 @@ nav{
   font-size:11px;letter-spacing:.12em;font-weight:400;
   padding:7px 16px;border-radius:100px;
 }
-.plan-name{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.08em;margin-bottom:18px}
-.plan-price{font-family:'Shippori Mincho',serif;font-size:40px;font-weight:600;color:var(--black);letter-spacing:.04em}
+.plan-name{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:20px;font-weight:800;color:var(--black);letter-spacing:.01em;margin-bottom:18px}
+.plan-price{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:40px;font-weight:800;color:var(--black);letter-spacing:.01em}
 .plan-price span{font-size:15px;color:var(--gray);font-weight:300;margin-left:4px}
 .plan-alt{font-size:13px;color:var(--o3);margin-top:8px;letter-spacing:.06em;font-weight:400}
 .plan-list{list-style:none;margin-top:28px;padding-top:28px;border-top:1px solid var(--glight)}
@@ -294,7 +294,7 @@ nav{
 .faq-q{
   display:flex;align-items:center;justify-content:space-between;
   gap:20px;cursor:pointer;list-style:none;
-  font-family:'Shippori Mincho',serif;font-size:17px;font-weight:500;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:17px;font-weight:800;
   color:var(--black);letter-spacing:.02em;padding:6px 0;
 }
 .faq-q::-webkit-details-marker{display:none}
@@ -318,7 +318,7 @@ nav{
   max-width:760px;margin:48px auto 0;
   display:flex;align-items:center;gap:28px;
   background:linear-gradient(180deg,#ffffff 0%,#fdfaf6 100%);
-  border:1px solid rgba(60,38,24,.06);border-radius:28px;
+  border:1px solid rgba(29,53,87,.06);border-radius:28px;
   padding:40px 44px;text-decoration:none;
   box-shadow:var(--sh-soft);
   transition:transform .45s var(--ease),box-shadow .45s var(--ease);
@@ -330,31 +330,31 @@ nav{
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 6px 18px rgba(240,90,40,.25);
 }
-.sib-t{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:500;color:var(--black);letter-spacing:.04em;margin-bottom:6px}
+.sib-t{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:20px;font-weight:800;color:var(--black);letter-spacing:.01em;margin-bottom:6px}
 .sib-d{font-size:13px;color:var(--gray);line-height:1.8;letter-spacing:.02em;font-weight:300}
 .sib-arrow{margin-left:auto;color:var(--o3);font-size:20px;flex-shrink:0}
 
 /* CTA */
 .cta{
   padding:130px 80px;
-  background:linear-gradient(158deg,#4e97d1 0%,#2c6fb0 44%,#1d4e79 100%);
+  background:linear-gradient(158deg,#bfdbf2 0%,#4e97d1 48%,#2c6fb0 100%);
   text-align:center;position:relative;overflow:hidden;
 }
 .cta::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:rgba(255,255,255,.05);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
 .cta-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px;font-weight:200;position:relative}
 .cta-icon{width:72px;height:72px;border-radius:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 32px;backdrop-filter:blur(8px);position:relative}
 .cta-title{
-  font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
   font-size:clamp(36px,4vw,60px);
-  font-weight:400;line-height:1.25;
+  font-weight:800;line-height:1.25;
   color:white;margin-bottom:12px;letter-spacing:.03em;position:relative;
 }
 .cta-title em{font-style:normal;color:rgba(255,255,255,.6)}
 .cta-tag{
-  font-family:'Cormorant Garamond',serif;
-  font-size:17px;font-style:italic;font-weight:300;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  font-size:17px;font-style:normal;font-weight:800;
   color:rgba(255,255,255,.45);
-  margin-bottom:18px;letter-spacing:.08em;position:relative;
+  margin-bottom:18px;letter-spacing:.01em;position:relative;
 }
 .cta-desc{
   font-size:15px;color:rgba(255,255,255,.68);
@@ -379,7 +379,7 @@ footer{
   display:flex;align-items:center;justify-content:space-between;
 }
 .flogo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.flogo-text{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:500;color:var(--black);letter-spacing:.1em}
+.flogo-text{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:18px;font-weight:800;color:var(--black);letter-spacing:.02em}
 .flinks{display:flex;gap:28px}
 .flink{font-size:12px;color:var(--gray);text-decoration:none;transition:color .2s;letter-spacing:.06em;font-weight:200}
 .flink:hover{color:var(--black)}
@@ -417,8 +417,8 @@ body.mmenu-open .mmenu-btn span::after{top:0;transform:rotate(-45deg)}
 }
 body.mmenu-open .mmenu-overlay{opacity:1;visibility:visible}
 .mmenu-overlay a{
-  font-family:'Shippori Mincho',serif;font-size:22px;color:var(--black);
-  text-decoration:none;letter-spacing:.08em;font-weight:400;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:22px;color:var(--black);
+  text-decoration:none;letter-spacing:.01em;font-weight:800;
   opacity:0;transform:translateY(8px);transition:opacity .4s ease, transform .4s ease;
 }
 body.mmenu-open .mmenu-overlay a{opacity:1;transform:translateY(0)}
@@ -493,8 +493,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 }
 .screen-phone img{display:block;width:100%;height:auto;border-radius:32px}
 .screen-cap{
-  font-family:'Shippori Mincho',serif;font-size:13px;
-  color:var(--gray);letter-spacing:.08em;font-weight:400;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;font-size:13px;
+  color:var(--gray);letter-spacing:.01em;font-weight:800;
 }
 .screen-cap strong{color:var(--black);font-weight:500;display:block;margin-bottom:4px;font-size:14px}
 @media(max-width:768px){
@@ -524,7 +524,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   "applicationCategory": "TravelApplication",
   "description": "Turn flight, hotel, and restaurant confirmations into a single itinerary with one tap from the share sheet. AI reads your booking emails and sorts everything onto a timeline.",
   "url": "https://menufyjp.com/tripfy/en/",
-  "image": "https://menufyjp.com/tripfy/ogp.png",
+  "image": "https://menufyjp.com/tripfy/ogp.png?v=2",
   "inLanguage": ["ja", "en"]
 }
 </script>
@@ -533,9 +533,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 
 <nav>
   <a href="#" class="nlogo">
-    <div class="nicon">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="9.5" y="3.5" width="5" height="4.5" rx="1.6" stroke="white" stroke-width="2"/><rect x="5" y="8" width="14" height="12.5" rx="3" fill="white"/><line x1="9" y1="8" x2="9" y2="20.5" stroke="#3f86c2" stroke-width="1.4" opacity=".55"/><line x1="15" y1="8" x2="15" y2="20.5" stroke="#3f86c2" stroke-width="1.4" opacity=".55"/></svg>
-    </div>
+    <div class="nicon"><img src="../icon-256.png" alt="" width="32" height="32" style="display:block;width:100%;height:100%;border-radius:12px"></div>
     <span class="ntext">Tripfy</span>
   </a>
   <div class="nlinks">
@@ -634,7 +632,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
             <div class="pnotch"></div>
             <div class="pcircle"></div>
             <div class="piconwrap">
-              <div class="pplate"><span style="font-size:30px">🧳</span></div>
+              <img src="../mascot-base.png" alt="" style="width:132px;height:auto;display:block;filter:drop-shadow(0 12px 22px rgba(14,50,87,.35))">
             </div>
             <div class="pbrand">Tripfy</div>
             <div class="pbrand-sub">Every trip, in one place.</div>
@@ -842,7 +840,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 <!-- ===== CTA ===== -->
 <section class="cta" id="cta">
   <div class="cta-eyebrow">Now Available</div>
-  <div class="cta-icon">🧳</div>
+  <div class="cta-icon" style="background:none;border:none;backdrop-filter:none;width:auto;height:auto"><img src="../mascot-celebrate.png" alt="" style="width:120px;height:auto;display:block;margin:0 auto"></div>
   <h2 class="cta-title">Travel lighter<br><em>next time.</em></h2>
   <p class="cta-tag">旅のすべてを、ひとつに。</p>
   <p class="cta-desc">Stop hunting through your inbox.<br>Everything about your trip, gathered in one place.</p>
