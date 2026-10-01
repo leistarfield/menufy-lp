@@ -325,8 +325,8 @@ nav{
 }
 .sib-card:hover{transform:translateY(-3px);box-shadow:var(--sh-medium)}
 .sib-icon{
-  width:64px;height:64px;border-radius:20px;flex-shrink:0;
-  background:linear-gradient(148deg,#f97c4a,#f05a28);
+  width:64px;height:64px;border-radius:20px;flex-shrink:0;overflow:hidden;
+  background:#f05a28;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 6px 18px rgba(240,90,40,.25);
 }
@@ -826,9 +826,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   <div class="slbl">Sibling app</div>
   <h2 class="stitle">Eating abroad?<br><em>Meet Menufy.</em></h2>
   <a href="/en/" class="sib-card">
-    <div class="sib-icon">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2.2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
-    </div>
+    <div class="sib-icon"><img src="../menufy-icon-512.png" alt="Menufy" style="width:100%;height:100%;display:block;border-radius:20px"></div>
     <div>
       <div class="sib-t">Menufy — Every menu, in your language.</div>
       <div class="sib-d">Snap a photo to translate any menu. Dietary alerts, point-to-order, and live currency conversion. 14 languages, pay once.</div>

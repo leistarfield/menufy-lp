@@ -337,8 +337,8 @@ nav{
 }
 .sib-card:hover{transform:translateY(-3px);box-shadow:var(--sh-medium)}
 .sib-icon{
-  width:64px;height:64px;border-radius:20px;flex-shrink:0;
-  background:linear-gradient(148deg,#f97c4a,#f05a28);
+  width:64px;height:64px;border-radius:20px;flex-shrink:0;overflow:hidden;
+  background:#f05a28;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 6px 18px rgba(240,90,40,.25);
 }
@@ -847,9 +847,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   <div class="slbl">兄弟アプリ</div>
   <h2 class="stitle">旅先の食事は、<br><em>Menufy で。</em></h2>
   <a href="/" class="sib-card">
-    <div class="sib-icon">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2.2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
-    </div>
+    <div class="sib-icon"><img src="menufy-icon-512.png" alt="Menufy" style="width:100%;height:100%;display:block;border-radius:20px"></div>
     <div>
       <div class="sib-t">Menufy — メニューを、あなたの言葉で。</div>
       <div class="sib-d">カメラで撮るだけで外国語のメニューを翻訳。アレルギー警告・指差し注文・為替換算に対応。14言語・買い切り制。</div>
