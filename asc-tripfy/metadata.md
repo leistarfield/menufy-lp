@@ -759,7 +759,7 @@ v1.4 は見た目の刷新と AI プランの改善です。新しい権限の�
 
 # ═══ v1.4.1 提出用（2026-10-04 作成）═══
 
-バージョン 1.4.1 / **ビルド 10**（9 は入国情報の行のレイアウト修正前。どちらも機能は同じ）。1.4 の公開直後に見つかった入国要件の誤案内の修正。スクショ・説明文は 1.4 のまま。
+バージョン 1.4.1 / **ビルド 11**（9・10 は国籍設定の追加前）。1.4 の公開直後に見つかった入国要件の誤案内の修正。スクショ・説明文は 1.4 のまま。
 
 ## このバージョンの新機能（What's New / v1.4.1）
 
@@ -772,6 +772,7 @@ v1.4 は見た目の刷新と AI プランの改善です。新しい権限の�
 
 ・マレーシア（MDAC）、ベトナム・タイ・韓国・台湾・シンガポール・インドネシア・フィリピン・カンボジア・ニュージーランドの電子入国カードに対応
 ・一覧にない国は「公式サイトで確認」と表示します
+・設定に「パスポートの国籍」を追加。日本以外の国籍の方には、ビザの案内を断定せず公式サイトへご案内します
 ```
 
 ### EN
@@ -783,6 +784,7 @@ From 1.4.1 the guidance comes from a verified table with a verification date and
 
 - Covers the digital arrival cards of Malaysia (MDAC), Vietnam, Thailand, Korea, Taiwan, Singapore, Indonesia, the Philippines, Cambodia and New Zealand
 - Countries not yet in the table show "check the official site"
+- New "Passport nationality" setting. For nationalities other than Japan, visa guidance points to the official site instead of guessing
 ```
 
 ### ZH-HANT
@@ -794,6 +796,7 @@ From 1.4.1 the guidance comes from a verified table with a verification date and
 
 ・涵蓋馬來西亞（MDAC）、越南、泰國、韓國、台灣、新加坡、印尼、菲律賓、柬埔寨、紐西蘭的電子入境卡
 ・清單中沒有的國家會顯示「請至官方網站確認」
+・設定新增「護照國籍」。日本以外的國籍不會武斷顯示簽證規定，而是引導至官方網站
 ```
 
 ### KO
@@ -805,6 +808,7 @@ From 1.4.1 the guidance comes from a verified table with a verification date and
 
 ・말레이시아(MDAC), 베트남, 태국, 한국, 대만, 싱가포르, 인도네시아, 필리핀, 캄보디아, 뉴질랜드의 전자 입국카드에 대응
 ・목록에 없는 국가는 "공식 사이트에서 확인"으로 표시됩니다
+・설정에 '여권 국적'을 추가. 일본 이외 국적은 비자 안내를 단정하지 않고 공식 사이트로 안내합니다
 ```
 
 ## App Review メモ（追記）
