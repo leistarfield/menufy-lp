@@ -651,6 +651,7 @@ All other AI data-consent behavior is unchanged from 1.0 build 3 (consent sheet 
 ・提案された場所を Apple マップで照合し、見つからない候補にはしるしを付けます
 
 ■ 改善
+・ビザ・入国カードの案内を、AI の推測ではなく検証済みの一覧（確認日つき・公式サイトへのリンクつき）から表示するようにしました。マレーシアの MDAC、ベトナム・タイ・韓国・台湾などの電子入国カードに対応
 ・乗り継ぎ便を含む航空券を取り込んでも、旅が経由地で分かれなくなりました。往復航空券も 1 つの旅にまとまります
 ・タイムラインに乗り継ぎの待ち時間（例: 乗り継ぎ ハノイ · 3 時間）を表示
 ・同じ予約番号の別の便（復路など）を取り込んだとき、便が消えたように見える問題を修正
@@ -673,6 +674,7 @@ A fresh new look.
 - Suggested places are checked against Apple Maps; anything not found is flagged
 
 ■ Improvements
+- Visa and arrival-card guidance now comes from a verified table (with a verification date and a link to the official site) instead of AI guesses. Covers Malaysia's MDAC and the digital arrival cards of Vietnam, Thailand, Korea, Taiwan and more
 - Tickets with connecting flights no longer split your trip at the layover. Round-trip tickets become one trip
 - Timeline shows layover time (e.g. "Layover in Hanoi · 3h")
 - Fixed an issue where importing another flight under the same booking reference (such as the return leg) appeared to drop it
@@ -695,6 +697,7 @@ A fresh new look.
 ・提案地點會與 Apple 地圖比對，找不到的候選會加上標記
 
 ■ 改善
+・簽證與入境卡資訊改由經過驗證的清單提供（附確認日與官方網站連結），不再由 AI 推測。涵蓋馬來西亞 MDAC，以及越南、泰國、韓國、台灣等的電子入境卡
 ・含轉機的機票匯入後，行程不再在轉機地被拆開；來回機票也會合併為一趟旅程
 ・時間軸顯示轉機等待時間（例：於 Hanoi 轉機 · 3 小時）
 ・修正匯入同一訂位代號的另一航段（如回程）時，航班看似消失的問題
@@ -717,6 +720,7 @@ A fresh new look.
 ・제안된 장소를 Apple 지도와 대조해, 찾을 수 없는 후보에는 표시를 붙입니다
 
 ■ 개선
+・비자·입국카드 안내를 AI 추측이 아닌 검증된 목록(확인일·공식 사이트 링크 포함)에서 표시합니다. 말레이시아 MDAC, 베트남·태국·한국·대만 등의 전자 입국카드에 대응
 ・경유 항공편이 포함된 항공권을 가져와도 여행이 경유지에서 나뉘지 않습니다. 왕복 항공권도 하나의 여행으로 묶입니다
 ・타임라인에 경유 대기 시간 표시 (예: Hanoi 경유 · 3시간)
 ・같은 예약 번호의 다른 항공편(귀국편 등)을 가져올 때 항공편이 사라진 것처럼 보이던 문제 수정
@@ -739,7 +743,9 @@ New look and a new travel buddy. Connecting and round-trip flights stay in one t
 v1.4 は見た目の刷新と AI プランの改善です。新しい権限の追加はありません。
 「旅のプロフィール」はユーザーが任意で書く自由テキストで、AI プラン / 持ち物提案の実行時にのみ、既存の AI 送信同意の範囲で送信されます（プライバシー表示は変更なし）。
 提案場所の照合には MapKit のローカル検索（MKLocalSearch）を使用しており、位置情報の権限は要求しません。
+ビザ・入国カードの案内は、アプリに同梱した一覧（確認日つき）と Worker から配信する同じ一覧に基づき、公式サイトへのリンクを併記しています。AI が生成した入国要件は表示しません。
 ```
+**ビルドは 7 を使う**（6 は入国要件の修正前）。
 
 ## 提出前チェック
 - [ ] 実機: ペイウォールで価格 2 行と「7 日間無料トライアル付き」が表示される（商品が ASC で承認済みか）
