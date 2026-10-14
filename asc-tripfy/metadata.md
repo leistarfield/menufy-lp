@@ -815,3 +815,82 @@ From 1.4.1 the guidance comes from a verified table with a verification date and
 ```
 v1.4.1 は入国要件（ビザ・入国カード）の表示修正のみです。AI が生成した入国要件は表示せず、アプリ同梱と Worker 配信の検証済み一覧（確認日・公式サイトのリンクつき）から表示します。新しい権限・課金の変更はありません。
 ```
+
+
+---
+---
+
+# ═══ v1.5 提出用（2026-10-15 作成）═══
+
+バージョン 1.5 / ビルド 13。1.4.1（ビルド 12）の内容を含む。新機能は「空港 ↔ 市内の移動ガイド」と「配車アプリ起動」。新しい権限なし（Info.plist に LSApplicationQueriesSchemes を追加しただけ）。
+
+## このバージョンの新機能（What's New / v1.5）
+
+### JA
+```
+空港から市内へ、迷わない。
+
+■ 新機能
+・空港 ↔ 市内の移動ガイド: フライトの詳細に、鉄道・バス・タクシー・配車の所要時間と料金を並べて表示。「最速」「最安」の印つき。到着時は空港から市内へ、帰りは市内から空港へ
+・配車アプリをワンタップで: Grab・Uber・Kakao T・GO など現地の配車アプリをその場で起動。Uber は滞在ホテルを目的地に入れた状態で開きます
+・対応空港: クアラルンプール、シンガポール、バンコク（スワンナプーム・ドンムアン）、ジャカルタ、バリ、ハノイ、ホーチミン、ダナン、マニラ、香港、台北、仁川、成田、羽田、関西、福岡、新千歳
+
+■ 改善（1.4.1 の内容）
+・ビザ・入国カードの案内を、確認日つきの検証済み一覧から表示（公式サイトへのリンクつき）
+・設定に「パスポートの国籍」を追加
+
+料金・運行時間は公式情報をもとに確認日つきで表示し、定期的に見直しています。出発前に公式サイトでもご確認ください。
+```
+
+### EN
+```
+From the airport to town, without guessing.
+
+■ New
+- Airport ↔ city guide: flight details now list trains, buses, taxis and ride-hailing with time and fare, marked "Fastest" and "Cheapest". Airport → city on arrival, city → airport on the way home
+- One-tap ride-hailing: open the local app (Grab, Uber, Kakao T, GO and more) right from the flight. Uber opens with your hotel already set as the destination
+- Airports covered: Kuala Lumpur, Singapore, Bangkok (BKK, DMK), Jakarta, Bali, Hanoi, Ho Chi Minh City, Da Nang, Manila, Hong Kong, Taipei, Incheon, Narita, Haneda, Kansai, Fukuoka, New Chitose
+
+■ Improvements (from 1.4.1)
+- Visa and arrival-card guidance now comes from a verified table with a verification date and official links
+- New "Passport nationality" setting
+
+Fares and hours are shown with a verification date and reviewed regularly. Please also check the official sites before you travel.
+```
+
+### ZH-HANT
+```
+從機場到市區，不再猜。
+
+■ 新功能
+・機場 ↔ 市區交通指南：航班詳情會列出鐵路、巴士、計程車、叫車的所需時間與費用，並標示「最快」「最便宜」。抵達時顯示機場→市區，回程顯示市區→機場
+・一鍵開啟叫車 App：Grab、Uber、Kakao T、GO 等當地叫車 App 可直接啟動。Uber 會以住宿飯店為目的地開啟
+・支援機場：吉隆坡、新加坡、曼谷（BKK、DMK）、雅加達、峇里島、河內、胡志明市、峴港、馬尼拉、香港、台北、仁川、成田、羽田、關西、福岡、新千歲
+
+■ 改善（1.4.1 的內容）
+・簽證與入境卡資訊改由附確認日期的驗證清單提供（含官方網站連結）
+・設定新增「護照國籍」
+
+費用與營運時間依官方資訊附確認日期顯示並定期檢視。出發前也請至官方網站確認。
+```
+
+### KO
+```
+공항에서 시내까지, 헤매지 않게.
+
+■ 새 기능
+・공항 ↔ 시내 이동 가이드: 항공편 상세에 철도·버스·택시·차량 호출의 소요 시간과 요금을 나란히 표시. '가장 빠름' '가장 저렴' 표시 포함. 도착 시 공항→시내, 귀국 시 시내→공항
+・차량 호출 앱 원탭 실행: Grab, Uber, Kakao T, GO 등 현지 앱을 바로 실행. Uber는 숙박 호텔을 목적지로 넣은 상태로 열립니다
+・지원 공항: 쿠알라룸푸르, 싱가포르, 방콕(BKK·DMK), 자카르타, 발리, 하노이, 호찌민, 다낭, 마닐라, 홍콩, 타이베이, 인천, 나리타, 하네다, 간사이, 후쿠오카, 신치토세
+
+■ 개선 (1.4.1 내용)
+・비자·입국카드 안내를 확인일이 있는 검증된 목록에서 표시 (공식 사이트 링크 포함)
+・설정에 '여권 국적' 추가
+
+요금·운행 시간은 공식 정보를 바탕으로 확인일과 함께 표시하며 정기적으로 점검합니다. 출발 전 공식 사이트에서도 확인해 주세요.
+```
+
+## App Review メモ（追記）
+```
+v1.5 は空港 ↔ 市内の移動手段ガイドと、現地の配車アプリ（Uber/Lyft/Grab/Gojek/Kakao T ほか）を URL スキームまたは App Store リンクで開く機能を追加しました。LSApplicationQueriesSchemes に uber/lyft/grab/gojek/kakaot を登録しています。配車の予約や決済はアプリ内で行わず、各社アプリに遷移するのみです。移動手段の情報はアプリに同梱した一覧（確認日・出典つき）と Worker から配信する同じ一覧に基づきます。新しい権限はありません。
+```
