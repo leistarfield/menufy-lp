@@ -822,7 +822,7 @@ v1.4.1 は入国要件（ビザ・入国カード）の表示修正のみです�
 
 # ═══ v1.5 提出用（2026-10-15 作成）═══
 
-バージョン 1.5 / ビルド 13。1.4.1（ビルド 12）の内容を含む。新機能は「空港 ↔ 市内の移動ガイド」と「配車アプリ起動」。新しい権限なし（Info.plist に LSApplicationQueriesSchemes を追加しただけ）。
+バージョン 1.5 / **ビルド 14**（13 は広島未収録・フォールバック無し）。1.4.1（ビルド 12）の内容を含む。新機能は「空港 ↔ 市内の移動ガイド」と「配車アプリ起動」。新しい権限なし（Info.plist に LSApplicationQueriesSchemes を追加しただけ）。
 
 ## このバージョンの新機能（What's New / v1.5）
 
@@ -833,7 +833,7 @@ v1.4.1 は入国要件（ビザ・入国カード）の表示修正のみです�
 ■ 新機能
 ・空港 ↔ 市内の移動ガイド: フライトの詳細に、鉄道・バス・タクシー・配車の所要時間と料金を並べて表示。「最速」「最安」の印つき。到着時は空港から市内へ、帰りは市内から空港へ
 ・配車アプリをワンタップで: Grab・Uber・Kakao T・GO など現地の配車アプリをその場で起動。Uber は滞在ホテルを目的地に入れた状態で開きます
-・対応空港: クアラルンプール、シンガポール、バンコク（スワンナプーム・ドンムアン）、ジャカルタ、バリ、ハノイ、ホーチミン、ダナン、マニラ、香港、台北、仁川、成田、羽田、関西、福岡、新千歳
+・対応空港: クアラルンプール、シンガポール、バンコク（スワンナプーム・ドンムアン）、ジャカルタ、バリ、ハノイ、ホーチミン、ダナン、マニラ、香港、台北、仁川、成田、羽田、関西、福岡、広島、新千歳。それ以外の空港でも、地図の公共交通経路と配車アプリをすぐ開けます
 
 ■ 改善（1.4.1 の内容）
 ・ビザ・入国カードの案内を、確認日つきの検証済み一覧から表示（公式サイトへのリンクつき）
@@ -849,7 +849,7 @@ From the airport to town, without guessing.
 ■ New
 - Airport ↔ city guide: flight details now list trains, buses, taxis and ride-hailing with time and fare, marked "Fastest" and "Cheapest". Airport → city on arrival, city → airport on the way home
 - One-tap ride-hailing: open the local app (Grab, Uber, Kakao T, GO and more) right from the flight. Uber opens with your hotel already set as the destination
-- Airports covered: Kuala Lumpur, Singapore, Bangkok (BKK, DMK), Jakarta, Bali, Hanoi, Ho Chi Minh City, Da Nang, Manila, Hong Kong, Taipei, Incheon, Narita, Haneda, Kansai, Fukuoka, New Chitose
+- Airports covered: Kuala Lumpur, Singapore, Bangkok (BKK, DMK), Jakarta, Bali, Hanoi, Ho Chi Minh City, Da Nang, Manila, Hong Kong, Taipei, Incheon, Narita, Haneda, Kansai, Fukuoka, Hiroshima, New Chitose. At any other airport you can still open transit directions and ride-hailing apps in one tap
 
 ■ Improvements (from 1.4.1)
 - Visa and arrival-card guidance now comes from a verified table with a verification date and official links
