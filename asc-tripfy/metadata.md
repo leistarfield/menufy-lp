@@ -822,7 +822,7 @@ v1.4.1 は入国要件（ビザ・入国カード）の表示修正のみです�
 
 # ═══ v1.5 提出用（2026-10-15 作成）═══
 
-バージョン 1.5 / **ビルド 14**（13 は広島未収録・フォールバック無し）。1.4.1（ビルド 12）の内容を含む。新機能は「空港 ↔ 市内の移動ガイド」と「配車アプリ起動」。新しい権限なし（Info.plist に LSApplicationQueriesSchemes を追加しただけ）。
+バージョン 1.5 / **ビルド 15**（13・14 は空港の追加分と通知の時差対応の前）。1.4.1（ビルド 12）の内容を含む。新機能は「空港 ↔ 市内の移動ガイド」と「配車アプリ起動」。新しい権限なし（Info.plist に LSApplicationQueriesSchemes を追加しただけ）。
 
 ## このバージョンの新機能（What's New / v1.5）
 
@@ -835,7 +835,8 @@ v1.4.1 は入国要件（ビザ・入国カード）の表示修正のみです�
 ・配車アプリをワンタップで: Grab・Uber・Kakao T・GO など現地の配車アプリをその場で起動。Uber は滞在ホテルを目的地に入れた状態で開きます
 ・対応空港: クアラルンプール、シンガポール、バンコク（スワンナプーム・ドンムアン）、ジャカルタ、バリ、ハノイ、ホーチミン、ダナン、マニラ、香港、台北、仁川、成田、羽田、関西、福岡、広島、新千歳。それ以外の空港でも、地図の公共交通経路と配車アプリをすぐ開けます
 
-■ 改善（1.4.1 の内容）
+■ 改善
+・海外で時差が変わっても、「前日」「3 日前」などの準備リマインドが現地時間の夜に届くようにしました
 ・ビザ・入国カードの案内を、確認日つきの検証済み一覧から表示（公式サイトへのリンクつき）
 ・設定に「パスポートの国籍」を追加
 
@@ -851,7 +852,8 @@ From the airport to town, without guessing.
 - One-tap ride-hailing: open the local app (Grab, Uber, Kakao T, GO and more) right from the flight. Uber opens with your hotel already set as the destination
 - Airports covered: Kuala Lumpur, Singapore, Bangkok (BKK, DMK), Jakarta, Bali, Hanoi, Ho Chi Minh City, Da Nang, Manila, Hong Kong, Taipei, Incheon, Narita, Haneda, Kansai, Fukuoka, Hiroshima, New Chitose. At any other airport you can still open transit directions and ride-hailing apps in one tap
 
-■ Improvements (from 1.4.1)
+■ Improvements
+- Prep reminders ("the day before", "3 days before") now arrive in the evening of wherever you are, even after crossing time zones
 - Visa and arrival-card guidance now comes from a verified table with a verification date and official links
 - New "Passport nationality" setting
 
@@ -867,7 +869,8 @@ Fares and hours are shown with a verification date and reviewed regularly. Pleas
 ・一鍵開啟叫車 App：Grab、Uber、Kakao T、GO 等當地叫車 App 可直接啟動。Uber 會以住宿飯店為目的地開啟
 ・支援機場：吉隆坡、新加坡、曼谷（BKK、DMK）、雅加達、峇里島、河內、胡志明市、峴港、馬尼拉、香港、台北、仁川、成田、羽田、關西、福岡、新千歲
 
-■ 改善（1.4.1 的內容）
+■ 改善
+・跨時區後，「前一天」「3 天前」等準備提醒也會在當地時間的晚上送達
 ・簽證與入境卡資訊改由附確認日期的驗證清單提供（含官方網站連結）
 ・設定新增「護照國籍」
 
@@ -883,7 +886,8 @@ Fares and hours are shown with a verification date and reviewed regularly. Pleas
 ・차량 호출 앱 원탭 실행: Grab, Uber, Kakao T, GO 등 현지 앱을 바로 실행. Uber는 숙박 호텔을 목적지로 넣은 상태로 열립니다
 ・지원 공항: 쿠알라룸푸르, 싱가포르, 방콕(BKK·DMK), 자카르타, 발리, 하노이, 호찌민, 다낭, 마닐라, 홍콩, 타이베이, 인천, 나리타, 하네다, 간사이, 후쿠오카, 신치토세
 
-■ 개선 (1.4.1 내용)
+■ 개선
+・시차가 바뀌어도 '전날' '3일 전' 같은 준비 알림이 현지 시간 저녁에 도착합니다
 ・비자·입국카드 안내를 확인일이 있는 검증된 목록에서 표시 (공식 사이트 링크 포함)
 ・설정에 '여권 국적' 추가
 
