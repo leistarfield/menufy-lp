@@ -898,3 +898,10 @@ Fares and hours are shown with a verification date and reviewed regularly. Pleas
 ```
 v1.5 は空港 ↔ 市内の移動手段ガイドと、現地の配車アプリ（Uber/Lyft/Grab/Gojek/Kakao T ほか）を URL スキームまたは App Store リンクで開く機能を追加しました。LSApplicationQueriesSchemes に uber/lyft/grab/gojek/kakaot を登録しています。配車の予約や決済はアプリ内で行わず、各社アプリに遷移するのみです。移動手段の情報はアプリに同梱した一覧（確認日・出典つき）と Worker から配信する同じ一覧に基づきます。新しい権限はありません。
 ```
+
+## 商品ページのヘッダー / 検索結果画像（2026-10-21 作成・任意・iOS 27 以降で表示）
+- 生成: `asc-tripfy/creative/build.py` → `~/Desktop/Tripfyストア素材/creative/`
+- ASC → App 情報（またはバージョンのクリエイティブアセット）→ ローカリゼーションごとに:
+  - **ヘッダー**（21:9・3840×1646）: `header_ja.png` を日本語、`header_en.png` を英語に
+  - **検索結果**（3:2・3840×2560）: `search_ja.png` / `search_en.png`
+- 透過なし PNG。ko / zh-Hant は未作成（必要なら build.py の COPY に文言を足すだけ）
