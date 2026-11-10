@@ -181,6 +181,17 @@ body.mmenu-open{overflow:hidden}
 .why-d{font-size:14px;line-height:1.8;color:var(--muted);font-weight:700}
 .why-d strong{color:var(--ink);font-weight:900}
 
+/* DISH PHOTOS (2.5) */
+.ph-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+.ph-pair{display:flex;align-items:center;justify-content:center;gap:18px}
+.ph-pair figure{margin:0;flex:0 1 230px;display:flex;flex-direction:column;gap:10px}
+.ph-pair figcaption{font-size:13px;line-height:1.5;color:var(--muted);font-weight:800;text-align:center}
+.ph-arrow{flex:none;width:40px;height:40px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh)}
+.ph-points{list-style:none;display:flex;flex-direction:column;gap:14px;margin:0;padding:0}
+.ph-points li{background:var(--card);border-radius:20px;padding:18px 20px;box-shadow:var(--sh);font-size:15px;line-height:1.7;color:var(--ink);font-weight:700}
+.ph-points li strong{display:block;font-weight:900;margin-bottom:2px}
+.ph-points li span{color:var(--muted)}
+@media(max-width:900px){.ph-wrap{grid-template-columns:1fr;gap:32px}.ph-pair{gap:10px}.ph-pair figure{flex-basis:44%}.ph-arrow{width:32px;height:32px}}
 /* NEW FEATURES (order) */
 .nf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .nf-card{background:var(--card);border-radius:26px;padding:28px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:14px}
@@ -544,9 +555,9 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
 <section class="hero">
   <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
   <div class="hleft">
-    <a href="#order" class="hannounce"><span style="display:inline-flex;width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></span>会計チェックと、店員に見せる注文票が登場</a>
+    <a href="#photos" class="hannounce"><span style="display:inline-flex;width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></span>メニューの料理写真が、訳した料理に付くように</a>
     <h1 class="htitle">読めないメニューも、<br>もう怖くない。</h1>
-    <p class="hdesc">撮るだけで、料理の名前・説明・値段があなたの言葉に。アレルギーの警告、店員に見せる注文票、会計のチェックまで。旅先の食事の不安を、ぜんぶ引き受けます。</p>
+    <p class="hdesc">撮るだけで、料理の名前・説明・値段があなたの言葉に。メニューに写真があれば、その料理の写真も一緒に。アレルギーの警告、店員に見せる注文票、会計のチェックまで。旅先の食事の不安を、ぜんぶ引き受けます。</p>
     <div class="hactions">
       <a href="#cta" class="btn-primary"><span style="display:inline-flex;width:20px;height:20px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>無料でダウンロード</a>
       <a href="https://apps.apple.com/app/id6760161339" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'hero',content_category:'AppStore'})"><svg width="22" height="22" viewBox="0 0 24 24" fill="#3B2C26"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="sub">Download on the</span><span class="main">App Store</span></div></a>
@@ -555,8 +566,26 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     <div class="hmeta"><span>14言語</span><span>·</span><span>買い切り・サブスクなし</span><span>·</span><span>まず5回無料</span></div>
   </div>
   <div class="hright">
-    <div class="phone"><img src="screens-v2/03-result.jpg" alt="Menufyの翻訳結果画面" fetchpriority="high"></div>
+    <div class="phone"><img src="screens-v2/13-dishes.jpg" alt="写真つきで並ぶMenufyの翻訳結果" fetchpriority="high"></div>
     <img src="assets/mascot-sushi.png" alt="" class="mascot m1" loading="lazy"><img src="assets/mascot-ramen.png" alt="" class="mascot m2" loading="lazy"><img src="assets/mascot-gyoza.png" alt="" class="mascot m3" loading="lazy"><img src="assets/mascot-omurice.png" alt="" class="mascot m4" loading="lazy"><img src="assets/mascot-pudding.png" alt="" class="mascot m5" loading="lazy">
+  </div>
+</section>
+
+<section class="section" id="photos">
+  <div class="ph-wrap">
+    <div>
+      <div class="slbl">NEW 2.5 · 料理の写真</div>
+      <h2 class="stitle">メニューの写真が、<br><em>訳した料理に。</em></h2>
+      <p class="sdesc" style="margin-bottom:28px">写真つきのメニューなら、どの写真がどの料理かをAIが見分けて、訳した料理に添えます。名前を読んでもピンとこない料理も、ひと目でわかります。</p>
+      <ul class="ph-points">
+        <li><strong>写真を押すと大きく</strong><span>撮ったメニューから切り抜くので、細部までくっきり。</span></li><li><strong>迷ったら付けない</strong><span>どの料理の写真か確かでないときは付けません。写真のない料理は今までどおり。</span></li><li><strong>おすすめ・注文票・履歴にも</strong><span>店員に見せる注文票や、あとで見返す履歴にも写真が残ります。</span></li>
+      </ul>
+    </div>
+    <div class="ph-pair">
+      <figure><div class="screen-phone"><img src="screens-v2/02-camera.jpg" alt="写真つきのメニューを撮った画面" loading="lazy"></div><figcaption>写真つきのメニューを撮ると</figcaption></figure>
+      <div class="ph-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <figure><div class="screen-phone"><img src="screens-v2/13-dishes.jpg" alt="写真つきで並ぶMenufyの翻訳結果" loading="lazy"></div><figcaption>訳した料理に、その料理の写真</figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -601,20 +630,24 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
         <div class="screen-cap"><strong>02. 翻訳結果が順に届く</strong>おすすめ・警告・食べ方つき</div>
       </div>
       <div class="screen-item">
+        <div class="screen-phone"><img src="screens-v2/12-viewer.jpg" alt="料理の写真を全画面で表示" loading="lazy"></div>
+        <div class="screen-cap"><strong>03. 料理の写真を大きく</strong>メニューの写真から切り抜き</div>
+      </div>
+      <div class="screen-item">
         <div class="screen-phone"><img src="screens-v2/04-order.jpg" alt="Menufyの注文票画面" loading="lazy"></div>
-        <div class="screen-cap"><strong>03. 注文票を店員に見せる</strong>アレルギーの申告文も現地語で</div>
+        <div class="screen-cap"><strong>04. 注文票を店員に見せる</strong>アレルギーの申告文も現地語で</div>
       </div>
       <div class="screen-item">
         <div class="screen-phone"><img src="screens-v2/05-ask.jpg" alt="店員に聞くカード" loading="lazy"></div>
-        <div class="screen-cap"><strong>04. 気になる料理は聞く</strong>「これは入っていますか？」を原語で</div>
+        <div class="screen-cap"><strong>05. 気になる料理は聞く</strong>「これは入っていますか？」を原語で</div>
       </div>
       <div class="screen-item">
         <div class="screen-phone"><img src="screens-v2/08-bill.jpg" alt="Menufyの会計チェック画面" loading="lazy"></div>
-        <div class="screen-cap"><strong>05. 会計をチェック</strong>過剰請求や未注文の品を指摘</div>
+        <div class="screen-cap"><strong>06. 会計をチェック</strong>過剰請求や未注文の品を指摘</div>
       </div>
       <div class="screen-item">
         <div class="screen-phone"><img src="screens-v2/06-paywall.jpg" alt="Menufyの回数券画面" loading="lazy"></div>
-        <div class="screen-cap"><strong>06. 買い切りの回数券</strong>サブスクなし。5回は無料</div>
+        <div class="screen-cap"><strong>07. 買い切りの回数券</strong>サブスクなし。5回は無料</div>
       </div>
     </div>
     <div class="screens-nav"><button class="snav" type="button" data-dir="-1" aria-label="prev">‹</button><span class="screens-hint" style="margin:0"><span>横にスクロール</span></span><button class="snav" type="button" data-dir="1" aria-label="next">›</button></div>
@@ -626,6 +659,11 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   <h2 class="stitle">読むだけで<em>終わらせない。</em></h2>
   <p class="sdesc">翻訳のあとに来る「選ぶ・頼む・払う・覚える」まで、ぜんぶ一つのアプリで。</p>
   <div class="fgrid">
+    <div class="feat">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg></div>
+      <h3 class="ft">料理の写真つき</h3>
+      <p class="fd">メニューの写真を、訳した料理に添えて表示。どんな一皿か、ひと目でわかります。</p>
+    </div>
     <div class="feat">
       <div class="icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
       <h3 class="ft">14言語・自動判定</h3>
@@ -660,11 +698,6 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
       <div class="icon mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v7a2 2 0 0 0 2 2v9M8 3v5M10 3v5"/><path d="M17 3c-2 1-3 4-3 7h3v11"/></svg></div>
       <h3 class="ft">食べた記録と旅カード</h3>
       <p class="fd">星と写真で記録。国ごとに1枚のカードにして共有できます。</p>
-    </div>
-    <div class="feat">
-      <div class="icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 14v6h14v-6"/></svg></div>
-      <h3 class="ft">保存・共有・履歴</h3>
-      <p class="fd">翻訳結果は画像で保存。履歴は店名や国で検索できます。</p>
     </div>
   </div>
 </section>
@@ -797,6 +830,10 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   <div class="slbl">よくある質問</div>
   <h2 class="stitle">気になること、<em>ここで解決。</em></h2>
   <div class="faq-wrap">
+    <details class="faq-item">
+      <summary class="faq-q">メニューの写真は、どんなときに付きますか？</summary>
+      <div class="faq-a">メニューに料理の写真があり、どの料理の写真かをAIが見分けられたときに、訳した料理に添えて表示します。写真に料理名が書かれていればそれを手がかりにします。どの料理の写真か確かでないときや、写真のない料理には付けません。写真は撮影したメニューから端末内で切り抜きます。</div>
+    </details>
     <details class="faq-item">
       <summary class="faq-q">翻訳の精度はどのくらいですか？</summary>
       <div class="faq-a">最新のAIを使用しており、印刷メニュー・手書きメニュー・黒板メニュー・タブレット画面など、様々な形式を高精度で翻訳します。料理名だけでなく、原材料や調理法の説明も日本語で表示するので、どんな料理か一目でわかります。</div>

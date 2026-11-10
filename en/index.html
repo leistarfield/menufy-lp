@@ -181,6 +181,17 @@ body.mmenu-open{overflow:hidden}
 .why-d{font-size:14px;line-height:1.8;color:var(--muted);font-weight:700}
 .why-d strong{color:var(--ink);font-weight:900}
 
+/* DISH PHOTOS (2.5) */
+.ph-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+.ph-pair{display:flex;align-items:center;justify-content:center;gap:18px}
+.ph-pair figure{margin:0;flex:0 1 230px;display:flex;flex-direction:column;gap:10px}
+.ph-pair figcaption{font-size:13px;line-height:1.5;color:var(--muted);font-weight:800;text-align:center}
+.ph-arrow{flex:none;width:40px;height:40px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh)}
+.ph-points{list-style:none;display:flex;flex-direction:column;gap:14px;margin:0;padding:0}
+.ph-points li{background:var(--card);border-radius:20px;padding:18px 20px;box-shadow:var(--sh);font-size:15px;line-height:1.7;color:var(--ink);font-weight:700}
+.ph-points li strong{display:block;font-weight:900;margin-bottom:2px}
+.ph-points li span{color:var(--muted)}
+@media(max-width:900px){.ph-wrap{grid-template-columns:1fr;gap:32px}.ph-pair{gap:10px}.ph-pair figure{flex-basis:44%}.ph-arrow{width:32px;height:32px}}
 /* NEW FEATURES (order) */
 .nf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .nf-card{background:var(--card);border-radius:26px;padding:28px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:14px}
@@ -540,9 +551,9 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
 <section class="hero">
   <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
   <div class="hleft">
-    <a href="#order" class="hannounce"><span style="display:inline-flex;width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></span>New: bill check and an order card to show staff</a>
+    <a href="#photos" class="hannounce"><span style="display:inline-flex;width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></span>Dish photos from the menu, now next to each translation</a>
     <h1 class="htitle">No menu is scary<br>anymore.</h1>
-    <p class="hdesc">Snap a menu and every dish name, description and price appears in your language. Allergy alerts, an order card to show staff, and a check of the bill — everything that makes eating abroad stressful, handled.</p>
+    <p class="hdesc">Snap a menu and every dish name, description and price appears in your language — with the dish’s photo when the menu has one. Allergy alerts, an order card to show staff, and a check of the bill — everything that makes eating abroad stressful, handled.</p>
     <div class="hactions">
       <a href="#cta" class="btn-primary"><span style="display:inline-flex;width:20px;height:20px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>Download free</a>
       <a href="https://apps.apple.com/app/id6760161339" class="btn-store" target="_blank" onclick="fbq('track','InitiateCheckout',{content_name:'hero',content_category:'AppStore'})"><svg width="22" height="22" viewBox="0 0 24 24" fill="#3B2C26"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div><span class="sub">Download on the</span><span class="main">App Store</span></div></a>
@@ -551,8 +562,26 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
     <div class="hmeta"><span>14 languages</span><span>·</span><span>One-time purchase, no subscription</span><span>·</span><span>First 5 scans free</span></div>
   </div>
   <div class="hright">
-    <div class="phone"><img src="../screens-v2/en/03-result.jpg" alt="Menufy translation result screen" fetchpriority="high"></div>
+    <div class="phone"><img src="../screens-v2/en/13-dishes.jpg" alt="Menufy results with dish photos" fetchpriority="high"></div>
     <img src="../assets/mascot-sushi.png" alt="" class="mascot m1" loading="lazy"><img src="../assets/mascot-ramen.png" alt="" class="mascot m2" loading="lazy"><img src="../assets/mascot-gyoza.png" alt="" class="mascot m3" loading="lazy"><img src="../assets/mascot-omurice.png" alt="" class="mascot m4" loading="lazy"><img src="../assets/mascot-pudding.png" alt="" class="mascot m5" loading="lazy">
+  </div>
+</section>
+
+<section class="section" id="photos">
+  <div class="ph-wrap">
+    <div>
+      <div class="slbl">NEW 2.5 · Dish photos</div>
+      <h2 class="stitle">Menu photos,<br><em>matched to each dish.</em></h2>
+      <p class="sdesc" style="margin-bottom:28px">When the menu has pictures, the AI works out which photo shows which dish and puts it next to the translation. Even a name that means nothing to you becomes clear at a glance.</p>
+      <ul class="ph-points">
+        <li><strong>Tap to see it big</strong><span>Cut from the menu you photographed, so it stays sharp.</span></li><li><strong>No guessing</strong><span>If it isn’t sure which dish a photo shows, it leaves it out. Dishes without a photo look as before.</span></li><li><strong>In picks, the order card and history</strong><span>Photos stay with the dish on the order card you show staff and in your history.</span></li>
+      </ul>
+    </div>
+    <div class="ph-pair">
+      <figure><div class="screen-phone"><img src="../screens-v2/en/02-camera.jpg" alt="A photographed menu with dish photos" loading="lazy"></div><figcaption>Snap a menu with photos</figcaption></figure>
+      <div class="ph-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <figure><div class="screen-phone"><img src="../screens-v2/en/13-dishes.jpg" alt="Menufy results with dish photos" loading="lazy"></div><figcaption>Each translated dish gets its photo</figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -597,20 +626,24 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
         <div class="screen-cap"><strong>02. Dishes arrive one by one</strong>With picks, warnings and how to eat</div>
       </div>
       <div class="screen-item">
+        <div class="screen-phone"><img src="../screens-v2/en/12-viewer.jpg" alt="A dish photo shown full screen" loading="lazy"></div>
+        <div class="screen-cap"><strong>03. See the dish photo big</strong>Cut from the menu’s own photo</div>
+      </div>
+      <div class="screen-item">
         <div class="screen-phone"><img src="../screens-v2/en/04-order.jpg" alt="Menufy order card" loading="lazy"></div>
-        <div class="screen-cap"><strong>03. Show the order card</strong>Allergy statements in the local language</div>
+        <div class="screen-cap"><strong>04. Show the order card</strong>Allergy statements in the local language</div>
       </div>
       <div class="screen-item">
         <div class="screen-phone"><img src="../screens-v2/en/05-ask.jpg" alt="Ask-staff card" loading="lazy"></div>
-        <div class="screen-cap"><strong>04. Ask about a dish</strong>"Does this contain…?" in the menu's language</div>
+        <div class="screen-cap"><strong>05. Ask about a dish</strong>"Does this contain…?" in the menu's language</div>
       </div>
       <div class="screen-item">
         <div class="screen-phone"><img src="../screens-v2/en/08-bill.jpg" alt="Menufy bill check" loading="lazy"></div>
-        <div class="screen-cap"><strong>05. Check the bill</strong>Overcharges and unordered items flagged</div>
+        <div class="screen-cap"><strong>06. Check the bill</strong>Overcharges and unordered items flagged</div>
       </div>
       <div class="screen-item">
         <div class="screen-phone"><img src="../screens-v2/en/06-paywall.jpg" alt="Menufy credit packs" loading="lazy"></div>
-        <div class="screen-cap"><strong>06. One-time credit packs</strong>No subscription. First 5 are free</div>
+        <div class="screen-cap"><strong>07. One-time credit packs</strong>No subscription. First 5 are free</div>
       </div>
     </div>
     <div class="screens-nav"><button class="snav" type="button" data-dir="-1" aria-label="prev">‹</button><span class="screens-hint" style="margin:0"><span>Scroll sideways</span></span><button class="snav" type="button" data-dir="1" aria-label="next">›</button></div>
@@ -622,6 +655,11 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   <h2 class="stitle">Reading is <em>only the start.</em></h2>
   <p class="sdesc">Choosing, ordering, paying and remembering — all in one app.</p>
   <div class="fgrid">
+    <div class="feat">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg></div>
+      <h3 class="ft">Dish photos</h3>
+      <p class="fd">The menu’s own photos, shown next to each translated dish. See what you’re ordering at a glance.</p>
+    </div>
     <div class="feat">
       <div class="icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
       <h3 class="ft">14 languages, auto-detected</h3>
@@ -656,11 +694,6 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
       <div class="icon mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v7a2 2 0 0 0 2 2v9M8 3v5M10 3v5"/><path d="M17 3c-2 1-3 4-3 7h3v11"/></svg></div>
       <h3 class="ft">Food log and trip card</h3>
       <p class="fd">Rate dishes with a photo, then share one card per trip.</p>
-    </div>
-    <div class="feat">
-      <div class="icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 14v6h14v-6"/></svg></div>
-      <h3 class="ft">Save, share, history</h3>
-      <p class="fd">Save results as an image. Search history by restaurant or country.</p>
     </div>
   </div>
 </section>
@@ -793,6 +826,10 @@ footer{padding:40px 80px 60px;display:flex;align-items:center;justify-content:sp
   <div class="slbl">FAQ</div>
   <h2 class="stitle">Your questions, <em>answered.</em></h2>
   <div class="faq-wrap">
+    <details class="faq-item">
+      <summary class="faq-q">When does a dish get a photo?</summary>
+      <div class="faq-a">When the menu has food photos and the AI can tell which dish each one shows, the photo appears next to that dish. A name printed on the photo helps it decide. If it isn’t sure, or a dish has no photo, none is added. Photos are cut from your menu shot on the device itself.</div>
+    </details>
     <details class="faq-item">
       <summary class="faq-q">How accurate is the translation?</summary>
       <div class="faq-a">Menufy uses the latest AI to deliver high-accuracy translations across printed menus, handwritten menus, chalkboards, and digital tablets. Beyond just dish names, it also explains ingredients and cooking methods so you know exactly what you're ordering.</div>
