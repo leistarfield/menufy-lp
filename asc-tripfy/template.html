@@ -116,6 +116,14 @@ h2 em{font-style:normal;color:var(--o2)}
   box-shadow:0 10px 24px -8px rgba(44,111,176,.45);
 }
 .trust .ck svg{width:22px;height:22px}
+
+/* ko / zh-Hant: 丸ゴシックにハングル・繁体字が無いので、各言語のシステム書体で組む */
+.shot[data-out^="ko-"] h2,.shot[data-out^="ko-"] .side strong,.shot[data-out^="ko-"] .trust li{font-family:'Apple SD Gothic Neo',sans-serif;font-weight:800;letter-spacing:-.01em}
+.shot[data-out^="ko-"] .sub,.shot[data-out^="ko-"] .side,.shot[data-out^="ko-"] .pill{font-family:'Apple SD Gothic Neo',sans-serif;letter-spacing:0}
+.shot[data-out^="ko-"] .sub{font-weight:400}
+.shot[data-out^="zh-"] h2,.shot[data-out^="zh-"] .side strong,.shot[data-out^="zh-"] .trust li{font-family:'PingFang TC',sans-serif;font-weight:600}
+.shot[data-out^="zh-"] .sub,.shot[data-out^="zh-"] .side,.shot[data-out^="zh-"] .pill{font-family:'PingFang TC',sans-serif}
+.shot[data-out^="zh-"] .sub{font-weight:400}
 </style>
 </head>
 <body>
@@ -304,6 +312,196 @@ h2 em{font-style:normal;color:var(--o2)}
       <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No ads, no tracking.</li>
       <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iCloud sync across devices.</li>
       <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Widget &amp; notifications.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════ KO ═══════════ -->
+
+<section class="shot pano" data-out="ko-0102">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <h2>붙여넣기만 하면,<br><em>여행 일정 완성.</em></h2>
+    <p class="sub">예약 메일, 스크린샷, PDF까지. AI가 읽고 여행 일정을 자동으로 만들어요.</p>
+  </div>
+  <div class="side l">
+    <span class="pill">AI IMPORT</span>
+    <strong>항공편·호텔을<br>자동으로 정리</strong>
+    편명, 예약 번호, 시간까지<br>AI가 읽어 냅니다.
+  </div>
+  <div class="side r">
+    <strong>회원가입 없이</strong>
+    붙여넣기만 하면<br>일정이 만들어져요.
+  </div>
+  <div class="phone"><img src="src/ko/01-timeline.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-025">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">여행 중</span>
+    <h2>다음 일정을,<br><em>한눈에.</em></h2>
+    <p class="sub">남은 시간, 터미널, 좌석, 예약 번호. 지금 필요한 정보만 맨 위에.</p>
+  </div>
+  <div class="phone"><img src="src/ko/00-home.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-03">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">AI IMPORT</span>
+    <h2>예약 메일을<br>AI가 <em>읽어요.</em></h2>
+    <p class="sub">본문을 붙여넣기만 하세요. 내용을 확인하고 한 번에 일정에 추가.</p>
+  </div>
+  <div class="phone"><img src="src/ko/03-import-confirm.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-04">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <h2>여행 전체를,<br><em>지도 한 장에.</em></h2>
+    <p class="sub">공항, 호텔, 관광지. 가는 곳이 모두 지도에.</p>
+  </div>
+  <div class="phone"><img src="src/ko/02-map.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-05">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">AI DAY PLANS</span>
+    <h2>빈 시간도<br>AI가 <em>제안.</em></h2>
+    <p class="sub">지금 일정에 맞춰 둘러볼 순서와 추천 장소를 제안해요.</p>
+  </div>
+  <div class="phone"><img src="src/ko/04-ai-plan.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-06">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">AI PACKING</span>
+    <h2>잊은 짐은,<br>AI가 <em>챙겨요.</em></h2>
+    <p class="sub">여행지와 일정에 맞춘 준비물 목록을 자동으로 만들어요.</p>
+  </div>
+  <div class="phone"><img src="src/ko/05-packing.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-07">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <h2>eSIM도 보험도,<br><em>한곳에.</em></h2>
+    <p class="sub">여행 서류를 하나의 앱에. 필요할 때 바로 꺼내 보세요.</p>
+  </div>
+  <div class="phone"><img src="src/ko/06-documents.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="ko-08">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="closing">
+    <div class="logo"><img src="assets/icon-1024.png" alt=""></div>
+    <div class="wordmark">Tripfy</div>
+    <div class="tagline">YOUR TRIP, AUTO-BUILT.</div>
+    <h2>여행 준비를,<br><em>더 가볍게.</em></h2>
+    <ul class="trust">
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>회원가입 필요 없음.</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>광고 없음·추적 없음.</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iCloud 동기화로 기기 변경도 안심.</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>위젯·알림 지원.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════ ZH ═══════════ -->
+
+<section class="shot pano" data-out="zh-0102">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <h2>貼上就好，<br><em>行程完成。</em></h2>
+    <p class="sub">訂位信、截圖、PDF 都可以。AI 自動讀取，幫你整理成旅遊行程。</p>
+  </div>
+  <div class="side l">
+    <span class="pill">AI IMPORT</span>
+    <strong>航班・飯店<br>自動整理</strong>
+    航班號碼、訂位編號、時間<br>都由 AI 讀取。
+  </div>
+  <div class="side r">
+    <strong>免註冊</strong>
+    貼上之後<br>行程自動完成。
+  </div>
+  <div class="phone"><img src="src/zh/01-timeline.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-025">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">旅途中</span>
+    <h2>下一個行程，<br><em>一目了然。</em></h2>
+    <p class="sub">剩餘時間、航廈、座位、訂位編號。當下需要的資訊，放在最上面。</p>
+  </div>
+  <div class="phone"><img src="src/zh/00-home.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-03">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">AI IMPORT</span>
+    <h2>訂位信，<br>交給 AI <em>讀取。</em></h2>
+    <p class="sub">只要貼上內文。確認內容後，一鍵加入行程。</p>
+  </div>
+  <div class="phone"><img src="src/zh/03-import-confirm.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-04">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <h2>整趟旅程，<br><em>一張地圖看完。</em></h2>
+    <p class="sub">機場、飯店、景點，所有目的地都在地圖上。</p>
+  </div>
+  <div class="phone"><img src="src/zh/02-map.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-05">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">AI DAY PLANS</span>
+    <h2>空檔時間，<br>AI 幫你<em>安排。</em></h2>
+    <p class="sub">配合目前的行程，建議順路的走法與推薦景點。</p>
+  </div>
+  <div class="phone"><img src="src/zh/04-ai-plan.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-06">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <span class="pill">AI PACKING</span>
+    <h2>忘東忘西？<br>AI <em>幫你記。</em></h2>
+    <p class="sub">依目的地與行程，自動產生行李清單。</p>
+  </div>
+  <div class="phone"><img src="src/zh/05-packing.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-07">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="cap">
+    <h2>eSIM、保險，<br><em>都收在這裡。</em></h2>
+    <p class="sub">旅遊文件集中在一個 App，需要時馬上找到。</p>
+  </div>
+  <div class="phone"><img src="src/zh/06-documents.png" alt=""></div>
+</section>
+
+<section class="shot" data-out="zh-08">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="closing">
+    <div class="logo"><img src="assets/icon-1024.png" alt=""></div>
+    <div class="wordmark">Tripfy</div>
+    <div class="tagline">YOUR TRIP, AUTO-BUILT.</div>
+    <h2>旅行準備，<br><em>更輕鬆。</em></h2>
+    <ul class="trust">
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>不需註冊帳號。</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>無廣告・無追蹤。</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>iCloud 同步，換手機也安心。</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>支援小工具與通知。</li>
     </ul>
   </div>
 </section>
